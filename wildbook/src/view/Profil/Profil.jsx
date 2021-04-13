@@ -8,6 +8,9 @@ function Profil() {
         <div>
            <ProfilInfos />
         </div>
+        
+           
+        
     );
     
 
