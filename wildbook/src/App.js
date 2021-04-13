@@ -9,7 +9,7 @@ function App() {
     <Main>
       {/* <Home /> */}
       {/* <Login />*/}
-      {/* <Profil /> */}
+      <Profil />
     </Main>
   );
 }
