@@ -1,5 +1,5 @@
 import React from "react";
-import './components/ProfilInfos.css';
+
 
 function ProfilInfos() {
     return (

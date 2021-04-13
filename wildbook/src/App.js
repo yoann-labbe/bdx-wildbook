@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Main from './layouts/Main/Main';
-import Home from './view/Home/Home';
+import Profil from './view/Profil/Profil';
 
 
 
@@ -12,7 +12,8 @@ function App() {
 
     <Main>
       {/* <Home /> */}
-      {/* <Login /> */}
+      {/* <Login />*/}
+      {/* <Profil /> */}
     </Main>
   );
 }
