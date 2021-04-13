@@ -6,7 +6,7 @@ function Main(props) {
 
     return (
         <div>
-            <Header />
+           
             {children}
             <Footer />
         </div>
