@@ -1,8 +1,13 @@
 import React from 'react';
-import MyComponent from './components/MyComponent';
+import NewWilder from './components/NewWilder/NewWilder';
 
 function Home(props) {
     
+    return (
+        <div>
+        <NewWilder />
+        </div>
+    );
 }
 
 export default Home;

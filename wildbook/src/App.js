@@ -7,9 +7,9 @@ import Profil from './view/Profil/Profil';
 function App() {
   return (
     <Main>
-      {/* <Home /> */}
+      <Home />
       {/* <Login />*/}
-      <Profil />
+      {/* <Profil />*/}
     </Main>
   );
 }
