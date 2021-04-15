@@ -1,12 +1,11 @@
 import React from "react";
 import './ProfilInfos.css';
-import DoneIcon from '@material-ui/icons/Done';
 import EditIcon from '@material-ui/icons/Edit';
 
 function ProfilInfos() {
     return (
 <div className="profil-infos">               
-    <div className="container">
+    <div className="grid-container">
     <div className="picture">
             <img className="avatar" src="./assets/avatar2.png" alt="avatar"/>
         </div>

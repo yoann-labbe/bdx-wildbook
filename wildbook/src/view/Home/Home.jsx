@@ -1,11 +1,12 @@
 import React from 'react';
-import NewWilder from './components/NewWilder/NewWilder';
+import LastSubscribers from './components/LastSubscribers/LastSubscribers';
+
 
 function Home(props) {
     
     return (
         <div>
-        <NewWilder />
+    
         </div>
     );
 }

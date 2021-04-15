@@ -6,7 +6,7 @@
   border-radius: 10px;
 }
 
-.container {
+.grid-container {
   font-size: 20px;
   font-weight: 500;
   justify-content: space-evenly;
@@ -98,7 +98,7 @@ button.modification-button:active svg {
 }
 
 @media only screen and (max-device-width: 500px) {
-  .container {
+  .grid-container {
     width: auto;
     display: block;
     text-align: center;
@@ -148,7 +148,7 @@ button.modification-button:active svg {
 }
 
 @media only screen and (max-device-width: 744px) {
-  .container {
+  .grid-container {
     justify-content: center;
     width: auto;
     grid-template-rows: 25% 25% 25% 25%;
@@ -199,7 +199,7 @@ button.modification-button:active svg {
 }
 
 @media only screen and (max-device-width: 1080px) {
-  .container {
+  .grid-container {
     width: auto;
     justify-content: space-around;
     align-items: space-between;
