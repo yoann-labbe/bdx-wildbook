@@ -1,7 +1,9 @@
 import React from "react";
 import './App.css';
 import Main from './layouts/Main/Main';
-import Profil from './view/Profil/Profil';
+import Home from "./view/Home/Home";
+import Profil from "./view/Profil/Profil";
+
 
 
 function App() {
@@ -15,3 +17,4 @@ function App() {
 }
 
 export default App;
+s
