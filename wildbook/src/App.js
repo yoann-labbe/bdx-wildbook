@@ -6,12 +6,8 @@ import Main from './layouts/Main/Main';
 import Profil from './view/Profil/Profil';
 import Notif from './view/Notif/Notif'
 
-
 function App() {
   return (
-   
-    
-
     <Main>
       {/* <Home /> */}
       {/* <Login />*/}
@@ -23,3 +19,4 @@ function App() {
 }
 
 export default App;
+s

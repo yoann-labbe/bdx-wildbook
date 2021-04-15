@@ -1,8 +1,14 @@
 import React from 'react';
-import MyComponent from './components/MyComponent';
+import LastSubscribers from './components/LastSubscribers/LastSubscribers';
+
 
 function Home(props) {
     
+    return (
+        <div>
+    
+        </div>
+    );
 }
 
 export default Home;
