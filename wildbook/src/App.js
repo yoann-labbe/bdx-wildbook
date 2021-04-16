@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import Main from './layouts/Main/Main';
+import Login from "./view/Login/Login";
+import Profil from './view/Profil/Profil';
+import Load from './view/Login/Load';
+import CreateAccount from "./view/Login/CreateAccount";
+import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
+
+
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main>
+      {/* <Home /> */}
+      {/*<Login /> */}
+      {/*<Load/>*/}
+      {/*<<CreateAccount/>*/}
+      <Newpage />
+      {/* <Profil /> */}
+    </Main>
   );
 }
 
