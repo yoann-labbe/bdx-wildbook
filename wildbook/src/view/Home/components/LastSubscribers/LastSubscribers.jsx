@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
 windowContainer: {
+    fontFamily: 'Bebas Neue',
     margin: "10px",
     width:"230px",
     height:"400px",

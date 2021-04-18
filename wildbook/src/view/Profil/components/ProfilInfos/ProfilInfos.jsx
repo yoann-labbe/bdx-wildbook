@@ -1,6 +1,7 @@
 import React from "react";
 import './ProfilInfos.css';
 import EditIcon from '@material-ui/icons/Edit';
+import { makeStyles } from "@material-ui/core";
 
 function ProfilInfos() {
     return (
