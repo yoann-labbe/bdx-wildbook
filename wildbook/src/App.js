@@ -10,11 +10,12 @@ import Notif from './view/Notif/Notif'
 import Theme from "./view/Theme/Theme";
 import BasicTextFields from "./view/Login/Load";
 import CreateAccount from "./view/Login/CreateAccount";
+import EditNewPage from "./layouts/components/Header/Popuptheme/EditNewPage/EditNewPage";
 
 function App() {
   return (
     <Main>
-      <Home />{/*<Home />*/}
+      {/*<Home />*/}
       {/*<Profil />*/}
       {/*<Theme />*/}
       {/*<Login /> */}
@@ -22,6 +23,7 @@ function App() {
       {/*<Newpage />*/}
       {/*<Notif />*/}
       {/*<CreateAccount />*/}
+      {/*<EditNewPage />*/}
     </Main>
   );
 }
