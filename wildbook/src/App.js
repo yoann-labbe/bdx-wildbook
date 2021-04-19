@@ -5,6 +5,7 @@ import Header from "./layouts/components/Header/Header";
 import Main from './layouts/Main/Main';
 import Profil from './view/Profil/Profil';
 import Notif from './view/Notif/Notif'
+import DialogNotif from "./view/Notif/DialogNotif";
 
 
 function App() {
@@ -15,8 +16,9 @@ function App() {
     <Main>
       {/* <Home /> */}
       {/* <Login />*/}
-      {/* <Profil /> */}
-    <Notif />
+      <Profil />
+    {/*<Notif />*/}
+    <DialogNotif />
       
     </Main>
   );

@@ -23,8 +23,8 @@ height: '70px',
     }, 
 
     logo: {
-        width: '59px',
-        height: '92px', 
+        width: '80px',
+        height: '100px', 
         justifyContent: 'flex-start',
         paddingLeft: '5px',
         display: 'flex',
@@ -58,6 +58,7 @@ height: '70px',
 
 }));
 
+    
 function Header () {
     
 const classes = useStyles(); 
@@ -69,20 +70,14 @@ return (
             <p className={classes.items}>NEWS</p>
             <p className={classes.items}>TOPICS</p>
             <input className={classes.input} label="search" placeholder="Search"></input>
-    
-    
-       
-    {/*<form id="formsearch" className={classes.root} noValidate autoComplete="off">
-      
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-</form>*/}
 
 
 <div className={classes.profil}>
             
             <AccountCircleIcon style={{fontSize: 60}}/>
             <NotificationsIcon />
-            <SettingsIcon />
+            <SettingsIcon  />
+           
             
                 </div>
        

@@ -66,7 +66,7 @@ date: {
 }));
 
 const message = `New Notification`;
-const title = `Your Notifications`; 
+
 const date = `1 day ago`;
  
 function Notif() {
@@ -75,9 +75,9 @@ function Notif() {
 
   return (
     <div className={classes.root}>
-    <Paper className={classes.popUp}>
-      <div className={classes.closeIcon}><CloseIcon  /></div>
-      <Typography className={classes.title}>{title} </Typography> 
+    {/*<Paper className={classes.popUp}>
+      <div className={classes.closeIcon}><CloseIcon  /></div>*/}
+      
     
     <div className={classes.read}>
     <Typography>Mark all as read : </Typography> 
@@ -172,7 +172,7 @@ function Notif() {
         </Grid>
       </Grid>
     </Paper>
-      </Paper>
+      {/*</Paper>*/}
       </div>
 
   );
