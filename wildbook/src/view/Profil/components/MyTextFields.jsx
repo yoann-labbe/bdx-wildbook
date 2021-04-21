@@ -21,6 +21,7 @@ function MyTextFields({ value, onChange, name, editionMode = false }) {
           color="secondary"
           value={value}
           onChange={onChange}
+          maxLength="20"
         />
       )}
     </div>
