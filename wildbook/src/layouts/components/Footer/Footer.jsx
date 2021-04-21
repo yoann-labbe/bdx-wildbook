@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
 
-
 const useStyles = makeStyles((theme) => ({
     footer: {
     display: "flex",
@@ -9,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     backgroundColor:  "rgb(250, 248, 248)",
     width: "100%",
-    position:"absolute",
+    position:"fixed",
     bottom: 0,
     }, 
 
@@ -19,15 +18,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
-
 function Footer () {
 const classes = useStyles(); 
     return (
         <div className={classes.footer}>
-           
             <p className={classes.droits}>CCR 2021 Tous droits réservés - Wild code School</p>
-        
         </div>
     )
 }
