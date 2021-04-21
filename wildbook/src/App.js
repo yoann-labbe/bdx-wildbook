@@ -15,7 +15,6 @@ import EditNewPage from "./layouts/components/Header/Popuptheme/EditNewPage/Edit
 function App() {
   return (
     <Main>
-      <Home />
       {/*<Home />*/}
       {/*<Profil />*/}
       {/*<Theme />*/}
