@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 
   logo: {
     width: "80px",
-    height: "100px",
+    height: "150px",
     justifyContent: "flex-start",
     paddingLeft: "5px",
     display: "flex",
@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
 
   input: {
     width: "150px",
-    height: "18px",
+    height: "30px",
     borderRadius: "5px",
     borderColor: "rgb(248, 245, 245)",
     color: "rgb(247, 108, 109)",
@@ -54,7 +54,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    height: "40px",
+    height: "65px",
     width: "200px",
     padding: "10px",
     margin: "8px",
@@ -91,6 +91,13 @@ function Header() {
   };
 
   const [searchValue, setSearchValue] = React.useState("");
+  
+  const handlepress=(e)=>{
+    if(e.charCode == 13){
+    console.log(searchValue)
+    }
+  }
+
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     console.log({ searchValue, [e.target.value]: e.target.value });
@@ -99,7 +106,7 @@ function Header() {
   const classes = useStyles();
   return (
     <div className={classes.nav}>
-      <Router>
+      
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <img
             src="./assets/newLogo.png"
@@ -120,6 +127,8 @@ function Header() {
           placeholder="Search"
           value={searchValue}
           onChange={handleChange}
+          onKeyPress={handlepress}
+
         ></input>
 
         <div className={classes.profil}>
@@ -168,7 +177,7 @@ function Header() {
         </div>
 
         <DialogNotif open={openDialogue} onClose={handleClose} />
-      </Router>
+  
     </div>
   );
 }

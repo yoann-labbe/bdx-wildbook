@@ -13,28 +13,25 @@ import BasicTextFields from "./view/Login/Load";
 import CreateAccount from "./view/Login/CreateAccount";
 import EditNewPage from "./layouts/components/Header/Popuptheme/EditNewPage/EditNewPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import theme from "./theme"; 
+import { ThemeProvider } from "@material-ui/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 function App() {
   return (
-    <Main>
-      <Router>
+   <ThemeProvider theme={theme} >
+     <CssBaseline/>
+     <Router>
         <Switch>
-          <Route path="/welcome" render={() => <Login />} />
-          <Route exact path="/" render={() => <Home />} />
-          <Route path="/topics" render={() => <Theme/>} />
-          <Route path="/profil" render={() => <Profil />} />
+          <Route exact path="/welcome" render={() =>  <Main><Login /></Main>} />
+          <Route exact path="/" render={() => <Main><Home /></Main>} />
+          <Route exact path="/topics" render={() => <Main><Theme/></Main>} />
+          <Route exact path="/profil" render={() =><Main><Profil /></Main>} />
         </Switch>
       </Router>
+      
+</ThemeProvider>
 
-      {/*<Home />*/}
-      {/*<Profil />*/}
-      {/*<Theme />*/}
-      {/*<Login /> */}
-      {/*<Load />*/}
-      {/*<Newpage />*/}
-      {/*<Notif />*/}
-      {/*<CreateAccount />*/}
-      {/*<EditNewPage />*/}
-    </Main>
+     
   );
 }
 
