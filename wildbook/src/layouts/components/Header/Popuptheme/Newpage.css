@@ -5,16 +5,3 @@
     margin-top: 25px;
     margin-left: 25px;
 }
-
-#page1 {
-    margin-left: 20px;
-    margin-top: 30px;
-}
-
-#box1 {
-    border: 2px black solid;
-    height: 300px;
-    width: 450px;
-    overflow: scroll;
-    margin-left: 10px;
-}
