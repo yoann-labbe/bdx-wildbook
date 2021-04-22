@@ -18,10 +18,10 @@ function App() {
     <Main>
       <Router>
         <Switch>
-          <Route path="/welcome" component={Login} />
-          <Route exact path="/" component={Home} />
-          <Route path="/topics" component={Theme} />
-          <Route path="/profil" component={Profil} />
+          <Route path="/welcome" render={() => <Login />} />
+          <Route exact path="/" render={() => <Home />} />
+          <Route path="/topics" render={() => <Theme/>} />
+          <Route path="/profil" render={() => <Profil />} />
         </Switch>
       </Router>
 
