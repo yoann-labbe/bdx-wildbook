@@ -23,6 +23,7 @@ function App() {
       {/*<Newpage />*/}
       {/*<Notif />*/}
       {/*<CreateAccount />*/}
+      <EditNewPage />
       {/*<EditNewPage />*/}
     </Main>
   );
