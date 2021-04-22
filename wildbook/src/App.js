@@ -9,21 +9,30 @@ import Profil from './view/Profil/Profil';
 import Load from './view/Login/Load';
 import CreateAccount from "./view/Login/CreateAccount";
 import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
-
-
-
+import Theme from "./view/Theme/Theme";
 import Notif from './view/Notif/Notif'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+
 
 function App() {
   return (
     <Main>
+      <Router>
+        <Switch>
+          <Route path="/welcome" component={Login}/>
+          <Route path="/Load" component={Load}/>
+          <Route path="/CreateAccount" component={CreateAccount}/>
+        </Switch>
+      </Router>
       {/* <Home /> */}
-      {/*<Login /> */}
+      {/*<Login />*/}
       {/*<Load/>*/}
-      {/*<<CreateAccount/>*/}
+      {/*<CreateAccount/>*/}
       <Newpage />
-      {/* <Profil /> */}
-    <Notif />
+      {/*<Theme />*/}
+      {/*<Profil />*/}
+      {/*<Notif />*/}
+      
       
     </Main>
   );

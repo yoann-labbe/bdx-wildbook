@@ -9,9 +9,9 @@ function Main(props) {
 
     return (
         <div>
-           <Header />
+           {/*<Header />*/}
             {children}
-          <Footer />
+          {/*<Footer />*/}
         </div>
     );
 }
