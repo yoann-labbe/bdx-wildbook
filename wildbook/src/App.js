@@ -13,6 +13,7 @@ import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
 
 
 import Notif from './view/Notif/Notif'
+import CreatePost from "./common/components/CreatePost/CreatePost";
 
 function App() {
   return (
@@ -21,9 +22,10 @@ function App() {
       {/*<Login /> */}
       {/*<Load/>*/}
       {/*<<CreateAccount/>*/}
-      <Newpage />
-      {/* <Profil /> */}
-    <Notif />
+     {/*} <Newpage />*/}
+    <Profil /> 
+    {/*<Notif />*/}
+    
       
     </Main>
   );
