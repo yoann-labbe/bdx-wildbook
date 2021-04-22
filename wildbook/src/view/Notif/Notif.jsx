@@ -4,9 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import Checkboxes from "./Checkboxes.jsx";
 import Checkbox from '@material-ui/core/Checkbox';
-import CloseIcon from '@material-ui/icons/Close';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +65,7 @@ date: {
 }));
 
 const message = `New Notification`;
-const title = `Your Notifications`; 
+
 const date = `1 day ago`;
  
 function Notif() {
@@ -75,9 +74,7 @@ function Notif() {
 
   return (
     <div className={classes.root}>
-    <Paper className={classes.popUp}>
-      <div className={classes.closeIcon}><CloseIcon  /></div>
-      <Typography className={classes.title}>{title} </Typography> 
+    
     
     <div className={classes.read}>
     <Typography>Mark all as read : </Typography> 
@@ -172,7 +169,7 @@ function Notif() {
         </Grid>
       </Grid>
     </Paper>
-      </Paper>
+      {/*</Paper>*/}
       </div>
 
   );
