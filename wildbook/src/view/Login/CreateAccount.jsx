@@ -106,7 +106,7 @@ export default function CreateAccount() {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                color="secondary"
+                color="primary"
                 value={campus}
                 onChange={(e) => setCampus(e.target.value)}
               >
