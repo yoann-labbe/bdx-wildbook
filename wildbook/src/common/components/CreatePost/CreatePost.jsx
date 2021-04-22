@@ -9,11 +9,12 @@ import { AddAPhoto, BorderColor, YouTube } from '@material-ui/icons';
 const useStyles = makeStyles({
 
     root: {
-        marginTop: 20,
         width: 650,
         height: "100%",
-
-
+        marginTop: 20,
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "100px",
     },
     sendB: {
         float: "right",
