@@ -1,7 +1,7 @@
 
-import React from 'react';
-import { Card, CardContent, CardMedia, IconButton, makeStyles, Typography } from '@material-ui/core';
-import { AccountCircle, ChatBubbleOutline, FavoriteBorder, ThumbUpAlt } from '@material-ui/icons';
+import React, { useState } from 'react';
+import { Box, Card, CardContent, CardMedia, IconButton, makeStyles, TextareaAutosize, TextField, Typography } from '@material-ui/core';
+import { AccountCircle, ChatBubbleOutline, ChatOutlined, FavoriteBorder,} from '@material-ui/icons';
 
 const element = <img src={"https://picsum.photos/800/100?ramdom"}/>
 
@@ -10,17 +10,37 @@ const useStyles = makeStyles({
         float: "right",
     },
     cardm :{
+        height:"100%",
         marginBottom: 12,
         marginLeft:20,
     },
     div:{
     overflow: "scroll",
     },
+    textA:{
+        minWidth:441,
+        maxWidth:441,
+        minHeight:40,
+    },
+    addP:{
+        height:"100%",
+        maxWidth:430,
+    },
 })
 
 
 function PostCard(props) {
+    const [com, setcom]=useState()
+    const [display, setdisplay] = useState(false);
     const classes =useStyles()
+    const handleClick = ()=>{
+        setdisplay(!display);
+    }
+    const handleChange = (e)=>{
+        setcom(e.target.value)
+    }    
+        
+    
     return (
         <div className={classes.div}>
                     <Card className={classes.cardm}>
@@ -37,14 +57,34 @@ function PostCard(props) {
                         <IconButton>
                         <FavoriteBorder/>
                         </IconButton>
-                        <IconButton>
-                        <ThumbUpAlt/>
-                        </IconButton>
-                        <IconButton>
+                        <IconButton 
+                        onClick={handleClick}>
                         <ChatBubbleOutline/>
                         </IconButton>
-                       
                         </div>
+                        {display &&<TextareaAutosize
+                        className={classes.textA}
+                        id="filled-full-width"
+                        label="Commenter"
+                        size="small"
+                        variant="outlined"
+                        style={{ margin: 10 }}
+                        placeholder="Commenter"
+                        fullWidth
+                        margin="normal"
+                        value={com}
+                        onChange={handleChange}
+                        >
+                        </TextareaAutosize>}
+                        <Card
+                        className={classes.cardm}
+                        variant="outlined"
+                        >
+                        <p className={classes.addP}>{com}</p>
+                        </Card>
+                            
+                            
+
                          </CardContent>
                     </Card>
                     </div> 

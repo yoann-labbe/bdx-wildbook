@@ -8,7 +8,8 @@ import PostCard from './PostCard';
 const useStyles = makeStyles({
     root:{
         width: 650,
-        height: 536,
+        height: "100%",
+        marginBottom:40,
     },
     title : {
         marginLeft: 20,

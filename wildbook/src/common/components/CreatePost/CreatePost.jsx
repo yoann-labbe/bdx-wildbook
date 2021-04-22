@@ -15,6 +15,7 @@ const useStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         marginTop: "100px",
+        marginBottom:30,
     },
     sendB: {
         float: "right",
@@ -40,6 +41,11 @@ function CreatePost(props) {
 
     const handleClick = () => {
         setdisplay(!display);
+    }
+    const handlepress=(e)=>{
+        if(e.charCode == 13){
+        console.log(name)
+        }
     }
 
 const handleClick2 = ()=>{
@@ -75,6 +81,7 @@ console.log(name);
                         margin="normal"
                         value={name}
                         onChange={handleChange}
+                        onKeyPress={handlepress}
                     >
 
 
@@ -85,6 +92,7 @@ console.log(name);
                     className={classes.sendB} 
                     flexDirection="row-reverse"
                     onClick={handleClick2}
+                    
                     >
                         send
 

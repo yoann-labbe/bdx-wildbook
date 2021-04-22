@@ -16,7 +16,7 @@ function App() {
   return (
     <Main>
       {/*<Home />*/}
-      {/*<Profil />*/}
+      <Profil />
       {/*<Theme />*/}
       {/*<Login /> */}
       {/*<Load />*/}
