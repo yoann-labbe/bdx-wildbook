@@ -8,10 +8,10 @@ function Main(props) {
 
   return (
     <div>
-      <Header />
+      {/*<Header />*/}
       {children}
-      <UpButton showBelow={250} />
-      <Footer />
+      {/*<UpButton showBelow={250} />*/}
+      {/*<Footer />*/}
     </div>
   );
 }

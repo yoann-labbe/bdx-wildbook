@@ -2,7 +2,13 @@ import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { Box } from "@material-ui/core";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cadreTwo: {
-    border: "2px #F76C6D solid",
+    border: "2px primary solid",
     display: "flex",
     justifyContent: "center",
     height: "425px",
@@ -35,11 +41,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "25px",
   },
   inscript: {
-    fontFamily: "Bebas Neue",
-    display: "flex",
-    justifyContent: "center",
-  },
-  easy: {
     fontFamily: "Bebas Neue",
     display: "flex",
     justifyContent: "center",
@@ -72,7 +73,6 @@ export default function CreateAccount() {
       </div>
       <div>
         <h2 className={classes.inscript}>S'inscrire</h2>
-        <h3 className={classes.easy}>C'est rapide et facile</h3>
       </div>
       <Box className={classes.cadreTwo}>
         <div className={classes.boxOne}>
@@ -99,12 +99,43 @@ export default function CreateAccount() {
               value={birthday}
               onChange={(e) => setBirthday(e.target.value)}
             />
-            <TextField
-              id="standard-basic"
-              label="Campus"
-              value={campus}
-              onChange={(e) => setCampus(e.target.value)}
-            />
+            <FormControl>
+              <InputLabel id="demo-simple-select-label" color="secondary">
+                Campus
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                color="secondary"
+                value={campus}
+                onChange={(e) => setCampus(e.target.value)}
+              >
+                <MenuItem value={"Bordeaux"}>Bordeaux</MenuItem>
+                <MenuItem value={"Biarritz"}>Biarritz</MenuItem>
+                <MenuItem value={"LaLoupe"}>La Loupe</MenuItem>
+                <MenuItem value={"Lille"}>Lille</MenuItem>
+                <MenuItem value={"Lyon"}>Lyon</MenuItem>
+                <MenuItem value={"Marseille"}>Marseille</MenuItem>
+                <MenuItem value={"Nantes"}>Nantes</MenuItem>
+                <MenuItem value={"Orleans"}>Orleans</MenuItem>
+                <MenuItem value={"Paris"}>Paris</MenuItem>
+                <MenuItem value={"Reims"}>Reims</MenuItem>
+                <MenuItem value={"Saintes"}>Saintes</MenuItem>
+                <MenuItem value={"Strasbourg"}>Strasbourg</MenuItem>
+                <MenuItem value={"Toulouse"}>Toulouse</MenuItem>
+                <MenuItem value={"Tours"}>Tours</MenuItem>
+                <MenuItem value={"Amsterdam"}>Amsterdam</MenuItem>
+                <MenuItem value={"Barcelone"}>Barcelone</MenuItem>
+                <MenuItem value={"Berlin"}>Berlin</MenuItem>
+                <MenuItem value={"Bruxelle"}>Bruxelle</MenuItem>
+                <MenuItem value={"Bucarest"}>Bucarest</MenuItem>
+                <MenuItem value={"Lisbonne"}>Lisbonne</MenuItem>
+                <MenuItem value={"Londres"}>Londres</MenuItem>
+                <MenuItem value={"Madrid"}>Madrid</MenuItem>
+                <MenuItem value={"RemoteEN"}>Remote EN</MenuItem>
+                <MenuItem value={"RemoteFR"}>Remote FR</MenuItem>
+              </Select>
+            </FormControl>
 
             <TextField
               id="standard-basic"

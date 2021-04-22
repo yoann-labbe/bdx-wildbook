@@ -6,20 +6,16 @@ import Login from "./view/Login/Login";
 import Profil from "./view/Profil/Profil";
 import Load from "./view/Login/Load";
 import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
-import Theme from "./view/Theme/Theme";
-import Notif from './view/Notif/Notif'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-
 import Notif from "./view/Notif/Notif";
 import Theme from "./view/Theme/Theme";
-import BasicTextFields from "./view/Login/Load";
 import CreateAccount from "./view/Login/CreateAccount";
 import EditNewPage from "./layouts/components/Header/Popuptheme/EditNewPage/EditNewPage";
 
 function App() {
   return (
     <Main>
-      <Router>
+     <Router>
         <Switch>
           <Route path="/welcome" component={Login}/>
           <Route path="/Load" component={Load}/>
@@ -30,7 +26,7 @@ function App() {
       {/*<Login />*/}
       {/*<Load/>*/}
       {/*<CreateAccount/>*/}
-      <Newpage />
+      {/*<<Newpage />*/}
       {/*<Theme />*/}
       {/*<Profil />*/}
       {/*<Notif />*/}
