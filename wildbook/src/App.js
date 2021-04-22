@@ -9,7 +9,6 @@ import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
 import Notif from "./view/Notif/Notif";
 import DialogNotif from "./view/Notif/DialogNotif";
 import Theme from "./view/Theme/Theme";
-import BasicTextFields from "./view/Login/Load";
 import CreateAccount from "./view/Login/CreateAccount";
 import EditNewPage from "./layouts/components/Header/Popuptheme/EditNewPage/EditNewPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";

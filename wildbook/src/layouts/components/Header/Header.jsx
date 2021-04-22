@@ -1,3 +1,4 @@
+import TextField from "@material-ui/core/TextField";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -91,12 +92,12 @@ function Header() {
   };
 
   const [searchValue, setSearchValue] = React.useState("");
-  
-  const handlepress=(e)=>{
-    if(e.charCode == 13){
-    console.log(searchValue)
+
+  const handlepress = (e) => {
+    if (e.charCode == 13) {
+      console.log(searchValue);
     }
-  }
+  };
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -106,78 +107,72 @@ function Header() {
   const classes = useStyles();
   return (
     <div className={classes.nav}>
-      
-        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-          <img
-            src="./assets/newLogo.png"
-            alt="logo"
-            className={classes.logo}
-          ></img>
-        </Link>
-        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-          <p className={classes.items}>NEWS</p>
-        </Link>
-        <Link to="/topics" style={{ color: "inherit", textDecoration: "none" }}>
-          <p className={classes.items}>TOPICS</p>
-        </Link>
-        <input
-          className={classes.input}
-          type="text"
-          label="search"
-          placeholder="Search"
-          value={searchValue}
-          onChange={handleChange}
-          onKeyPress={handlepress}
+      <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+        <img
+          src="./assets/newLogo.png"
+          alt="logo"
+          className={classes.logo}
+        ></img>
+      </Link>
+      <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+        <p className={classes.items}>NEWS</p>
+      </Link>
+      <Link to="/topics" style={{ color: "inherit", textDecoration: "none" }}>
+        <p className={classes.items}>TOPICS</p>
+      </Link>
+      <input
+        className={classes.input}
+        type="text"
+        label="search"
+        placeholder="Search"
+        value={searchValue}
+        onChange={handleChange}
+        onKeyPress={handlepress}
+      ></input>
 
-        ></input>
-
-        <div className={classes.profil}>
+      <div className={classes.profil}>
+        <Link to="/profil" style={{ color: "inherit", textDecoration: "none" }}>
+          <AccountCircleIcon style={{ fontSize: 60 }} />
+        </Link>
+        <IconButton
+          className={classes.icons}
+          onClick={() => setOpenDialogue(true)}
+        >
+          <NotificationsIcon />{" "}
+        </IconButton>
+        <IconButton className={classes.icons} onClick={handleClick}>
+          <SettingsIcon />
+        </IconButton>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClosed}
+        >
           <Link
             to="/profil"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-            <AccountCircleIcon style={{ fontSize: 60 }} />
-          </Link>
-          <IconButton
-            className={classes.icons}
-            onClick={() => setOpenDialogue(true)}
-          >
-            <NotificationsIcon />{" "}
-          </IconButton>
-          <IconButton className={classes.icons} onClick={handleClick}>
-            <SettingsIcon />
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClosed}
-          >
-            <Link
-              to="/profil"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              <MenuItem className={classes.Menu} onClick={handleClosed}>
-                Modify Profile
-              </MenuItem>
-            </Link>
             <MenuItem className={classes.Menu} onClick={handleClosed}>
-              Change password
+              Modify Profile
             </MenuItem>
-            <Link
-              to="/welcome"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              <MenuItem className={classes.Menu} onClick={handleClosed}>
-                Logout
-              </MenuItem>
-            </Link>
-          </Menu>
-        </div>
+          </Link>
+          <MenuItem className={classes.Menu} onClick={handleClosed}>
+            Change password
+          </MenuItem>
+          <Link
+            to="/welcome"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <MenuItem className={classes.Menu} onClick={handleClosed}>
+              Logout
+            </MenuItem>
+          </Link>
+        </Menu>
+      </div>
 
-        <DialogNotif open={openDialogue} onClose={handleClose} />
-  
+      <DialogNotif open={openDialogue} onClose={handleClose} />
     </div>
   );
 }
