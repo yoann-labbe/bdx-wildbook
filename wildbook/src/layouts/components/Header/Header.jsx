@@ -1,5 +1,4 @@
 import React from "react";
-
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -71,9 +70,8 @@ function Header() {
       ></input>
 
       {/*<form id="formsearch" className={classes.root} noValidate autoComplete="off">
-      
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-</form>*/}
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        </form>*/}
 
       <div className={classes.profil}>
         <AccountCircleIcon style={{ fontSize: 60 }} />

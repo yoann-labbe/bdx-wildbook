@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
 wilder : {
+    fontFamily: 'Bebas Neue',
     width: "100%",
     display:"flex",
     flexDirection: "row",
