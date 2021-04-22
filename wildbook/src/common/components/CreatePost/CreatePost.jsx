@@ -1,5 +1,5 @@
 import { Button, Card, CardContent, IconButton, TextField } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AddAPhoto, BorderColor, YouTube } from '@material-ui/icons';
 
@@ -7,62 +7,101 @@ import { AddAPhoto, BorderColor, YouTube } from '@material-ui/icons';
 
 
 const useStyles = makeStyles({
+
     root: {
         width: 650,
-        height: 230,
+        height: "100%",
+        marginTop: 20,
         display: "flex",
         justifyContent: "center",
         marginTop: "100px",
+        marginBottom:30,
     },
     sendB: {
         float: "right",
+        marginBottom: 5,
 
     },
-    centerbutton :{
-        display:"flex",
-   justifyContent:"space-around",
+    centerbutton: {
+        display: "flex",
+        justifyContent: "space-around",
+
     },
 
 });
 
 function CreatePost(props) {
     const classes = useStyles();
+    const [name, setName] = useState()
+    const [display, setdisplay] = useState(false);
+    const handleChange = (e) => {
+        setName(e.target.value)
+        
+  }
+
+    const handleClick = () => {
+        setdisplay(!display);
+    }
+    const handlepress=(e)=>{
+        if(e.charCode == 13){
+        console.log(name)
+        }
+    }
+
+const handleClick2 = ()=>{
+console.log(name);
+}
     return (
-  
-        <Card className={classes.root}>
-            <CardContent>
-               <div className={classes.centerbutton}>
-                   <IconButton>
 
-               <BorderColor color="primary" style={{fontSize : 65}}  />
-                   </IconButton>
-                   <IconButton>
-                        <AddAPhoto color="primary" style={{fontSize : 65}}  />
-                   </IconButton>
-                   <IconButton>
-                <YouTube color="primary" style={{fontSize : 65}}  />
-                   </IconButton>
-               </div>
+        <div className={classes.div}>
+            <Card className={classes.root}>
+                <CardContent>
+                    <div className={classes.centerbutton}>
+                        <IconButton onClick={handleClick}>
 
-                <TextField id="filled-full-width"
-                    label="Creer un post"
-                    size="small"
-                    variant="outlined"
-                    style={{ margin: 10 }}
-                    placeholder="Post..."
-                    fullWidth
-                    margin="normal">
+                            <BorderColor color="secondary" style={{ fontSize: 55 }} />
+                        </IconButton>
+                        <IconButton >
+                            <AddAPhoto color="secondary" style={{ fontSize: 55 }} />
+                        </IconButton>
+                        <IconButton>
+                            <YouTube color="secondary" style={{ fontSize: 55 }} />
+                        </IconButton>
+                    </div>
 
-                </TextField>
+                    {display && <TextField
 
-                <Button variant="contained" color="primary" className={classes.sendB} flexDirection="row-reverse">
-                    send
+                        id="filled-full-width"
+                        label="Creer un post"
+                        size="small"
+                        variant="outlined"
+                        style={{ margin: 10 }}
+                        placeholder="Post..."
+                        fullWidth
+                        margin="normal"
+                        value={name}
+                        onChange={handleChange}
+                        onKeyPress={handlepress}
+                    >
+
+
+                    </TextField>}
+
+                    <Button variant="contained" 
+                    color="secondary" 
+                    className={classes.sendB} 
+                    flexDirection="row-reverse"
+                    onClick={handleClick2}
+                    
+                    >
+                        send
 
                     </Button>
 
-            </CardContent>
+                </CardContent>
 
-        </Card>
+            </Card>
+        </div>
 
     );
 }
