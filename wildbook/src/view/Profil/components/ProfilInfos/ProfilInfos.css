@@ -5,6 +5,7 @@
   margin: 25px auto;
   border: solid 1.5px;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .grid-container {
@@ -48,6 +49,8 @@
 .picture {
   grid-area: b;
   justify-self: center;
+  display: flex;
+  flex-direction: column;
 }
 .name {
   grid-area: c;
@@ -83,18 +86,52 @@
   justify-content: flex-end;
 }
 
-button.modification-button {
+button.edit-button {
   padding: 0;
   border: none;
   cursor: pointer;
   background: none;
 }
 
-button.modification-button:hover svg {
+button.edit-button:hover svg {
   fill: #ea5655;
 }
 
-button.modification-button:active svg {
+button.edit-button:active svg {
+  fill: black;
+}
+
+button.editAvatarButton {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: none;
+  align-self: flex-end;
+  position: relative;
+  bottom: 20px;
+}
+
+button.editAvatarButton:hover svg {
+  fill: #ea5655;
+}
+
+button.editavatarButton:active svg {
+  fill: black;
+}
+
+button.done-button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: none;
+  display: none;
+}
+
+button.done-button:hover svg {
+  fill: #ea5655;
+}
+
+button.done-button:active svg {
   fill: black;
 }
 
@@ -145,6 +182,15 @@ button.modification-button:active svg {
     padding: 10px;
     border: none;
     border-bottom: #ea5655 solid 2px;
+  }
+
+  .picture {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar {
+    align-self: center;
   }
 }
 
