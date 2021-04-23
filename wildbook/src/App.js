@@ -57,6 +57,33 @@ function App() {
               </Main>
             )}
           />
+      <Route
+            exact
+            path="/Load"
+            render={() => (
+              <Main>
+                <Load />
+              </Main>
+            )}
+          />
+   <Route
+            exact
+            path="/Account"
+            render={() => (
+              <Main>
+                <CreateAccount />
+              </Main>
+            )}
+          />
+   <Route
+            exact
+            path="/Newpage"
+            render={() => (
+              <Main>
+                <Newpage />
+              </Main>
+            )}
+          />
         </Switch>
       </Router>
     </ThemeProvider>
