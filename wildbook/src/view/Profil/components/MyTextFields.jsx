@@ -18,7 +18,7 @@ function MyTextFields({ value, onChange, name, editionMode = false }) {
         <TextField
           name={name}
           label={name}
-          color="secondary"
+          color="primary"
           value={value}
           onChange={onChange}
           maxLength="20"
