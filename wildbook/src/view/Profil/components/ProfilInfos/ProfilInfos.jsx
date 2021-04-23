@@ -50,7 +50,7 @@ function ProfilInfos(props) {
     setForm((oldValues) => ({ ...oldValues, [e.target.name]: e.target.value }));
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);

@@ -115,7 +115,7 @@ function EditNewPage() {
         <TextField
           id="standard-basic"
           label="Titre"
-          color="secondary"
+          color="primary"
           value={form.title}
           onChange={handleModifications}
           name={"title"}
@@ -123,7 +123,7 @@ function EditNewPage() {
         <TextField
           id="standard-basic"
           label="Sujet"
-          color="secondary"
+          color="primary"
           value={form.subject}
           onChange={handleModifications}
           name={"subject"}
@@ -131,7 +131,7 @@ function EditNewPage() {
         <FormControl className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-label"
-            color="secondary"
+            color="primary"
             name={"topics"}
           >
             Topic
@@ -140,7 +140,7 @@ function EditNewPage() {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             style={{ width: 420 }}
-            color="secondary"
+            color="primary"
             value={form.topics}
             onChange={handleModifications}
             name={"topics"}
@@ -161,7 +161,7 @@ function EditNewPage() {
           className={classes.descriptionBox}
           id="outlined-multiline-static"
           label="Description"
-          color="secondary"
+          color="primary"
           multiline
           rows={4}
           defaultValue=""
