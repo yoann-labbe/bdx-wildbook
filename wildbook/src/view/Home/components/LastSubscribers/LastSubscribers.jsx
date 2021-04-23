@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
     display: "block",
     boxShadow:
       "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
-    marginRight: "300px",
+    marginRight: "100px",/*300*/
     marginLeft: "100px",
     marginTop: "100px",
   },

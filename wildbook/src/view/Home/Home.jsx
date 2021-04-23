@@ -12,10 +12,14 @@ const useStyles = makeStyles(() => ({
   },
 
   postContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
+    /* display: "flex",
+     flexDirection: "column",
+     justifyContent: "space-around",*/
   },
+  div: {
+    marginBottom: 25,
+  }
+
 }));
 
 function Home() {
@@ -27,10 +31,11 @@ function Home() {
         <LastSubscribers />
       </div>
       <div className={classes.postContainer}>
-        <CreatePost />
+        <div className={classes.div}>
+          <CreatePost />
+        </div>
         <Posts />
-        <Posts />
-        <Posts />
+
       </div>
     </div>
   );
