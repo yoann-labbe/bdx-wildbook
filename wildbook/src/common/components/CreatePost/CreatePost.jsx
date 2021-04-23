@@ -8,14 +8,16 @@ import { AddAPhoto, BorderColor, YouTube } from '@material-ui/icons';
 
 const useStyles = makeStyles({
 
+
     root: {
-        width: 650,
+        width: 800,
         height: "100%",
         marginTop: 20,
         display: "flex",
         justifyContent: "center",
         marginTop: "100px",
-        marginBottom:30,
+
+
     },
     sendB: {
         float: "right",
@@ -24,7 +26,7 @@ const useStyles = makeStyles({
     },
     centerbutton: {
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
 
     },
 
@@ -34,23 +36,28 @@ function CreatePost(props) {
     const classes = useStyles();
     const [name, setName] = useState()
     const [display, setdisplay] = useState(false);
+    const [displays, setdisplays] = useState(false);
+
+
     const handleChange = (e) => {
         setName(e.target.value)
-        
-  }
+    }
 
     const handleClick = () => {
         setdisplay(!display);
     }
-    const handlepress=(e)=>{
-        if(e.charCode == 13){
-        console.log(name)
+    const handleClick3 = () => {
+        setdisplays(!displays);
+    }
+    const handlepress = (e) => {
+        if (e.charCode == 13) {
+            console.log(name)
         }
     }
 
-const handleClick2 = ()=>{
-console.log(name);
-}
+    const handleClick2 = () => {
+        console.log(name);
+    }
     return (
 
         <div className={classes.div}>
@@ -59,13 +66,16 @@ console.log(name);
                     <div className={classes.centerbutton}>
                         <IconButton onClick={handleClick}>
 
-                            <BorderColor color="secondary" style={{ fontSize: 55 }} />
+                            <BorderColor color="primary" style={{ fontSize: 55 }} />
                         </IconButton>
+
                         <IconButton >
-                            <AddAPhoto color="secondary" style={{ fontSize: 55 }} />
+                            <AddAPhoto color="primary" style={{ fontSize: 55 }} />
+
                         </IconButton>
-                        <IconButton>
-                            <YouTube color="secondary" style={{ fontSize: 55 }} />
+                        <IconButton onClick={handleClick3}
+                        >
+                            <YouTube color="primary" style={{ fontSize: 55 }} />
                         </IconButton>
                     </div>
 
@@ -86,13 +96,31 @@ console.log(name);
 
 
                     </TextField>}
+                    {displays && <TextField
 
-                    <Button variant="contained" 
-                    color="secondary" 
-                    className={classes.sendB} 
-                    flexDirection="row-reverse"
-                    onClick={handleClick2}
-                    
+                        id="filled-full-width"
+                        label="YouTube URL..."
+                        size="small"
+                        variant="outlined"
+                        style={{ margin: 10 }}
+                        placeholder="Post..."
+                        fullWidth
+                        margin="normal"
+                        value={name}
+                        onChange={handleChange}
+                        onKeyPress={handlepress}
+                    >
+
+
+                    </TextField>}
+
+
+                    <Button variant="contained"
+                        color="primary"
+                        className={classes.sendB}
+
+                        onClick={handleClick2}
+
                     >
                         send
 
