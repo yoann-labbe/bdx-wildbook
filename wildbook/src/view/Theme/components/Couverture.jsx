@@ -30,7 +30,10 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "flex-end",
   },
-  edit: {},
+  edit: {
+    border: "none",
+    background: "none",
+  },
 }));
 function Couverture(props) {
   const classes = useStyles();
