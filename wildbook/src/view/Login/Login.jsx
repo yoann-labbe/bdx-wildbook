@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import CreateAccount from "./CreateAccount";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Load from "./Load";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,17 +38,19 @@ function Login() {
       />
       <h1 className={classe.wb}>WILDBOOK</h1>
       <div className={classe.buttonContainer}>
-        <Button
-          className={classe.bouton1}
-          variant="outlined"
-          color="primary"
-          component={CreateAccount.jsx}
+        <Link
+          to="/Account"
+          style={{ color: "inherit", textDecoration: "none" }}
         >
-          Créer un compte
-        </Button>
-        <Button className={classe.bouton2} variant="outlined">
-          Connexion
-        </Button>
+          <Button className={classe.bouton1} variant="outlined" color="primary">
+            Créer un compte
+          </Button>
+        </Link>
+        <Link to="/Load" style={{ color: "inherit", textDecoration: "none" }}>
+          <Button className={classe.bouton2} variant="outlined">
+            Connexion
+          </Button>
+        </Link>
       </div>
     </div>
   );
