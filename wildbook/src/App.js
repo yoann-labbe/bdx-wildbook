@@ -57,7 +57,7 @@ function App() {
               </Main>
             )}
           />
-      <Route
+          <Route
             exact
             path="/Load"
             render={() => (
@@ -66,7 +66,7 @@ function App() {
               </Main>
             )}
           />
-   <Route
+          <Route
             exact
             path="/Account"
             render={() => (
@@ -75,7 +75,7 @@ function App() {
               </Main>
             )}
           />
-   <Route
+          <Route
             exact
             path="/Newpage"
             render={() => (
