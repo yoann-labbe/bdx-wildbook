@@ -10,27 +10,38 @@ const useStyles = makeStyles(() => ({
   banniere: {
     border: "2px solid #B0B0B0",
     height: "150px",
-    backgroundImage: `url(${"https://picsum.photos/1200/150?ramdom"})`,
+    backgroundImage: `url(${"https://picsum.photos/1920/150?ramdom"})`,
     opacity: "0,5",
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
   },
   follow: {
     display: "flex",
     justifyContent: "flex-end",
+    justifySelf: "flex-end",
     marginTop: "120px",
     marginRight: "5px",
+    width: "100%",
   },
   text: {
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
     position: "absolute",
     marginTop: "25px",
     textAlign: "center",
-    width: "100%",
+    width: "250px",
+    borderRadius: "10px",
+    margin: "25px auto 0px auto",
   },
   editContainer: {
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",
   },
-  edit: {},
+  edit: {
+    border: "none",
+    background: "none",
+  },
 }));
 function Couverture(props) {
   const classes = useStyles();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Main from "./layouts/Main/Main";
 import Home from "./view/Home/Home";
@@ -15,50 +15,105 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import UserContext from "./context/user";
+import axios from "axios";
+
 function App() {
+  const [connectedUser, setConnectedUser] = useState({});
+
+  useEffect(() => {
+    const connectUser = async () => {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+
+        const userProfile = await axios.get(
+          "https://wildbook-api.herokuapp.com/users/profile",
+          config
+        );
+        setConnectedUser(userProfile.data);
+      }
+    };
+
+    connectUser();
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path="/welcome"
-            render={() => (
-              <Main>
-                <Login />
-              </Main>
-            )}
-          />
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Main>
-                <Home />
-              </Main>
-            )}
-          />
-          <Route
-            exact
-            path="/topics"
-            render={() => (
-              <Main>
-                <Theme />
-              </Main>
-            )}
-          />
-          <Route
-            exact
-            path="/profil"
-            render={() => (
-              <Main>
-                <Profil />
-              </Main>
-            )}
-          />
-        </Switch>
-      </Router>
+      <UserContext.Provider value={{ connectedUser, setConnectedUser }}>
+        <CssBaseline />
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path="/welcome"
+              render={() => (
+                <Main>
+                  <Login />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Main>
+                  <Home />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/topics"
+              render={() => (
+                <Main>
+                  <Theme />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/profil"
+              render={() => (
+                <Main>
+                  <Profil />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/Load"
+              render={() => (
+                <Main>
+                  <Load />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/Account"
+              render={() => (
+                <Main>
+                  <CreateAccount />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/Newpage"
+              render={() => (
+                <Main>
+                  <Newpage />
+                </Main>
+              )}
+            />
+          </Switch>
+        </Router>
+      </UserContext.Provider>
     </ThemeProvider>
   );
 }

@@ -11,13 +11,12 @@ import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
-    width: 650,
+    width: 800,
     height: "100%",
     marginTop: 20,
     display: "flex",
     justifyContent: "center",
     marginTop: "100px",
-    marginBottom: 30,
   },
   sendB: {
     float: "right",
@@ -25,7 +24,11 @@ const useStyles = makeStyles({
   },
   centerbutton: {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+  },
+
+  div: {
+    marginBottom: "30px",
   },
 });
 
@@ -33,12 +36,17 @@ function CreatePost(props) {
   const classes = useStyles();
   const [name, setName] = useState();
   const [display, setdisplay] = useState(false);
+  const [displays, setdisplays] = useState(false);
+
   const handleChange = (e) => {
     setName(e.target.value);
   };
 
   const handleClick = () => {
     setdisplay(!display);
+  };
+  const handleClick3 = () => {
+    setdisplays(!displays);
   };
   const handlepress = (e) => {
     if (e.charCode == 13) {
@@ -57,10 +65,11 @@ function CreatePost(props) {
             <IconButton onClick={handleClick}>
               <BorderColor color="primary" style={{ fontSize: 55 }} />
             </IconButton>
+
             <IconButton>
               <AddAPhoto color="primary" style={{ fontSize: 55 }} />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={handleClick3}>
               <YouTube color="primary" style={{ fontSize: 55 }} />
             </IconButton>
           </div>
@@ -80,12 +89,26 @@ function CreatePost(props) {
               onKeyPress={handlepress}
             ></TextField>
           )}
+          {displays && (
+            <TextField
+              id="filled-full-width"
+              label="YouTube URL..."
+              size="small"
+              variant="outlined"
+              style={{ margin: 10 }}
+              placeholder="Post..."
+              fullWidth
+              margin="normal"
+              value={name}
+              onChange={handleChange}
+              onKeyPress={handlepress}
+            ></TextField>
+          )}
 
           <Button
             variant="contained"
             color="primary"
             className={classes.sendB}
-            flexDirection="row-reverse"
             onClick={handleClick2}
           >
             send

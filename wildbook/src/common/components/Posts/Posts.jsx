@@ -6,17 +6,18 @@ import PostCard from './PostCard';
 
 
 const useStyles = makeStyles({
-    root:{
-        width: 650,
+    root: {
+        width: 800,
         height: "100%",
-        marginBottom:40,
+        marginBottom: 40,
     },
-    title : {
+    title: {
         marginLeft: 20,
         color: "pink",
     },
-    
-  
+
+
+
 })
 
 
@@ -28,12 +29,15 @@ function Posts(props) {
                 <h3 className={classes.title}>
                     Dernier Post
                 </h3>
-                <CardContent>
-                <PostCard/>
-                <PostCard/>
-                <PostCard/>
-                </CardContent>
-                
+                <div className={classes.CardContent}>
+
+                    <CardContent >
+                        <PostCard />
+                        <PostCard />
+                        <PostCard />
+                    </CardContent>
+                </div>
+
             </Card>
         </div>
     );

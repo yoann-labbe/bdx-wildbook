@@ -11,10 +11,13 @@ const useStyles = makeStyles(() => ({
     justifyContent: "start",
   },
 
-  postContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
+  div: {
+    marginBottom: 30,
+  },
+
+  newWilders: {
+    margin: "0 100px",
+    width: "340px",
   },
 }));
 
@@ -27,9 +30,9 @@ function Home() {
         <LastSubscribers />
       </div>
       <div className={classes.postContainer}>
-        <CreatePost />
-        <Posts />
-        <Posts />
+        <div className={classes.div}>
+          <CreatePost />
+        </div>
         <Posts />
       </div>
     </div>
