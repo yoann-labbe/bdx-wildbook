@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -9,6 +9,7 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,20 +51,28 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateAccount() {
   const classes = useStyles();
 
-  const [name, setName] = React.useState("");
-  const [surName, setSurName] = React.useState("");
-  const [birthday, setBirthday] = React.useState("");
-  const [campus, setCampus] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    birthday: "",
+    campus: "",
+    email: "",
+    plainPassword: "",
+  });
 
-  const display = (e) => {
-    e.preventDefault();
-    console.log(email, password);
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleClick = () => {
-    console.log(name, surName, campus, birthday, email, password);
+  const handleClick = async () => {
+    const user = await axios.post(
+      "https://wildbook-api.herokuapp.com/users",
+      form
+    );
+    console.log(
+      "🚀 ~ file: CreateAccount.jsx ~ line 69 ~ handleClick ~ user",
+      user.data
+    );
   };
 
   return (
@@ -80,14 +89,16 @@ export default function CreateAccount() {
             <TextField
               id="standard-basic"
               label="Nom"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={form.firstName}
+              name="firstName"
+              onChange={handleChange}
             />
             <TextField
               id="standard-basic"
               label="Prénom"
-              value={surName}
-              onChange={(e) => setSurName(e.target.value)}
+              value={form.lastName}
+              name="lastName"
+              onChange={handleChange}
             />
             <TextField
               id="date"
@@ -96,8 +107,9 @@ export default function CreateAccount() {
               defaultValue="1991-08-28"
               className={classes.textField}
               InputLabelProps={{ shrink: true }}
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}
+              value={form.birthday}
+              name="birthday"
+              onChange={handleChange}
             />
             <FormControl>
               <InputLabel id="demo-simple-select-label" color="secondary">
@@ -107,8 +119,9 @@ export default function CreateAccount() {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 color="primary"
-                value={campus}
-                onChange={(e) => setCampus(e.target.value)}
+                value={form.campus}
+                name="campus"
+                onChange={handleChange}
               >
                 <MenuItem value={"Bordeaux"}>Bordeaux</MenuItem>
                 <MenuItem value={"Biarritz"}>Biarritz</MenuItem>
@@ -140,16 +153,18 @@ export default function CreateAccount() {
             <TextField
               id="standard-basic"
               label="Mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={form.email}
+              name="email"
+              onChange={handleChange}
             />
             <TextField
               id="standard-password-input"
               label="Password"
               type="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.plainPassword}
+              name="plainPassword"
+              onChange={handleChange}
             />
             <Button
               className={classes.click2}

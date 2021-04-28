@@ -147,7 +147,15 @@ function Header() {
       ></input>
 
       <div className={classes.profil}>
-        <Link to="/profil" style={{ color: "inherit", textDecoration: "none" }}>
+        <Link
+          to="/profil"
+          style={{
+            color: "inherit",
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <AccountCircleIcon style={{ fontSize: 60 }} />
         </Link>
         <IconButton
