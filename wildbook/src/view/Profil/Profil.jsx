@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     alignItems: " center",
     justifyContent: "space-around",
   },
+
 }));
 
 function Profil() {
@@ -21,8 +22,7 @@ function Profil() {
       <ProfilInfos />
       <CreatePost />
       <Posts />
-      <Posts />
-      <Posts />
+
     </div>
   );
 }

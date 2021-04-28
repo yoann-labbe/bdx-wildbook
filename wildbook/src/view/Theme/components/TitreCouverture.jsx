@@ -3,29 +3,29 @@ import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
-  pValue: {
+  hOneValue: {
     margin: 0,
   },
 }));
 
-function MyTextFields({ value, onChange, name, editionMode = false }) {
+function TitreCouverture({ value, onChange, name, editionMode = false }) {
   const classes = useStyles();
 
   return (
     <div>
-      {!editionMode && <p className={classes.pValue}>{value}</p>}
+      {!editionMode && <h1 className={classes.hOneValue}>{value}</h1>}
       {editionMode && (
         <TextField
           name={name}
           label={name}
-          color="primary"
+          color="secondary"
           value={value}
           onChange={onChange}
-          maxLength="20"
+          maxLength="40"
         />
       )}
     </div>
   );
 }
 
-export default MyTextFields;
+export default TitreCouverture;
