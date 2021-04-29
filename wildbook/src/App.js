@@ -30,23 +30,21 @@ function App() {
             Authorization: `Bearer ${accessToken}`,
           },
         };
+
         const userProfile = await axios.get(
-          "https://wildbook-api.herokuapp.com/profile",
+          "https://wildbook-api.herokuapp.com/users/profile",
           config
         );
         setConnectedUser(userProfile.data);
       }
     };
+
     connectUser();
-  });
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
-      <UserContext.Provider
-        value={{
-          connectedUser,
-          setConnectedUser,
-        }}
-      >
+      <UserContext.Provider value={{ connectedUser, setConnectedUser }}>
         <CssBaseline />
         <Router>
           <Switch>

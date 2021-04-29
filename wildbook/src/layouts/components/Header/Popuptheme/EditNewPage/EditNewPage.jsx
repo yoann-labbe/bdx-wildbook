@@ -145,16 +145,17 @@ function EditNewPage() {
             onChange={handleModifications}
             name={"topics"}
           >
-            <MenuItem value={"Open-Space"}>Open-Space</MenuItem>
-            <MenuItem value={"Events"}>Events</MenuItem>
-            <MenuItem value={"JS"}>JS</MenuItem>
-            <MenuItem value={"PHP"}>PHP</MenuItem>
-            <MenuItem value={"Data"}>Data</MenuItem>
-            <MenuItem value={"Testeur"}>Testeur</MenuItem>
-            <MenuItem value={"Quests advices"}>Quests advices</MenuItem>
-            <MenuItem value={"Playground"}>Playground</MenuItem>
-            <MenuItem value={"ClashOfCodes"}>ClashOfCodes</MenuItem>
-            <MenuItem value={"Random"}>Random</MenuItem>
+            <MenuItem value={"open-space"}>Open-Space</MenuItem>
+            <MenuItem value={"events"}>Events</MenuItem>
+            <MenuItem value={"js"}>JS</MenuItem>
+            <MenuItem value={"php"}>PHP</MenuItem>
+            <MenuItem value={"data"}>Data</MenuItem>
+            <MenuItem value={"testers"}>Testeur</MenuItem>
+            <MenuItem value={"quests-advices"}>Quests advices</MenuItem>
+            <MenuItem value={"playground"}>Playground</MenuItem>
+            <MenuItem value={"clash-of-codes"}>ClashOfCodes</MenuItem>
+            <MenuItem value={"random"}>Random</MenuItem>
+            <MenuItem value={"wahoot"}>Wahoot</MenuItem>
           </Select>
         </FormControl>
         <TextField
