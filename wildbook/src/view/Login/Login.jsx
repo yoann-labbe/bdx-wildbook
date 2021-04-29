@@ -4,6 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import CreateAccount from "./CreateAccount";
 import { Link } from "react-router-dom";
 import Load from "./Load";
+import DialogNotif from "../Notif/DialogNotif";
+import { Dialog } from "@material-ui/core";
+import Popupload from "./Popupload";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -29,6 +32,16 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classe = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <img
@@ -39,19 +52,25 @@ function Login() {
       <h1 className={classe.wb}>WILDBOOK</h1>
       <div className={classe.buttonContainer}>
         <Link
-          to="/Account"
+          to="/account"
           style={{ color: "inherit", textDecoration: "none" }}
         >
           <Button className={classe.bouton1} variant="outlined" color="primary">
             Créer un compte
           </Button>
         </Link>
-        <Link to="/Load" style={{ color: "inherit", textDecoration: "none" }}>
-          <Button className={classe.bouton2} variant="outlined">
+
+        <Link to="/load" style={{ color: "inherit", textDecoration: "none" }}>
+          <Button
+            className={classe.bouton2}
+            variant="outlined"
+            onClick={() => setOpen(true)}
+          >
             Connexion
           </Button>
         </Link>
       </div>
+      <Popupload open={handleClickOpen} onClose={handleClose} />
     </div>
   );
 }

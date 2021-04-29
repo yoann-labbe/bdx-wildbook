@@ -72,7 +72,7 @@ function Couverture(props) {
         </div>
       </div>
       <div className={classes.follow}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={handleClick}>
           Follow
         </Button>
       </div>

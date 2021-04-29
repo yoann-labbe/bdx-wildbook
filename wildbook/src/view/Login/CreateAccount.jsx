@@ -9,6 +9,7 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,8 +63,16 @@ export default function CreateAccount() {
     console.log(email, password);
   };
 
-  const handleClick = () => {
-    console.log(name, surName, campus, birthday, email, password);
+  const handleClick = async () => {
+    const userInscripton = {
+      firstName: name,
+      lastName: surName,    
+      birthday: birthday,
+      campus: campus,
+      email: email,
+      plainPassword: password,
+    };
+    const user = await axios.post("https://wildbook-api.herokuapp.com/users", userInscripton);
   };
 
   return (

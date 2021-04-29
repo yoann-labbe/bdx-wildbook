@@ -3,7 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import { Tooltip } from "@material-ui/core";
+import { Dialog, Slide, Tooltip } from "@material-ui/core";
+import Popupload from "./Popupload";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicTextFields() {
+export default function Load() {
   const classes = useStyles();
 
   const [email, setEmail] = React.useState("");
@@ -38,8 +40,19 @@ export default function BasicTextFields() {
     console.log(email, password);
   };
 
-  const handleClick = () => {
-    console.log(email, password);
+  const handleClick = async () => {
+    const login = {
+      email: "",
+      password: "password",
+    };
+    try {
+      const token = await axios.post(
+        "https://wildbook-api.herokuapp.com/login",
+        login
+      );
+      console.log(token.data);
+      localStorage.setItem("userToken", token.data.acces_token);
+    } catch (e) {}
   };
 
   return (
