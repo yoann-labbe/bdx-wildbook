@@ -9,11 +9,12 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
 import Upload from "../Upload/Upload";
 import axios from "axios";
+import UserContext from "../../../context/user";
 
 const useStyles = makeStyles({
   root: {
@@ -39,6 +40,7 @@ const useStyles = makeStyles({
 });
 
 function CreatePost(props) {
+  const { connectedUser } = useContext(UserContext);
   const classes = useStyles();
 
   function handlePicture(url) {
@@ -49,7 +51,7 @@ function CreatePost(props) {
 
   const [picture, setPicture] = useState();
   const [name, setName] = useState({
-    pictureUrl: { picture },
+    pictureUrl: "",
     videoUrl: "",
     text: "",
   });
@@ -67,12 +69,21 @@ function CreatePost(props) {
   };
   const handleClick2 = async () => {
     try {
-      const token = await axios.post(
-        "https://wildbook-api.herokuapp.com/posts",
-        name
-      );
-      console.log(token.data);
-      localStorage.setItem("userToken", token.data.access_token);
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+
+        const token = await axios.post(
+          "https://wildbook-api.herokuapp.com/posts",
+          name,
+          config
+        );
+        console.log(token.data);
+      }
     } catch (e) {
       //ici afficher un message d'erreur  à l'utilisateur
     }
