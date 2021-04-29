@@ -66,6 +66,7 @@ function CreatePost(props) {
               <BorderColor color="primary" style={{ fontSize: 55 }} />
             </IconButton>
 
+
             <IconButton>
               <AddAPhoto color="primary" style={{ fontSize: 55 }} />
             </IconButton>

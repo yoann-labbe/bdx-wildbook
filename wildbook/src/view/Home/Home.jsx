@@ -25,7 +25,9 @@ function Home() {
   const classes = useStyles();
 
   return (
+
     <div className={classes.home}>
+
       <div className={classes.newWilders}>
         <LastSubscribers />
       </div>
@@ -35,6 +37,7 @@ function Home() {
         </div>
         <Posts />
       </div>
+
     </div>
   );
 }
