@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import { Tooltip } from "@material-ui/core";
+import { Dialog, Slide, Tooltip } from "@material-ui/core";
+import Popupload from "./Popupload";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,19 +30,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicTextFields() {
+export default function Load() {
   const classes = useStyles();
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-  const display = (e) => {
-    e.preventDefault();
-    console.log(email, password);
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleClick = () => {
-    console.log(email, password);
+  const handleConnection = async () => {
+    try {
+      const token = await axios.post(
+        "https://wildbook-api.herokuapp.com/users/login",
+        form
+      );
+      console.log(token.data);
+      localStorage.setItem("userToken", token.data.access_token);
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
   };
 
   return (
@@ -48,18 +61,20 @@ export default function BasicTextFields() {
         <TextField
           id="standard-basic"
           label="Mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          value={form.email}
+          onChange={handleChange}
         />
         <TextField
           id="standard-password-input"
           label="Password"
+          name="password"
           type="password"
           autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
         />
-        <Button id="click" variant="contained" onClick={handleClick}>
+        <Button id="click" variant="contained" onClick={handleConnection}>
           Connexion
         </Button>
         <Tooltip>
