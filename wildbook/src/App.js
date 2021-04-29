@@ -76,8 +76,8 @@ function App() {
               )}
             />
             <Route
-              exact
-              path="/profil"
+            
+              path to="/profile"
               render={() => (
                 <Main>
                   <Profil />

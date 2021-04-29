@@ -33,13 +33,14 @@ function Login() {
   const classe = useStyles();
 
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
   const handleClose = () => {
     setOpen(false);
   };
+  
+  {/*const handleClickOpen = () => {
+    setOpen(true);
+  };*/}
+  
 
   return (
     <div>
@@ -59,7 +60,7 @@ function Login() {
           </Button>
         </Link>
 
-        <Link to="/load" style={{ color: "inherit", textDecoration: "none" }}>
+        
           <Button
             className={classe.bouton2}
             variant="outlined"
@@ -67,9 +68,9 @@ function Login() {
           >
             Connexion
           </Button>
-        </Link>
+       
       </div>
-      <Popupload open={handleClickOpen} onClose={handleClose} />
+      <Popupload open={open} handleClose={handleClose} />
     </div>
   );
 }

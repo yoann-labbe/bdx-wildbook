@@ -16,6 +16,7 @@ import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ChangePassword from "./Popuptheme/ChangePassword";
+import SearchBar from "./SearchBar";
 
 const useStyles = makeStyles(() => ({
   nav: {
@@ -136,16 +137,7 @@ function Header() {
       <Link to="/topics" style={{ color: "inherit", textDecoration: "none" }}>
         <p className={classes.items}>TOPICS</p>
       </Link>
-      <input
-        className={classes.input}
-        type="text"
-        label="search"
-        placeholder="Search"
-        value={searchValue}
-        onChange={handleChange}
-        onKeyPress={handlepress}
-      ></input>
-
+      <SearchBar />
       <div className={classes.profil}>
         <Link
           to="/profil"
