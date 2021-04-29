@@ -1,8 +1,19 @@
-import { TextField, IconButton, CardContent, Card, Button, Dialog, DialogContentText, DialogContent, DialogTitle, } from "@material-ui/core";
+import {
+  TextField,
+  IconButton,
+  CardContent,
+  Card,
+  Button,
+  Dialog,
+  DialogContentText,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
 import Upload from "../Upload/Upload";
+import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -26,45 +37,50 @@ const useStyles = makeStyles({
     marginBottom: "30px",
   },
 });
- 
+
 function CreatePost(props) {
   const classes = useStyles();
 
-function handlePicture(url) {
-  console.log({ picture });
-  console.log(url);
-  setPicture(url);
- }
+  function handlePicture(url) {
+    console.log({ picture });
+    console.log(url);
+    setPicture(url);
+  }
 
- 
   const [picture, setPicture] = useState();
   const [name, setName] = useState({
-    pictureUrl: "",
-videoUrl: "",
-text: "",
-
-  })
-  const [display, setdisplay] = useState(false);
+    pictureUrl: { picture },
+    videoUrl: "",
+    text: "",
+  });
   const [displays, setdisplays] = useState(false);
   const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
-    setName(e.target.value)
-  }
-  const handleClick = () => {
-    setdisplay(!display);
+    setName({ ...name, [e.target.name]: e.target.value });
   };
-  const handleClick3 = () => {
-    setdisplays(!displays);
-  };
+
   const handlepress = (e) => {
     if (e.charCode == 13) {
       console.log(name);
     }
-  }
-  const handleClick2 = () => {
-    console.log(name);
-  }
+  };
+  const handleClick2 = async () => {
+    try {
+      const token = await axios.post(
+        "https://wildbook-api.herokuapp.com/post",
+        name
+      );
+      console.log(token.data);
+      localStorage.setItem("userToken", token.data.access_token);
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
+  };
+
+  const handleClick3 = () => {
+    setdisplays(!displays);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -78,40 +94,36 @@ text: "",
     <div className={classes.div}>
       <Card className={classes.root}>
         <CardContent>
-         
           <div className={classes.centerbutton}>
+            <IconButton>
+              <BorderColor color="primary" style={{ fontSize: 55 }} />
+            </IconButton>
 
-              <IconButton onClick={handleClick}>
-                <BorderColor color="primary" style={{ fontSize: 55 }} />
-              </IconButton>
+            <IconButton onClick={handleClickOpen}>
+              <AddAPhoto color="primary" style={{ fontSize: 55 }} />
+            </IconButton>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Update your picture"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <Upload handlePicture={handlePicture} />
+                </DialogContentText>
+              </DialogContent>
+            </Dialog>
 
-              <IconButton  onClick={handleClickOpen}>
-                <AddAPhoto color="primary" style={{ fontSize: 55 }} />
-              </IconButton>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
-
-          <DialogTitle id="alert-dialog-title">
-              {"Update your picture"}
-          </DialogTitle>
-          <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <Upload handlePicture={handlePicture} />
-              </DialogContentText>
-            </DialogContent>
-              </Dialog>
-
-              <IconButton onClick={handleClick3}>
-                <YouTube color="primary" style={{ fontSize: 55 }} />
-              </IconButton>
-            
+            <IconButton onClick={handleClick3}>
+              <YouTube color="primary" style={{ fontSize: 55 }} />
+            </IconButton>
           </div>
 
-          {display && <TextField
-
+          <TextField
             id="filled-full-width"
             label="Creer un post"
             size="small"
@@ -120,56 +132,40 @@ text: "",
             placeholder="Post..."
             fullWidth
             margin="normal"
-            value={name}
+            name={"text"}
+            value={name.text}
             onChange={handleChange}
-            onKeyPress={handlepress}>
+            onKeyPress={handlepress}
+          ></TextField>
 
-             </TextField>}
+          {displays && (
+            <TextField
+              id="filled-full-width"
+              label="YouTube URL..."
+              size="small"
+              variant="outlined"
+              style={{ margin: 10 }}
+              placeholder="Post..."
+              fullWidth
+              margin="normal"
+              name={"videoUrl"}
+              value={name.videoUrl}
+              onChange={handleChange}
+              onKeyPress={handlepress}
+            ></TextField>
+          )}
 
-      {displays && <TextField
-
-            id="filled-full-width"
-            label="YouTube URL..."
-            size="small"
-            variant="outlined"
-            style={{ margin: 10 }}
-            placeholder="Post..."
-            fullWidth
-            margin="normal"
-            value={name}
-            onChange={handleChange}
-            onKeyPress={handlepress}>
-
-          </TextField>}
-
-          <Button variant="contained"
+          <Button
+            variant="contained"
             color="primary"
             className={classes.sendB}
-            onClick={handleClick2}>
-               send
-          
+            onClick={handleClick2}
+          >
+            send
           </Button>
-
-
         </CardContent>
       </Card>
     </div>
   );
 }
 export default CreatePost;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
