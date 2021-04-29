@@ -7,6 +7,7 @@ import Load from "./Load";
 import DialogNotif from "../Notif/DialogNotif";
 import { Dialog } from "@material-ui/core";
 import Popupload from "./Popupload";
+import Popupaccount from "./Popupaccount";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -33,12 +34,19 @@ function Login() {
   const classe = useStyles();
 
   const [open, setOpen] = React.useState(false);
+  const [openAccount, setOpenAccount] = React.useState(false);
 
-  const handleClickOpen = () => {
+  {
+    /*const handleClickOpen = () => {
     setOpen(true);
-  };
+  };*/
+  }
+
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleCloseAccount = () => {
+    setOpenAccount(false);
   };
 
   return (
@@ -50,26 +58,27 @@ function Login() {
       />
       <h1 className={classe.wb}>WILDBOOK</h1>
       <div className={classe.buttonContainer}>
-        <Link
-          to="/account"
-          style={{ color: "inherit", textDecoration: "none" }}
+        <Button
+          className={classe.bouton1}
+          variant="outlined"
+          color="primary"
+          onClick={() => setOpenAccount(true)}
         >
-          <Button className={classe.bouton1} variant="outlined" color="primary">
-            Créer un compte
-          </Button>
-        </Link>
-
-        <Link to="/load" style={{ color: "inherit", textDecoration: "none" }}>
-          <Button
-            className={classe.bouton2}
-            variant="outlined"
-            onClick={() => setOpen(true)}
-          >
-            Connexion
-          </Button>
-        </Link>
+          Créer un compte
+        </Button>
+        <Button
+          className={classe.bouton2}
+          variant="outlined"
+          onClick={() => setOpen(true)}
+        >
+          Connexion
+        </Button>
       </div>
-      <Popupload open={handleClickOpen} onClose={handleClose} />
+      <Popupload open={open} handleClose={handleClose} />
+      <Popupaccount
+        openAccount={openAccount}
+        handleCloseAccount={handleCloseAccount}
+      />
     </div>
   );
 }
