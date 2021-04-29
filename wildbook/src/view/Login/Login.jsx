@@ -7,6 +7,7 @@ import Load from "./Load";
 import DialogNotif from "../Notif/DialogNotif";
 import { Dialog } from "@material-ui/core";
 import Popupload from "./Popupload";
+import Popupaccount from "./Popupaccount";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -51,26 +52,27 @@ function Login() {
       />
       <h1 className={classe.wb}>WILDBOOK</h1>
       <div className={classe.buttonContainer}>
-        <Link
-          to="/account"
-          style={{ color: "inherit", textDecoration: "none" }}
+        <Button
+          className={classe.bouton1}
+          variant="outlined"
+          color="primary"
+          onClick={() => setOpenAccount(true)}
         >
-          <Button className={classe.bouton1} variant="outlined" color="primary">
-            Créer un compte
-          </Button>
-        </Link>
-
-        
-          <Button
-            className={classe.bouton2}
-            variant="outlined"
-            onClick={() => setOpen(true)}
-          >
-            Connexion
-          </Button>
-       
+          Créer un compte
+        </Button>
+        <Button
+          className={classe.bouton2}
+          variant="outlined"
+          onClick={() => setOpen(true)}
+        >
+          Connexion
+        </Button>
       </div>
       <Popupload open={open} handleClose={handleClose} />
+      <Popupaccount
+        openAccount={openAccount}
+        handleCloseAccount={handleCloseAccount}
+      />
     </div>
   );
 }
