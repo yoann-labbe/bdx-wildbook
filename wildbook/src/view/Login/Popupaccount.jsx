@@ -5,28 +5,26 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Slide from "@material-ui/core/Slide";
 
 import CreateAccount from "./CreateAccount";
+import { DialogContent } from "@material-ui/core";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Popupaccount({ open, onClose }) {
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function Popupaccount({ openAccount, handleCloseAccount }) {
   return (
     <div>
       <Dialog
-        open={open}
+        open={openAccount}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={handleCloseAccount}
       >
-        <CreateAccount />
+        <DialogContent>
+          <CreateAccount />
+        </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleCloseAccount} color="primary">
             Fermer la page
           </Button>
         </DialogActions>
