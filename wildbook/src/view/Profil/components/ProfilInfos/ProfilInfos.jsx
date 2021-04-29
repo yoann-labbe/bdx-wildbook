@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ProfilInfos.css";
 import EditIcon from "@material-ui/icons/Edit";
 import {
@@ -6,13 +6,13 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  makeStyles,
 } from "@material-ui/core";
 import DoneIcon from "@material-ui/icons/Done";
 import MyTextFields from "../MyTextFields";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import Upload from "../../../../common/components/Upload/Upload";
 import UserContext from "../../../../context/user";
+import axios from "axios";
 
 const user = {
   formation: "Formation",
@@ -27,6 +27,7 @@ function ProfilInfos(props) {
   const [editionMode, setEditionMode] = useState(false);
   const [picture, setPicture] = useState("/assets/avatar2.png");
   const { connectedUser } = useContext(UserContext);
+
   if (connectedUser) {
     user.firstName = connectedUser.firstName;
   }
@@ -64,6 +65,12 @@ function ProfilInfos(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    axios
+      .get("https://wildbook-api.herokuapp.com/users._id")
+      .then((response) => response.data);
+  });
 
   return (
     <div className="profil-infos">

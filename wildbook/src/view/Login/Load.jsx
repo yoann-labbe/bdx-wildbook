@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import { Dialog, Slide, Tooltip } from "@material-ui/core";
 import Popupload from "./Popupload";
-import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
