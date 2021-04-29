@@ -26,7 +26,9 @@ function Home() {
   const classes = useStyles();
 
   return (
+
     <div className={classes.home}>
+
       <div className={classes.newWilders}>
         <LastSubscribers />
       </div>
@@ -35,8 +37,8 @@ function Home() {
           <CreatePost />
         </div>
         <Posts />
-
       </div>
+
     </div>
   );
 }
