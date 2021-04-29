@@ -34,14 +34,18 @@ function Login() {
   const classe = useStyles();
 
   const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [openAccount, setOpenAccount] = React.useState(false);
+  
   
   {/*const handleClickOpen = () => {
     setOpen(true);
   };*/}
-  
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleCloseAccount = () => {
+    setOpenAccount(false);
+  };
 
   return (
     <div>

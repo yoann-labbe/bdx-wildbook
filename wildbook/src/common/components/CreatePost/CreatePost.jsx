@@ -5,9 +5,15 @@ import {
   IconButton,
   TextField,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
+<<<<<<< HEAD
+=======
+import Upload from "../Upload/Upload";
+import axios from "axios";
+import UserContext from "../../../context/user";
+>>>>>>> 8b58937f3e58b7f9b3378ee7e7222bfdb461fe7c
 
 const useStyles = makeStyles({
   root: {
@@ -33,17 +39,62 @@ const useStyles = makeStyles({
 });
 
 function CreatePost(props) {
+  const { connectedUser } = useContext(UserContext);
   const classes = useStyles();
+<<<<<<< HEAD
   const [name, setName] = useState();
   const [display, setdisplay] = useState(false);
+=======
+
+  function handlePicture(url) {
+    console.log({ picture });
+    console.log(url);
+    setPicture(url);
+  }
+
+  const [picture, setPicture] = useState();
+  const [name, setName] = useState({
+    pictureUrl: "",
+    videoUrl: "",
+    text: "",
+  });
+>>>>>>> 8b58937f3e58b7f9b3378ee7e7222bfdb461fe7c
   const [displays, setdisplays] = useState(false);
 
   const handleChange = (e) => {
     setName(e.target.value);
   };
 
+<<<<<<< HEAD
   const handleClick = () => {
     setdisplay(!display);
+=======
+  const handlepress = (e) => {
+    if (e.charCode == 13) {
+      console.log(name);
+    }
+  };
+  const handleClick2 = async () => {
+    try {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+
+        const token = await axios.post(
+          "https://wildbook-api.herokuapp.com/posts",
+          name,
+          config
+        );
+        console.log(token.data);
+      }
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
+>>>>>>> 8b58937f3e58b7f9b3378ee7e7222bfdb461fe7c
   };
   const handleClick3 = () => {
     setdisplays(!displays);
