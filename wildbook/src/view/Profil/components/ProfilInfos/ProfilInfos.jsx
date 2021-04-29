@@ -69,7 +69,10 @@ function ProfilInfos(props) {
   useEffect(() => {
     axios
       .get("https://wildbook-api.herokuapp.com/users._id")
-      .then((response) => response.data);
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+      });
   });
 
   return (

@@ -9,8 +9,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Popupload({ open, onClose }) {
-  const [switchOn, setSwitchOn] = useState(false);
+export default function Popupload({}) {
+  const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setSwitchOn(false);
   };
