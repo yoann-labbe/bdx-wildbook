@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import CreatePost from "../../common/components/CreatePost/CreatePost";
 import Posts from "../../common/components/Posts/Posts";
@@ -23,11 +23,8 @@ const useStyles = makeStyles(() => ({
 
 function Home() {
   const classes = useStyles();
-
   return (
-
     <div className={classes.home}>
-
       <div className={classes.newWilders}>
         <LastSubscribers />
       </div>
@@ -37,7 +34,6 @@ function Home() {
         </div>
         <Posts />
       </div>
-
     </div>
   );
 }
