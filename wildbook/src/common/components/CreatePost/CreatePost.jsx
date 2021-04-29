@@ -68,7 +68,7 @@ function CreatePost(props) {
   const handleClick2 = async () => {
     try {
       const token = await axios.post(
-        "https://wildbook-api.herokuapp.com/post",
+        "https://wildbook-api.herokuapp.com/posts",
         name
       );
       console.log(token.data);
