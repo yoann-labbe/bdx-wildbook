@@ -15,12 +15,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Popupload from "./view/Login/Popupload";
 import UserContext from "./context/user";
 import axios from "axios";
 
 function App() {
   const [connectedUser, setConnectedUser] = useState({});
-
   useEffect(() => {
     const connectUser = async () => {
       const accessToken = localStorage.getItem("userToken");
@@ -86,7 +86,7 @@ function App() {
             />
             <Route
               exact
-              path="/Load"
+              path="/load"
               render={() => (
                 <Main>
                   <Load />
@@ -95,7 +95,7 @@ function App() {
             />
             <Route
               exact
-              path="/Account"
+              path="/account"
               render={() => (
                 <Main>
                   <CreateAccount />
@@ -104,7 +104,7 @@ function App() {
             />
             <Route
               exact
-              path="/Newpage"
+              path="/newpage"
               render={() => (
                 <Main>
                   <Newpage />
