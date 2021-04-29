@@ -34,6 +34,7 @@ function ChangePassword() {
   const [form, setForm] = useState({
     oldPassword: "",
     newPassword: "",
+    confirmPassword: "",
   });
 
   const handleClick = () => {
@@ -66,6 +67,18 @@ function ChangePassword() {
           label="New password"
           color="primary"
           value={form.newPassword}
+          onChange={handleModifications}
+          maxLength="20"
+        />
+      </div>
+      <div className={classes.confirmPassword}>
+        <TextField
+          style={{ width: "300px", height: "75px" }}
+          name={"confirmPassword"}
+          type="password"
+          label="Confirm new password"
+          color="primary"
+          value={form.confirmPassword}
           onChange={handleModifications}
           maxLength="20"
         />

@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     marginTop: "100px",
     width: "150px",
-    height: "150px",
   },
   wb: {
     textAlign: "center",
