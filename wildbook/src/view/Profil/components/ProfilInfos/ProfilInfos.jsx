@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ProfilInfos.css";
 import EditIcon from "@material-ui/icons/Edit";
 import {
@@ -12,25 +12,30 @@ import DoneIcon from "@material-ui/icons/Done";
 import MyTextFields from "../MyTextFields";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import Upload from "../../../../common/components/Upload/Upload";
-
-const useStyles = makeStyles((theme) => ({
-  editAvatarButton: {},
-}));
+import UserContext from "../../../../context/user";
 
 const user = {
   formation: "Formation",
   language: "Language",
   wildYear: "Wilder since ?",
-  userName: "Name",
-  city: "City",
+  firstName: "Name",
+  campus: "Campus",
   age: "Age",
 };
 
 function ProfilInfos(props) {
   const [editionMode, setEditionMode] = useState(false);
-  const [form, setForm] = useState(user);
-  const classes = useStyles();
   const [picture, setPicture] = useState("/assets/avatar2.png");
+  const { connectedUser } = useContext(UserContext);
+  if (connectedUser) {
+    user.firstName = connectedUser.firstName;
+  }
+
+  const [form, setForm] = useState(user);
+  console.log(
+    "🚀 ~ file: ProfilInfos.jsx ~ line 31 ~ ProfilInfos ~ connectedUser",
+    connectedUser
+  );
 
   function handlePicture(url) {
     console.log({ picture });
@@ -116,17 +121,17 @@ function ProfilInfos(props) {
         <div className="name">
           <MyTextFields
             editionMode={editionMode}
-            value={form.userName}
+            value={form.firstName}
             onChange={handleChange}
-            name={"userName"}
+            name={"firstName"}
           />
         </div>
         <div className="city">
           <MyTextFields
             editionMode={editionMode}
-            value={form.city}
+            value={form.campus}
             onChange={handleChange}
-            name={"city"}
+            name={"campus"}
           />
         </div>
         <div className="age">

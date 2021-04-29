@@ -76,7 +76,7 @@ export default function CreateAccount() {
   };
 
   return (
-    <Fragment className={classes.account}>
+    <Fragment>
       <div>
         <h1 className={classes.wb2}>WILDBOOK</h1>
       </div>
@@ -89,15 +89,15 @@ export default function CreateAccount() {
             <TextField
               id="standard-basic"
               label="Nom"
-              value={form.firstName}
-              name="firstName"
+              value={form.lastName}
+              name="lastName"
               onChange={handleChange}
             />
             <TextField
               id="standard-basic"
               label="Prénom"
-              value={form.lastName}
-              name="lastName"
+              value={form.firstName}
+              name="firstName"
               onChange={handleChange}
             />
             <TextField
