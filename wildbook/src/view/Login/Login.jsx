@@ -2,8 +2,11 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import CreateAccount from "./CreateAccount";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Load from "./Load";
+import DialogNotif from "../Notif/DialogNotif";
+import { Dialog } from "@material-ui/core";
+import Popupload from "./Popupload";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -12,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     marginTop: "100px",
     width: "150px",
-    height: "150px",
   },
   wb: {
     textAlign: "center",
@@ -29,6 +31,16 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classe = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <img
@@ -38,18 +50,26 @@ function Login() {
       />
       <h1 className={classe.wb}>WILDBOOK</h1>
       <div className={classe.buttonContainer}>
-        <Button
-          className={classe.bouton1}
-          variant="outlined"
-          color="primary"
-          component={CreateAccount.jsx}
+        <Link
+          to="/account"
+          style={{ color: "inherit", textDecoration: "none" }}
         >
-          Créer un compte
-        </Button>
-        <Button className={classe.bouton2} variant="outlined">
-          Connexion
-        </Button>
+          <Button className={classe.bouton1} variant="outlined" color="primary">
+            Créer un compte
+          </Button>
+        </Link>
+
+        <Link to="/load" style={{ color: "inherit", textDecoration: "none" }}>
+          <Button
+            className={classe.bouton2}
+            variant="outlined"
+            onClick={() => setOpen(true)}
+          >
+            Connexion
+          </Button>
+        </Link>
       </div>
+      <Popupload open={handleClickOpen} onClose={handleClose} />
     </div>
   );
 }

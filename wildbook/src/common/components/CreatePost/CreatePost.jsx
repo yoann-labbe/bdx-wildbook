@@ -4,8 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
 import Upload from "../Upload/Upload";
 
-
-
 const useStyles = makeStyles({
   root: {
     width: 800,
@@ -24,6 +22,9 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
   },
 
+  div: {
+    marginBottom: "30px",
+  },
 });
  
 function CreatePost(props) {
@@ -37,7 +38,12 @@ function handlePicture(url) {
 
  
   const [picture, setPicture] = useState();
-  const [name, setName] = useState()
+  const [name, setName] = useState({
+    pictureUrl: "",
+videoUrl: "",
+text: "",
+
+  })
   const [display, setdisplay] = useState(false);
   const [displays, setdisplays] = useState(false);
   const [open, setOpen] = useState(false);
@@ -47,13 +53,13 @@ function handlePicture(url) {
   }
   const handleClick = () => {
     setdisplay(!display);
-  }
+  };
   const handleClick3 = () => {
     setdisplays(!displays);
-  }
+  };
   const handlepress = (e) => {
     if (e.charCode == 13) {
-      console.log(name)
+      console.log(name);
     }
   }
   const handleClick2 = () => {
@@ -69,7 +75,6 @@ function handlePicture(url) {
   };
 
   return (
-
     <div className={classes.div}>
       <Card className={classes.root}>
         <CardContent>
@@ -149,7 +154,6 @@ function handlePicture(url) {
         </CardContent>
       </Card>
     </div>
-
   );
 }
 export default CreatePost;
