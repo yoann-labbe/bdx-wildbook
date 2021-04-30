@@ -41,7 +41,7 @@ function ProfilInfos(props) {
   function handlePicture(url) {
     console.log({ picture });
     console.log(url);
-    setPicture(url);
+    // setPicture(url);
   }
 
   const handleClick = () => {

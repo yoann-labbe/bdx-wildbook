@@ -17,6 +17,8 @@ const useStyles = makeStyles(() => ({
 
 function Profil() {
   const [connectedUser, setConnectedUser] = useState({});
+  
+  
 
   useEffect(() => {
     const connectUser = async () => {

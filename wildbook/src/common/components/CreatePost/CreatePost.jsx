@@ -8,12 +8,9 @@ import {
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
-<<<<<<< HEAD
-=======
 import Upload from "../Upload/Upload";
 import axios from "axios";
 import UserContext from "../../../context/user";
->>>>>>> 8b58937f3e58b7f9b3378ee7e7222bfdb461fe7c
 
 const useStyles = makeStyles({
   root: {
@@ -41,10 +38,6 @@ const useStyles = makeStyles({
 function CreatePost(props) {
   const { connectedUser } = useContext(UserContext);
   const classes = useStyles();
-<<<<<<< HEAD
-  const [name, setName] = useState();
-  const [display, setdisplay] = useState(false);
-=======
 
   function handlePicture(url) {
     console.log({ picture });
@@ -58,22 +51,13 @@ function CreatePost(props) {
     videoUrl: "",
     text: "",
   });
->>>>>>> 8b58937f3e58b7f9b3378ee7e7222bfdb461fe7c
   const [displays, setdisplays] = useState(false);
 
   const handleChange = (e) => {
     setName(e.target.value);
   };
 
-<<<<<<< HEAD
-  const handleClick = () => {
-    setdisplay(!display);
-=======
-  const handlepress = (e) => {
-    if (e.charCode == 13) {
-      console.log(name);
-    }
-  };
+  
   const handleClick2 = async () => {
     try {
       const accessToken = localStorage.getItem("userToken");
@@ -94,7 +78,6 @@ function CreatePost(props) {
     } catch (e) {
       //ici afficher un message d'erreur  à l'utilisateur
     }
->>>>>>> 8b58937f3e58b7f9b3378ee7e7222bfdb461fe7c
   };
   const handleClick3 = () => {
     setdisplays(!displays);
@@ -105,15 +88,13 @@ function CreatePost(props) {
     }
   };
 
-  const handleClick2 = () => {
-    console.log(name);
-  };
+ 
   return (
     <div className={classes.div}>
       <Card className={classes.root}>
         <CardContent>
           <div className={classes.centerbutton}>
-            <IconButton onClick={handleClick}>
+            <IconButton >
               <BorderColor color="primary" style={{ fontSize: 55 }} />
             </IconButton>
 
@@ -126,7 +107,7 @@ function CreatePost(props) {
             </IconButton>
           </div>
 
-          {display && (
+          {displays && (
             <TextField
               id="filled-full-width"
               label="Creer un post"

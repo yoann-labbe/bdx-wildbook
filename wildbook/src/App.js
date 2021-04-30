@@ -78,7 +78,7 @@ function App() {
             />
             <Route
             
-              path to="/profile"
+              path to="/profile/users/:_id"
               render={() => (
                 <Main>
                   <Profil />
