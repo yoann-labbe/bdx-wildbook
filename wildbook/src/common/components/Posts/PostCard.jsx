@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, props }) => {
   const classes = useStyles();
 
   return (
@@ -30,7 +30,7 @@ const PostCard = ({ post }) => {
         <h4>{post?.text} </h4>
       </Card>
 
-      <Comment />
+      <Comment text={props} />
     </div>
   );
 };

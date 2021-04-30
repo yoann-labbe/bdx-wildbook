@@ -44,18 +44,13 @@ function Posts() {
           },
         };
         const getNewPost = await axios.get(
-          `https://wildbook-api.herokuapp.com/posts/`,
+          `https://wildbook-api.herokuapp.com/posts`,
           config
         );
         setPost(getNewPost.data[0].data);
       }
     } catch (e) {}
   };
-  /*const post = {
-    urlImage: "https://picsum.photos/700/300?ramdom",
-    titrePhoto: 'Ma Photo',
-    urlVideo: "https://www.youtube.com/embed/v8oqbWrP1QY",
-  };*/
 
   return (
     <div>
