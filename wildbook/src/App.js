@@ -77,11 +77,48 @@ function App() {
               )}
             />
             <Route
-            
-              path to="/profile/users/:_id"
+              exact
+              path="/profile/users/:id"
+              render={(props) => (
+                <Main>
+                  <Profil {...props} />
+                </Main>
+              )}
+            />
+
+            <Route
+              exact
+              path="/load"
               render={() => (
                 <Main>
-                  <Profil />
+                  <Load />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/profile/users/:id"
+              render={(props) => (
+                <Main>
+                  <Profil {...props} />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/load"
+              render={() => (
+                <Main>
+                  <Load />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/account"
+              render={() => (
+                <Main>
+                  <CreateAccount />
                 </Main>
               )}
             />
