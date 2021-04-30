@@ -1,18 +1,20 @@
-import axios from 'axios';
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { useHistory } from 'react-router';
+import axios from "axios";
+import React from "react";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { useHistory } from "react-router";
 
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core";
 
-{/*const useStyles = makeStyles(() => ({
+{
+  /*const useStyles = makeStyles(() => ({
     SearchBar : {
         widht : "100px",
         height :"80px", 
         padding : "10px",
     }
-})); */}
+})); */
+}
 export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
@@ -20,13 +22,13 @@ export default function SearchBar() {
   const router = useHistory();
   React.useEffect(() => {
     let active = true;
-  console.log('coucou');
-   
+    console.log("coucou");
 
     (async () => {
-      const response = await axios
-      .get("https://wildbook-api.herokuapp.com/users?keyword="+ keyword)
-     
+      const response = await axios.get(
+        "https://wildbook-api.herokuapp.com/users?keyword=" + keyword
+      );
+
       const users = response.data;
       console.log(users);
       if (active) {
@@ -35,7 +37,6 @@ export default function SearchBar() {
     })();
 
     return () => {
-        
       active = false;
     };
   }, [keyword]);
@@ -47,11 +48,9 @@ export default function SearchBar() {
   }, [open]);
   //const classes = useStyles();
   return (
-   
     <Autocomplete
       //className={classes.SearchBar}
       style={{ width: 300 }}
-      
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -62,8 +61,11 @@ export default function SearchBar() {
       getOptionSelected={(option, value) => option.name === value.name}
       getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
       options={options}
-      onChange={(event, newValue) => router.push(`/profile/${newValue._id}`)}
- 
+      onChange={(event, newValue) => {
+        if (newValue && newValue._id) {
+          router.push(`/profile/users/${newValue._id}`);
+        }
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -72,8 +74,6 @@ export default function SearchBar() {
           onChange={(e) => setKeyword(e.target.value)}
           InputProps={{
             ...params.InputProps,
-
-           
           }}
         />
       )}

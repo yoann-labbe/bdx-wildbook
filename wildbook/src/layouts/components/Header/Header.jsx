@@ -16,11 +16,8 @@ import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ChangePassword from "./Popuptheme/ChangePassword";
-<<<<<<< HEAD
 import SearchBar from "./SearchBar";
-=======
 import UserContext from "../../../context/user";
->>>>>>> 78800f585524ebc90369dd7d77afbfb75aeaa189
 
 const useStyles = makeStyles(() => ({
   nav: {
