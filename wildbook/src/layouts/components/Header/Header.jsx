@@ -16,6 +16,7 @@ import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ChangePassword from "./Popuptheme/ChangePassword";
+import SearchBar from "./SearchBar";
 import UserContext from "../../../context/user";
 
 const useStyles = makeStyles(() => ({
@@ -137,16 +138,7 @@ function Header() {
       <Link to="/topics" style={{ color: "inherit", textDecoration: "none" }}>
         <p className={classes.items}>TOPICS</p>
       </Link>
-      <input
-        className={classes.input}
-        type="text"
-        label="search"
-        placeholder="Search"
-        value={searchValue}
-        onChange={handleChange}
-        onKeyPress={handlepress}
-      ></input>
-
+      <SearchBar />
       <div className={classes.profil}>
         <Link
           to={"/profile/users/" + connectedUser._id}
@@ -176,7 +168,7 @@ function Header() {
           onClose={handleClosed}
         >
           <Link
-            to="/profil"
+            to="/profile/users/:_id"
             style={{ color: "inherit", textDecoration: "none" }}
           >
             <MenuItem className={classes.Menu} onClick={handleClosed}>
