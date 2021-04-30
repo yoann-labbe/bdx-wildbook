@@ -18,7 +18,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Popupload from "./view/Login/Popupload";
 import UserContext from "./context/user";
 import axios from "axios";
-import Minimal from "./layouts/Minimal/Minimal";
 
 function App() {
   const [connectedUser, setConnectedUser] = useState({});
@@ -53,9 +52,9 @@ function App() {
               exact
               path="/welcome"
               render={() => (
-                <Minimal>
+                <Main>
                   <Login />
-                </Minimal>
+                </Main>
               )}
             />
             <Route
@@ -78,10 +77,28 @@ function App() {
             />
             <Route
               exact
-              path="/profil"
+              path="/profile/users/:id"
+              render={(props) => (
+                <Main>
+                  <Profil {...props} />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/load"
               render={() => (
                 <Main>
-                  <Profil />
+                  <Load />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/account"
+              render={() => (
+                <Main>
+                  <CreateAccount />
                 </Main>
               )}
             />
