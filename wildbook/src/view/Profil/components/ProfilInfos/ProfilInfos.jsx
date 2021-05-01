@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ProfilInfos.css";
 import EditIcon from "@material-ui/icons/Edit";
 import {
@@ -6,47 +6,47 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  makeStyles,
 } from "@material-ui/core";
 import DoneIcon from "@material-ui/icons/Done";
 import MyTextFields from "../MyTextFields";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import Upload from "../../../../common/components/Upload/Upload";
 import UserContext from "../../../../context/user";
-
-const user = {
-  formation: "Formation",
-  language: "Language",
-  wildYear: "Wilder since ?",
-  firstName: "Name",
-  campus: "Campus",
-  age: "Age",
-};
+import axios from "axios";
 
 function ProfilInfos(props) {
   const [editionMode, setEditionMode] = useState(false);
   const [picture, setPicture] = useState("/assets/avatar2.png");
   const { connectedUser } = useContext(UserContext);
-  if (connectedUser) {
-    user.firstName = connectedUser.firstName;
-  }
 
-  const [form, setForm] = useState(user);
-  console.log(
-    "🚀 ~ file: ProfilInfos.jsx ~ line 31 ~ ProfilInfos ~ connectedUser",
-    connectedUser
-  );
+  const [form, setForm] = useState({});
 
   function handlePicture(url) {
     console.log({ picture });
     console.log(url);
-    setPicture(url);
+    // setPicture(url);
   }
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (editionMode) {
-      console.log(form);
+      try {
+        const accessToken = localStorage.getItem("userToken");
+        if (accessToken) {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          };
+          const updatedUser = await axios.patch(
+            `https://wildbook-api.herokuapp.com/users/${form._id}`,
+            form,
+            config
+          );
+          setForm(updatedUser.data);
+        }
+      } catch (e) {}
     }
+
     setEditionMode(!editionMode);
   };
 
@@ -65,6 +65,35 @@ function ProfilInfos(props) {
     setOpen(false);
   };
 
+  useEffect(() => {
+    getUsersInfos();
+  }, []);
+
+  const getUsersInfos = () => {
+    try {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        axios
+          .get(
+            `https://wildbook-api.herokuapp.com/users/${props.userId}`,
+            config
+          )
+          .then((response) => response.data)
+          .then((data) => {
+            console.log(data);
+            setForm(data);
+          });
+      }
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
+  };
+
   return (
     <div className="profil-infos">
       <div className="grid-container">
@@ -77,7 +106,6 @@ function ProfilInfos(props) {
               <PhotoCameraIcon style={{ display: "none" }} />
             )}
           </button>
-
           <Dialog
             open={open}
             onClose={handleClose}
@@ -100,6 +128,7 @@ function ProfilInfos(props) {
             value={form.formation}
             onChange={handleChange}
             name={"formation"}
+            placeholder="Formation"
           />
         </div>
         <div className="language">
@@ -108,6 +137,7 @@ function ProfilInfos(props) {
             value={form.language}
             onChange={handleChange}
             name={"language"}
+            placeholder="Language"
           />
         </div>
         <div className="wild-year">
@@ -116,6 +146,7 @@ function ProfilInfos(props) {
             value={form.wildYear}
             onChange={handleChange}
             name={"wildYear"}
+            placeholder="Wilder Since ?"
           />
         </div>
         <div className="name">
@@ -124,6 +155,7 @@ function ProfilInfos(props) {
             value={form.firstName}
             onChange={handleChange}
             name={"firstName"}
+            placeholder="firstName"
           />
         </div>
         <div className="city">
@@ -132,6 +164,7 @@ function ProfilInfos(props) {
             value={form.campus}
             onChange={handleChange}
             name={"campus"}
+            placeholder="campus"
           />
         </div>
         <div className="age">
@@ -140,13 +173,16 @@ function ProfilInfos(props) {
             value={form.age}
             onChange={handleChange}
             name={"age"}
+            placeholder="age"
           />
         </div>
       </div>
       <div className="button-container">
-        <button className="edit-button" onClick={handleClick}>
-          {editionMode ? <DoneIcon /> : <EditIcon />}
-        </button>
+        {connectedUser._id === form._id && (
+          <button className="edit-button" onClick={handleClick}>
+            {editionMode ? <DoneIcon /> : <EditIcon />}
+          </button>
+        )}
       </div>
     </div>
   );

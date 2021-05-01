@@ -1,5 +1,5 @@
 import TextField from "@material-ui/core/TextField";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -16,6 +16,8 @@ import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ChangePassword from "./Popuptheme/ChangePassword";
+import SearchBar from "./SearchBar";
+import UserContext from "../../../context/user";
 
 const useStyles = makeStyles(() => ({
   nav: {
@@ -87,7 +89,7 @@ function Header() {
   const handleClose = () => {
     setOpenDialogue(false);
   };
-
+  const { connectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -136,19 +138,10 @@ function Header() {
       <Link to="/topics" style={{ color: "inherit", textDecoration: "none" }}>
         <p className={classes.items}>TOPICS</p>
       </Link>
-      <input
-        className={classes.input}
-        type="text"
-        label="search"
-        placeholder="Search"
-        value={searchValue}
-        onChange={handleChange}
-        onKeyPress={handlepress}
-      ></input>
-
+      <SearchBar />
       <div className={classes.profil}>
         <Link
-          to="/profil"
+          to={"/profile/users/" + connectedUser._id}
           style={{
             color: "inherit",
             textDecoration: "none",
@@ -175,7 +168,7 @@ function Header() {
           onClose={handleClosed}
         >
           <Link
-            to="/profil"
+            to="/profile/users/:_id"
             style={{ color: "inherit", textDecoration: "none" }}
           >
             <MenuItem className={classes.Menu} onClick={handleClosed}>
