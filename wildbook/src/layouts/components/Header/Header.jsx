@@ -1,5 +1,4 @@
-import TextField from "@material-ui/core/TextField";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -17,6 +16,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ChangePassword from "./Popuptheme/ChangePassword";
 import UserContext from "../../../context/user";
+import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   nav: {
@@ -83,13 +83,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Header() {
+function Header(props) {
   const [openDialogue, setOpenDialogue] = useState(false);
   const handleClose = () => {
     setOpenDialogue(false);
   };
   const { connectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [user, setUser] = useState({});
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -159,6 +160,9 @@ function Header() {
         >
           <AccountCircleIcon style={{ fontSize: 60 }} />
         </Link>
+        <p className={classes.UserTitle}>
+          {connectedUser.firstName} {connectedUser.lastName}
+        </p>
         <IconButton
           className={classes.icons}
           onClick={() => setOpenDialogue(true)}

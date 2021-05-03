@@ -6,11 +6,8 @@ import Login from "./view/Login/Login";
 import Profil from "./view/Profil/Profil";
 import Load from "./view/Login/Load";
 import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
-import Notif from "./view/Notif/Notif";
-import DialogNotif from "./view/Notif/DialogNotif";
 import Theme from "./view/Theme/Theme";
 import CreateAccount from "./view/Login/CreateAccount";
-import EditNewPage from "./layouts/components/Header/Popuptheme/EditNewPage/EditNewPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/styles";
@@ -18,6 +15,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Popupload from "./view/Login/Popupload";
 import UserContext from "./context/user";
 import axios from "axios";
+import Minimal from "./layouts/Minimal/Minimal";
 
 function App() {
   const [connectedUser, setConnectedUser] = useState({});
@@ -52,16 +50,16 @@ function App() {
               exact
               path="/welcome"
               render={() => (
-                <Main>
+                <Minimal>
                   <Login />
-                </Main>
+                </Minimal>
               )}
             />
             <Route
               exact
               path="/"
-              render={() => (
-                <Main>
+              render={(props) => (
+                <Main {...props}>
                   <Home />
                 </Main>
               )}

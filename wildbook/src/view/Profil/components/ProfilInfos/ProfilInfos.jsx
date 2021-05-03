@@ -16,16 +16,37 @@ import axios from "axios";
 
 function ProfilInfos(props) {
   const [editionMode, setEditionMode] = useState(false);
-  const [picture, setPicture] = useState("/assets/avatar2.png");
-  const { connectedUser } = useContext(UserContext);
-
+  const { connectedUser, setConnectedUser } = useContext(UserContext);
+  const [picture, setPicture] = useState({
+    avatarUrl: "/assets/avatar2.png",
+  });
   const [form, setForm] = useState({});
 
-  function handlePicture(url) {
-    console.log({ picture });
-    console.log(url);
-    setPicture(url);
-  }
+  const handlePicture = (url) => {
+    setPicture({ ...picture, avatarUrl: url });
+    try {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        axios
+          .patch(
+            `https://wildbook-api.herokuapp.com/users/${form._id}`,
+            { avatarUrl: url },
+            config
+          )
+          .then((response) => {
+            console.log(response.data);
+            setConnectedUser(response.data);
+          });
+      }
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
+  };
 
   const handleClick = async () => {
     if (editionMode) {
@@ -43,6 +64,7 @@ function ProfilInfos(props) {
             config
           );
           setForm(updatedUser.data);
+          setConnectedUser(updatedUser.data);
         }
       } catch (e) {}
     }
@@ -67,7 +89,7 @@ function ProfilInfos(props) {
 
   useEffect(() => {
     getUsersInfos();
-  }, []);
+  }, [props.userId]);
 
   const getUsersInfos = () => {
     try {
@@ -87,6 +109,11 @@ function ProfilInfos(props) {
           .then((data) => {
             console.log(data);
             setForm(data);
+            setPicture({
+              avatarUrl: data.avatarUrl
+                ? data.avatarUrl
+                : "/assets/avatar2.png",
+            });
           });
       }
     } catch (e) {
@@ -98,7 +125,7 @@ function ProfilInfos(props) {
     <div className="profil-infos">
       <div className="grid-container">
         <div className="picture">
-          <img className="avatar" src={picture} alt="avatar" />
+          <img className="avatar" src={picture.avatarUrl} alt="avatar" />
           <button className="editAvatarButton" onClick={handleClickOpen}>
             {editionMode ? (
               <PhotoCameraIcon />
@@ -149,7 +176,7 @@ function ProfilInfos(props) {
             placeholder="Wilder Since ?"
           />
         </div>
-        <div className="name">
+        <div className="firstName">
           <MyTextFields
             editionMode={editionMode}
             value={form.firstName}
@@ -158,22 +185,23 @@ function ProfilInfos(props) {
             placeholder="firstName"
           />
         </div>
-        <div className="city">
+
+        <div className="lastName">
+          <MyTextFields
+            editionMode={editionMode}
+            value={form.lastName}
+            onChange={handleChange}
+            name={"lastName"}
+            placeholder="lastName"
+          />
+        </div>
+        <div className="campus">
           <MyTextFields
             editionMode={editionMode}
             value={form.campus}
             onChange={handleChange}
             name={"campus"}
             placeholder="campus"
-          />
-        </div>
-        <div className="age">
-          <MyTextFields
-            editionMode={editionMode}
-            value={form.age}
-            onChange={handleChange}
-            name={"age"}
-            placeholder="age"
           />
         </div>
       </div>
