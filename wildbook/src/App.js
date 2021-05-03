@@ -82,6 +82,25 @@ function App() {
                 </Main>
               )}
             />
+
+            <Route
+              exact
+              path="/load"
+              render={() => (
+                <Main>
+                  <Load />
+                </Main>
+              )}
+            />
+            <Route
+              exact
+              path="/profile/users/:id"
+              render={(props) => (
+                <Main>
+                  <Profil {...props} />
+                </Main>
+              )}
+            />
             <Route
               exact
               path="/load"
