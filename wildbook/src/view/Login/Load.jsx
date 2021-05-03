@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -6,12 +6,14 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import { Dialog, Slide, Tooltip } from "@material-ui/core";
 import Popupload from "./Popupload";
+import { useHistory } from "react-router";
+import { PinDropSharp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: "35ch",
       display: "flex",
       flexDirection: "column",
     },
@@ -20,17 +22,19 @@ const useStyles = makeStyles((theme) => ({
     border: "2px primary solid",
     display: "flex",
     justifyContent: "center",
-    height: "225px",
-    width: "225px",
+    height: "250px",
+    width: "260px",
     margin: "auto",
-    marginTop: "10px",
-    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
     borderRadius: "10px",
+  },
+  click: {
+    marginTop: "35px",
   },
 }));
 
 export default function Load() {
   const classes = useStyles();
+  const history = useHistory();
 
   const [form, setForm] = useState({
     email: "",
@@ -47,13 +51,15 @@ export default function Load() {
         "https://wildbook-api.herokuapp.com/users/login",
         form
       );
+
       console.log(token.data);
       localStorage.setItem("userToken", token.data.access_token);
+      history.push("/");
     } catch (e) {
       //ici afficher un message d'erreur  à l'utilisateur
     }
   };
-   
+
   return (
     <Box className={classes.cadre}>
       <form className={classes.root} noValidate autoComplete="off">
@@ -73,9 +79,15 @@ export default function Load() {
           value={form.password}
           onChange={handleChange}
         />
-        <Button id="click" variant="contained" onClick={handleConnection}   >
-       Connexion
+
+        <Button
+          className={classes.click}
+          variant="contained"
+          onClick={handleConnection}
+        >
+          Connexion
         </Button>
+
         <Tooltip>
           <Button>Mot de passe oublié ?</Button>
         </Tooltip>
