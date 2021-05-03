@@ -3,15 +3,27 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import Slide from "@material-ui/core/Slide";
-
 import CreateAccount from "./CreateAccount";
-import { DialogContent } from "@material-ui/core";
+import { DialogContent, makeStyles } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+
+const useStyles = makeStyles((theme) => ({
+  modif2: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+}));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Popupaccount({ openAccount, handleCloseAccount }) {
+export default function Popupaccount({
+  openAccount,
+  handleCloseAccount,
+  switchFromRegisterToLogin,
+}) {
+  const classes = useStyles();
   return (
     <div>
       <Dialog
@@ -20,14 +32,18 @@ export default function Popupaccount({ openAccount, handleCloseAccount }) {
         keepMounted
         onClose={handleCloseAccount}
       >
+        <div className={classes.modif2}>
+          <DialogActions>
+            <Button onClick={handleCloseAccount} color="primary">
+              <CloseIcon />
+            </Button>
+          </DialogActions>
+        </div>
         <DialogContent>
-          <CreateAccount />
+          <CreateAccount
+            switchFromRegisterToLogin={switchFromRegisterToLogin}
+          />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseAccount} color="primary">
-            Fermer la page
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

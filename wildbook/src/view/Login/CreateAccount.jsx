@@ -6,16 +6,18 @@ import {
   Box,
   FormControl,
   InputLabel,
+  Link,
   MenuItem,
   Select,
 } from "@material-ui/core";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: "40ch",
       display: "flex",
       flexDirection: "column",
       fontFamily: "Bebas Neue",
@@ -25,11 +27,9 @@ const useStyles = makeStyles((theme) => ({
     border: "2px primary solid",
     display: "flex",
     justifyContent: "center",
-    height: "425px",
-    width: "225px",
+    width: "235px",
     margin: "auto",
     marginTop: "10px",
-    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
     borderRadius: "10px",
   },
   click2: {
@@ -48,8 +48,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CreateAccount() {
+export default function CreateAccount({ switchFromRegisterToLogin }) {
   const classes = useStyles();
+  const history = useHistory();
 
   const [form, setForm] = useState({
     firstName: "",
@@ -69,17 +70,19 @@ export default function CreateAccount() {
       "https://wildbook-api.herokuapp.com/users",
       form
     );
+
     console.log(
       "🚀 ~ file: CreateAccount.jsx ~ line 69 ~ handleClick ~ user",
       user.data
     );
+    switchFromRegisterToLogin();
   };
 
   return (
     <Fragment>
-      <div>
+      {/*<div>
         <h1 className={classes.wb2}>WILDBOOK</h1>
-      </div>
+      </div>*/}
       <div>
         <h2 className={classes.inscript}>S'inscrire</h2>
       </div>
@@ -173,6 +176,11 @@ export default function CreateAccount() {
             >
               S'inscrire
             </Button>
+            <div className="">
+              <Link className="" to="">
+                Déjà inscrit? Connectez-vous.
+              </Link>
+            </div>
           </form>
         </div>
       </Box>
