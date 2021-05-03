@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import CreatePost from "../../common/components/CreatePost/CreatePost";
 import Posts from "../../common/components/Posts/Posts";
 import ProfilInfos from "./components/ProfilInfos/ProfilInfos";
 import { makeStyles } from "@material-ui/core";
-import axios from "axios";
-import UserContext from "../../context/user";
 
 const useStyles = makeStyles(() => ({
   profilInfos: {
