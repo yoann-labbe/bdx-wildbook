@@ -30,16 +30,22 @@ function Login() {
 
   const [open, setOpen] = React.useState(false);
   const [openAccount, setOpenAccount] = React.useState(false);
-  
-  
-  {/*const handleClickOpen = () => {
+
+  {
+    /*const handleClickOpen = () => {
     setOpen(true);
-  };*/}
+  };*/
+  }
   const handleClose = () => {
     setOpen(false);
   };
   const handleCloseAccount = () => {
     setOpenAccount(false);
+  };
+
+  const switchFromRegisterToLogin = () => {
+    setOpenAccount(false);
+    setOpen(true);
   };
 
   return (
@@ -71,6 +77,7 @@ function Login() {
       <Popupaccount
         openAccount={openAccount}
         handleCloseAccount={handleCloseAccount}
+        switchFromRegisterToLogin={switchFromRegisterToLogin}
       />
     </div>
   );
