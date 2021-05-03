@@ -43,18 +43,18 @@ function CreatePost() {
   const { connectedUser } = useContext(UserContext);
   const classes = useStyles();
 
-  function handlePicture(url) {
-    console.log({ picture });
-    console.log(url);
-    setPicture(url);
-  }
-
-  const [picture, setPicture] = useState();
   const [name, setName] = useState({
     pictureUrl: "",
     videoUrl: "",
     text: "",
   });
+
+  function handlePicture(url) {
+    console.log({ name });
+    console.log(url);
+    setName({ pictureUrl: url });
+  }
+
   const [displays, setdisplays] = useState(false);
   const [open, setOpen] = useState(false);
 
