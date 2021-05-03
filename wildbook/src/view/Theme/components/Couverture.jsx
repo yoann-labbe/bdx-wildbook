@@ -5,6 +5,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import { TextField } from "@material-ui/core";
 import DoneIcon from "@material-ui/icons/Done";
 import TitreCouverture from "./TitreCouverture";
+import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   banniere: {
@@ -47,6 +48,7 @@ function Couverture(props) {
   const classes = useStyles();
   const [editionMode, setEditionMode] = useState(false);
   const [form, setForm] = useState({ title: "Votre titre ici" });
+  const [follow, setFollow] = useState(false);
 
   const handleChange = (e) => {
     console.log(e.target.name);
@@ -60,6 +62,16 @@ function Couverture(props) {
       console.log(form);
     }
     setEditionMode(!editionMode);
+  };
+
+  const handleClickFollow = async () => {
+    try {
+      const token = await axios.post(
+        "https://wildbook-api.herokuapp.com/follow"
+      );
+      console.log(token.data);
+      localStorage.setItem("userToken", token.data.access_token);
+    } catch (e) {}
   };
 
   return (
@@ -80,7 +92,7 @@ function Couverture(props) {
         </div>
       </div>
       <div className={classes.follow}>
-        <Button variant="contained" color="primary" onClick={handleClick}>
+        <Button variant="contained" color="primary" onClick={handleClickFollow}>
           Follow
         </Button>
       </div>

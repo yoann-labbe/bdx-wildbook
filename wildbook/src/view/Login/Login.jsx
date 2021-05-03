@@ -1,11 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import CreateAccount from "./CreateAccount";
-import { Link } from "react-router-dom";
-import Load from "./Load";
-import DialogNotif from "../Notif/DialogNotif";
-import { Dialog } from "@material-ui/core";
 import Popupload from "./Popupload";
 import Popupaccount from "./Popupaccount";
 
@@ -35,16 +30,22 @@ function Login() {
 
   const [open, setOpen] = React.useState(false);
   const [openAccount, setOpenAccount] = React.useState(false);
-  
-  
-  {/*const handleClickOpen = () => {
+
+  {
+    /*const handleClickOpen = () => {
     setOpen(true);
-  };*/}
+  };*/
+  }
   const handleClose = () => {
     setOpen(false);
   };
   const handleCloseAccount = () => {
     setOpenAccount(false);
+  };
+
+  const switchFromRegisterToLogin = () => {
+    setOpenAccount(false);
+    setOpen(true);
   };
 
   return (
@@ -76,6 +77,7 @@ function Login() {
       <Popupaccount
         openAccount={openAccount}
         handleCloseAccount={handleCloseAccount}
+        switchFromRegisterToLogin={switchFromRegisterToLogin}
       />
     </div>
   );
