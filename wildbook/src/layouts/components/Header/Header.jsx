@@ -89,7 +89,7 @@ function Header(props) {
   const handleClose = () => {
     setOpenDialogue(false);
   };
-  const { connectedUser } = useContext(UserContext);
+  const { connectedUser, setConnectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [user, setUser] = useState({});
 
@@ -97,8 +97,13 @@ function Header(props) {
     setAnchorEl(event.currentTarget);
   };
 
+  const disconnect = () => {
+    setConnectedUser({});
+  };
+
   const handleClosed = () => {
     setAnchorEl(null);
+    disconnect();
   };
 
   const [searchValue, setSearchValue] = useState("");
