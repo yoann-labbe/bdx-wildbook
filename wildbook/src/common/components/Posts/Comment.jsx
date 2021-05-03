@@ -12,6 +12,7 @@ import {
   FavoriteBorder,
   SendTwoTone,
 } from "@material-ui/icons";
+import axios from "axios";
 
 const useStyles = makeStyles({
   icon: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Comment(props) {
+function Comment({ props }) {
   const classes = useStyles();
   const [display, setdisplay] = useState(false);
   const [com, setcom] = useState({
@@ -52,10 +53,27 @@ function Comment(props) {
   const handleChange = (e) => {
     setcom({ ...com, [e.target.name]: e.target.value });
   };
-  const handleClick2 = () => {
-    console.log(com);
-    /* setdisplays(true)
-         setdisplay(!display)*/
+  const handleClick2 = async () => {
+    try {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+
+        const token = await axios.post(
+          "https://wildbook-api.herokuapp.com/posts/:id/comment",
+          com,
+          config
+        );
+
+        console.log(token.data);
+      }
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
   };
 
   return (
@@ -70,7 +88,6 @@ function Comment(props) {
             <ChatBubbleOutline />
           </IconButton>
         </div>
-
         {display && (
           <Card>
             <TextareaAutosize
@@ -97,14 +114,11 @@ function Comment(props) {
             </IconButton>
           </Card>
         )}
-
-        {displays && (
-          <div>
-            <Card className={classes.cardp} variant="outlined">
-              <p className={classes.addP}>{com}</p>
-            </Card>
-          </div>
-        )}
+        <div>
+          <Card className={classes.cardp} variant="outlined">
+            <p className={classes.addP}></p>
+          </Card>
+        </div>
       </CardContent>
     </div>
   );
