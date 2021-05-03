@@ -91,7 +91,6 @@ function Header(props) {
   };
   const { connectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [user, setUser] = useState({});
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
