@@ -22,12 +22,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NewWilder = ({ avatar, name }) => {
+const NewWilder = ({ avatarUrl, firstName, lastName }) => {
   const classes = useStyles();
   return (
     <div className={classes.wilder}>
-      <img src={avatar} className={classes.littleAvatar} alt={name} />
-      <p className={classes.newWilderName}>{name}</p>
+      <img src={avatarUrl} className={classes.littleAvatar} alt={firstName} />
+      <p className={classes.newWilderName}>
+        {firstName} {lastName}
+      </p>
     </div>
   );
 };
