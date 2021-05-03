@@ -67,7 +67,7 @@ function ProfilInfos(props) {
 
   useEffect(() => {
     getUsersInfos();
-  }, []);
+  }, [props.userId]);
 
   const getUsersInfos = () => {
     try {

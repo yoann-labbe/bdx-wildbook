@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import { Dialog, Slide, Tooltip } from "@material-ui/core";
 import Popupload from "./Popupload";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -52,7 +53,7 @@ export default function Load() {
       //ici afficher un message d'erreur  à l'utilisateur
     }
   };
-
+   
   return (
     <Box className={classes.cadre}>
       <form className={classes.root} noValidate autoComplete="off">
@@ -72,8 +73,8 @@ export default function Load() {
           value={form.password}
           onChange={handleChange}
         />
-        <Button id="click" variant="contained" onClick={handleConnection}>
-          Connexion
+        <Button id="click" variant="contained" onClick={handleConnection}   >
+       Connexion
         </Button>
         <Tooltip>
           <Button>Mot de passe oublié ?</Button>
