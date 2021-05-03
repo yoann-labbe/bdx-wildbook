@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
 
 function Profil(props) {
   const classes = useStyles();
+  
   return (
     <div className={classes.profilInfos}>
       <ProfilInfos userId={props.match.params.id} />
