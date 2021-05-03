@@ -25,7 +25,7 @@ const PostCard = ({ post, props }) => {
     <div className={classes.div}>
       <AccountCircle fontSize="default" />
       <Card className={classes.cardm}>
-        <PostImage /*urlImage={post?.urlImage}*/ />
+        <PostImage urlImage={post?.pictureUrl} />
         <PostVideo urlVideo={post?.videoUrl} />
         <h4>{post?.text} </h4>
       </Card>

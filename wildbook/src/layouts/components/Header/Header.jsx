@@ -65,7 +65,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-around",
     alignItems: "center",
     height: "65px",
-    width: "200px",
+    width: "275px",
     padding: "10px",
     margin: "8px",
   },
@@ -151,7 +151,7 @@ function Header(props) {
         >
           <AccountCircleIcon style={{ fontSize: 60 }} />
         </Link>
-        <p className={classes.UserTitle}>
+        <p style={{ fontSize: "20px" }}>
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
