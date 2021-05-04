@@ -10,7 +10,7 @@ import {
   DialogTitle,
   IconButton,
 } from "@material-ui/core";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -93,30 +93,33 @@ function Header(props) {
   const handleClose = () => {
     setOpenDialogue(false);
   };
-  const { connectedUser } = useContext(UserContext);
+  const { connectedUser, setConnectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [user, setUser] = useState({});
+  const history = useHistory();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const disconnect = () => {
+    setConnectedUser({});
+  };
+
   const handleClosed = () => {
     setAnchorEl(null);
+    setConnectedUser({});
+    localStorage.removeItem("userToken");
+    history.push("/welcome");
   };
 
   const [searchValue, setSearchValue] = useState("");
-
-  const handlepress = (e) => {
-    if (e.charCode == 13) {
-      console.log(searchValue);
-    }
-  };
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     console.log({ searchValue, [e.target.value]: e.target.value });
   };
+
   const [open, setOpen] = useState(false);
 
   const handleEnd = () => {
@@ -125,6 +128,40 @@ function Header(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
+  };
+
+  const [iconAvatar, setIconAvatar] = useState({});
+
+  useEffect(() => {
+    getIcon();
+  }, [connectedUser]);
+
+  const getIcon = () => {
+    try {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken && Object.keys(connectedUser).length > 0) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        axios
+          .get(
+            `https://wildbook-api.herokuapp.com/users/${connectedUser._id}`,
+            config
+          )
+          .then((response) => response.data)
+          .then((data) => {
+            setIconAvatar(data);
+            console.log(
+              "🚀 ~ file: Header.jsx ~ line 155 ~ .then ~ data",
+              data
+            );
+          });
+      }
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
   };
 
   const classes = useStyles();
@@ -154,9 +191,17 @@ function Header(props) {
             alignItems: "center",
           }}
         >
-          <AccountCircleIcon style={{ fontSize: 60 }} />
+          {connectedUser._id ? (
+            <img
+              className={classes.iconAvatar}
+              src={iconAvatar.avatarUrl}
+              alt={connectedUser.firstName}
+            />
+          ) : (
+            <AccountCircleIcon style={{ fontSize: 60 }} />
+          )}
         </Link>
-        <p className={classes.UserTitle}>
+        <p style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
@@ -207,6 +252,7 @@ function Header(props) {
         onClose={handleEnd}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        style={{ width: "450px", margin: "0 auto" }}
       >
         <DialogTitle id="alert-dialog-title">
           {"Change your password"}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -13,6 +13,7 @@ import {
   ThumbUpAlt,
 } from "@material-ui/icons";
 import PostCard from "./PostCard";
+import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -27,20 +28,39 @@ const useStyles = makeStyles({
 
 function Posts() {
   const classes = useStyles();
-  const post = {
-    urlImage: "https://picsum.photos/700/300?ramdom",
-    /*titrePhoto: 'Ma Photo',*/
-    urlVideo: "https://www.youtube.com/embed/v8oqbWrP1QY",
+
+  const [post, setPost] = useState([]);
+  useEffect(() => {
+    getPost();
+  }, []);
+
+  const getPost = async () => {
+    try {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        const getNewPost = await axios.get(
+          `https://wildbook-api.herokuapp.com/posts`,
+          config
+        );
+        setPost(getNewPost.data[0].data);
+      }
+    } catch (e) {}
   };
+
   return (
     <div>
       <Card className={classes.root} label="Creer un post">
         <h3 className={classes.title}>Dernier Post</h3>
         <div className={classes.CardContent}>
           <CardContent>
-            <PostCard post={post} />
-            <PostCard post={post} />
-            <PostCard post={post} />
+            {post.map((newPost, index) => (
+              <PostCard key={index} post={newPost} />
+            ))}
           </CardContent>
         </div>
       </Card>

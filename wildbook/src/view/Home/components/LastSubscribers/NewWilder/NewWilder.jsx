@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 
 const useStyles = makeStyles(() => ({
@@ -10,6 +11,9 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "row",
     borderBottom: "#EA5655 solid 2px",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
 
   littleAvatar: {
@@ -24,10 +28,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NewWilder = ({ avatarUrl, firstName, lastName }) => {
+const NewWilder = ({ avatarUrl, firstName, lastName, _id }) => {
   const classes = useStyles();
+  const history = useHistory();
+  const redirectToProfile = () => {
+    history.push(`/profile/users/${_id}`);
+  };
+
   return (
-    <div className={classes.wilder}>
+    <div className={classes.wilder} onClick={redirectToProfile}>
       <img src={avatarUrl} className={classes.littleAvatar} alt={firstName} />
       <p className={classes.newWilderName}>
         {firstName} {lastName}
