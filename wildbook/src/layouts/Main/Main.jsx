@@ -8,7 +8,7 @@ function Main(props) {
 
   return (
     <div>
-      <Header />
+      <Header userId={props.match.params.id} />
       {children}
       <UpButton showBelow={250} />
       <Footer />

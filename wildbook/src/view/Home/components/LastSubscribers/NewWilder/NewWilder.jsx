@@ -1,5 +1,7 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core";
+import React, { useContext } from "react";
+import { Link, makeStyles } from "@material-ui/core";
+import UserContext from "../../../../../context/user";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(() => ({
   wilder: {
@@ -24,9 +26,21 @@ const useStyles = makeStyles(() => ({
 
 const NewWilder = ({ avatarUrl, firstName, lastName }) => {
   const classes = useStyles();
+  const { connectedUser } = useContext(UserContext);
+
   return (
     <div className={classes.wilder}>
-      <img src={avatarUrl} className={classes.littleAvatar} alt={firstName} />
+      <Link
+        to={"/profile/users/id"}
+        style={{
+          color: "inherit",
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <img src={avatarUrl} className={classes.littleAvatar} alt={firstName} />
+      </Link>
       <p className={classes.newWilderName}>
         {firstName} {lastName}
       </p>

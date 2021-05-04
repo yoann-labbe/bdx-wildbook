@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { createRef } from "react";
 import axios from "axios";
 
 function Upload({ handlePicture }) {
@@ -12,7 +12,12 @@ function Upload({ handlePicture }) {
   };
 
   const handleUpload = async (e) => {
+    console.log(authEndpoint);
     const token = await axios.get(authEndpoint);
+    console.log(
+      "🚀 ~ file: Upload.jsx ~ line 17 ~ handleUpload ~ token",
+      token
+    );
 
     const formData = new FormData();
 
