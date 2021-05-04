@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
   windowContainer: {
     fontFamily: "Bebas Neue",
     margin: "10px",
-    width: "230px",
+    width: "300px",
     height: "400px",
     display: "block",
     boxShadow:
@@ -16,6 +16,8 @@ const useStyles = makeStyles(() => ({
     marginRight: "100px" /*300*/,
     marginLeft: "100px",
     marginTop: "100px",
+    borderRadius: "8px",
+    backgroundColor: "#F1F1F1"
   },
 
   titleContainer: {
@@ -26,8 +28,11 @@ const useStyles = makeStyles(() => ({
 
   title: {
     marginLeft: "20px",
-    padding: "10px 0",
+    //padding: "10px 0",
     color: "#EA5655",
+    fontSize: "25px",
+    letterSpacing : "2px"
+    
   },
 
   icon: {
@@ -39,10 +44,10 @@ const useStyles = makeStyles(() => ({
   },
 
   wilderContainer: {
-    width: "225px",
+    width: "300px",
     height: "300px",
-    border: "#B0B0B0 solid 2px",
-    overflow: "scroll",
+    //border: "#B0B0B0 solid 2px",
+    overflowY: "auto"
   },
 }));
 

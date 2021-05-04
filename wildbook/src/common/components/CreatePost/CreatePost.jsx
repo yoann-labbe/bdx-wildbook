@@ -12,14 +12,16 @@ import Upload from "../Upload/Upload";
 import axios from "axios";
 import UserContext from "../../../context/user";
 
+
 const useStyles = makeStyles({
   root: {
-    width: 800,
+    width: 600,
     height: "100%",
     marginTop: 20,
     display: "flex",
     justifyContent: "center",
     marginTop: "100px",
+    
   },
   sendB: {
     float: "right",

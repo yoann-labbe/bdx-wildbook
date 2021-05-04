@@ -1,9 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 
+
 const useStyles = makeStyles(() => ({
   wilder: {
-    fontFamily: "Bebas Neue",
+    fontFamily: "Dosis, sans serif",
+    fontSize: "15px",
     width: "100%",
     display: "flex",
     flexDirection: "row",

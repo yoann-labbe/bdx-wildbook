@@ -41,7 +41,6 @@ const useStyles = makeStyles(() => ({
     justifyContent: "flex-start",
     paddingLeft: "5px",
     display: "flex",
-    zIndex: "1",
     paddingTop: "35px",
   },
 
@@ -65,7 +64,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-around",
     alignItems: "center",
     height: "65px",
-    width: "200px",
+    width: "300px",
     padding: "10px",
     margin: "8px",
   },
@@ -81,6 +80,11 @@ const useStyles = makeStyles(() => ({
 
   link: {
     fontStyle: "none",
+  },
+
+  UserTitle: {
+    fontSize: "20px",
+    fontFamily: "Bebas Neue",
   },
 }));
 

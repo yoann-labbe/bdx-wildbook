@@ -16,7 +16,7 @@ import PostCard from "./PostCard";
 
 const useStyles = makeStyles({
   root: {
-    width: 800,
+    width: 600,
     height: "100%",
     marginBottom: 40,
   },
