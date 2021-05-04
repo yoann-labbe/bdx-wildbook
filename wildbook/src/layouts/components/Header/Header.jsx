@@ -133,12 +133,12 @@ function Header(props) {
 
   useEffect(() => {
     getIcon();
-  }, []);
+  }, [connectedUser]);
 
   const getIcon = () => {
     try {
       const accessToken = localStorage.getItem("userToken");
-      if (accessToken) {
+      if (accessToken && Object.keys(connectedUser).length > 0) {
         const config = {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -146,12 +146,16 @@ function Header(props) {
         };
         axios
           .get(
-            `https://wildbook-api.herokuapp.com/users/${props.userId}`,
+            `https://wildbook-api.herokuapp.com/users/${connectedUser._id}`,
             config
           )
           .then((response) => response.data)
           .then((data) => {
             setIconAvatar(data);
+            console.log(
+              "🚀 ~ file: Header.jsx ~ line 155 ~ .then ~ data",
+              data
+            );
           });
       }
     } catch (e) {
@@ -196,7 +200,7 @@ function Header(props) {
             <AccountCircleIcon style={{ fontSize: 60 }} />
           )}
         </Link>
-        <p style={{ fontSize: "18px", color: "secondary" }}>
+        <p style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton

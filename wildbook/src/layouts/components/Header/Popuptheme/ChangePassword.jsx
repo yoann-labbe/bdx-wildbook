@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import DoneIcon from "@material-ui/icons/Done";
 import UserContext from "../../../../context/user";
 import axios from "axios";
-import { render } from "@testing-library/react";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -42,7 +41,7 @@ function ChangePassword() {
   });
 
   const handleClick = async () => {
-    if (form.oldPassword === form.newPassword) {
+    if (form.newPassword === form.password) {
       try {
         const accessToken = localStorage.getItem("userToken");
         if (accessToken) {
@@ -53,7 +52,7 @@ function ChangePassword() {
           };
           const updatedPassword = await axios.patch(
             `https://wildbook-api.herokuapp.com/users/${connectedUser._id}`,
-            form.password,
+            { plainPassword: form.password },
             config
           );
           setForm(updatedPassword.data);

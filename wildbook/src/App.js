@@ -55,8 +55,8 @@ function App() {
             <Route
               exact
               path="/"
-              render={(props) => (
-                <Main {...props}>
+              render={() => (
+                <Main>
                   <Home />
                 </Main>
               )}
@@ -64,8 +64,8 @@ function App() {
             <Route
               exact
               path="/topics"
-              render={(props) => (
-                <Main {...props}>
+              render={() => (
+                <Main>
                   <Theme />
                 </Main>
               )}
@@ -74,7 +74,7 @@ function App() {
               exact
               path="/profile/users/:id"
               render={(props) => (
-                <Main {...props}>
+                <Main>
                   <Profil {...props} />
                 </Main>
               )}
@@ -82,8 +82,8 @@ function App() {
             <Route
               exact
               path="/newpage"
-              render={(props) => (
-                <Main {...props}>
+              render={() => (
+                <Main>
                   <Newpage />
                 </Main>
               )}

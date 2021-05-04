@@ -4,16 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useHistory } from "react-router";
 
-import { makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles(() => ({
-  SearchBar: {
-    widht: "100px",
-    height: "80px",
-    padding: "10px",
-  },
-}));
-
 export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
