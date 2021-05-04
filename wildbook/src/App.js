@@ -6,7 +6,7 @@ import Login from "./view/Login/Login";
 import Profil from "./view/Profil/Profil";
 import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
 import Theme from "./view/Theme/Theme";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -55,8 +55,8 @@ function App() {
             <Route
               exact
               path="/"
-              render={(props) => (
-                <Main {...props}>
+              render={() => (
+                <Main>
                   <Home />
                 </Main>
               )}
@@ -79,42 +79,6 @@ function App() {
                 </Main>
               )}
             />
-            {/*<Route
-              exact
-              path="/load"
-              render={() => (
-                <Main>
-                  <Load />
-                </Main>
-              )}
-              />*/}
-            <Route
-              exact
-              path="/profile/users/:id"
-              render={(props) => (
-                <Main>
-                  <Profil {...props} />
-                </Main>
-              )}
-            />
-            {/*<Route
-              exact
-              path="/load"
-              render={() => (
-                <Main>
-                  <Load />
-                </Main>
-              )}
-            />*/}
-            {/*<Route
-              exact
-              path="/account"
-              render={() => (
-                <Main>
-                  <CreateAccount />
-                </Main>
-              )}
-            />*/}
             <Route
               exact
               path="/newpage"
