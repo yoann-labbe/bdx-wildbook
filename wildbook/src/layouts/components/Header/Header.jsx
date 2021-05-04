@@ -10,7 +10,7 @@ import {
   DialogTitle,
   IconButton,
 } from "@material-ui/core";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -92,6 +92,7 @@ function Header(props) {
   const { connectedUser, setConnectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [user, setUser] = useState({});
+  const history = useHistory();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -103,21 +104,18 @@ function Header(props) {
 
   const handleClosed = () => {
     setAnchorEl(null);
-    disconnect();
+    setConnectedUser({});
+    localStorage.removeItem("userToken");
+    history.push("/welcome");
   };
 
   const [searchValue, setSearchValue] = useState("");
-
-  const handlepress = (e) => {
-    if (e.charCode == 13) {
-      console.log(searchValue);
-    }
-  };
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     console.log({ searchValue, [e.target.value]: e.target.value });
   };
+
   const [open, setOpen] = useState(false);
 
   const handleEnd = () => {
