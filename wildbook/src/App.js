@@ -99,24 +99,6 @@ function App() {
                 </Main>
               )}
             />
-            {/*<Route
-              exact
-              path="/load"
-              render={() => (
-                <Main>
-                  <Load />
-                </Main>
-              )}
-            />*/}
-            {/*<Route
-              exact
-              path="/account"
-              render={() => (
-                <Main>
-                  <CreateAccount />
-                </Main>
-              )}
-            />*/}
             <Route
               exact
               path="/newpage"

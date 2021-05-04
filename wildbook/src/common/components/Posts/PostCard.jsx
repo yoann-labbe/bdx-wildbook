@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, CardMedia, makeStyles } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
-import Comment from "./Comment";
 import PostImage from "./PostImage";
 import PostVideo from "./PostVideo";
+import PostComment from "./PostComment";
+import Comments from "./Comments";
 
 const useStyles = makeStyles({
   cardm: {
@@ -16,21 +17,28 @@ const useStyles = makeStyles({
   div: {
     overflow: "scroll",
   },
+  comment: {
+    display: "flex",
+    flexDirection: "column",
+  },
 });
 
-const PostCard = ({ post, props }) => {
+const PostCard = ({ post, comment, props }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.div}>
       <AccountCircle fontSize="default" />
       <Card className={classes.cardm}>
-        <PostImage /*urlImage={post?.urlImage}*/ />
+        <PostImage urlImage={post?.pictureUrl} />
         <PostVideo urlVideo={post?.videoUrl} />
-        <h4>{post?.text} </h4>
+        <h4>{post?.title} </h4>
       </Card>
-
-      <Comment text={props} />
+      <div className={classes.comment}>
+        <PostComment postId={post?._id} />
+        Commentaire :
+        <Comments comment={post?.comments} />
+      </div>
     </div>
   );
 };
