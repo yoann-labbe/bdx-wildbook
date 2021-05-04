@@ -201,7 +201,7 @@ function Header(props) {
             <AccountCircleIcon style={{ fontSize: 60 }} />
           )}
         </Link>
-        <p style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
+        <p className={classes.UserTitle} style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
