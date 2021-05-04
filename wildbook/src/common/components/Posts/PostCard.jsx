@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Card, makeStyles } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
-import Comment from "./Comment";
 import PostImage from "./PostImage";
 import PostVideo from "./PostVideo";
+import PostComment from "./PostComment";
+import Comments from "./Comments";
 import UserContext from "../../../context/user";
 import axios from "axios";
 
@@ -18,9 +19,13 @@ const useStyles = makeStyles({
   div: {
     overflow: "scroll",
   },
+  comment: {
+    display: "flex",
+    flexDirection: "column",
+  },
 });
 
-const PostCard = ({ post, props }) => {
+const PostCard = ({ post, comment, props }) => {
   const classes = useStyles();
   const { connectedUser } = useContext(UserContext);
   const [iconAvatar, setIconAvatar] = useState({});
@@ -52,9 +57,7 @@ const PostCard = ({ post, props }) => {
             );
           });
       }
-    } catch (e) {
-      //ici afficher un message d'erreur  à l'utilisateur
-    }
+    } catch (e) {}
   };
 
   return (
@@ -65,8 +68,11 @@ const PostCard = ({ post, props }) => {
         <PostVideo urlVideo={post?.videoUrl} />
         <h4>{post?.text} </h4>
       </Card>
-
-      <Comment text={props} />
+      <div className={classes.comment}>
+        <PostComment postId={post?._id} />
+        Commentaire :
+        <Comments comment={post?.comments} />
+      </div>
     </div>
   );
 };

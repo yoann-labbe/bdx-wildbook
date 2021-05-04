@@ -61,9 +61,6 @@ function Posts() {
             {post.map((newPost, index) => (
               <PostCard key={index} post={newPost} />
             ))}
-            {/*<PostCard post={post} />
-            <PostCard post={post} />
-            <PostCard post={post} />*/}
           </CardContent>
         </div>
       </Card>
