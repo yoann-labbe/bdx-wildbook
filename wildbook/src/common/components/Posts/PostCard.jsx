@@ -23,6 +23,11 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
+  iconAvatar: {
+    borderRadius: "100%",
+    height: "40px",
+    width: "40px",
+  },
 });
 
 const PostCard = ({ post, comment, props }) => {
@@ -62,7 +67,15 @@ const PostCard = ({ post, comment, props }) => {
 
   return (
     <div className={classes.div}>
-      <AccountCircle fontSize="default" />
+      {connectedUser._id ? (
+        <img
+          className={classes.iconAvatar}
+          src={iconAvatar.avatarUrl}
+          alt={connectedUser.firstName}
+        />
+      ) : (
+        <AccountCircle style={{ fontSize: "default" }} />
+      )}
       <Card className={classes.cardm}>
         <PostImage urlImage={post?.pictureUrl} />
         <PostVideo urlVideo={post?.videoUrl} />

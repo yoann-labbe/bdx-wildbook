@@ -86,6 +86,11 @@ const useStyles = makeStyles(() => ({
     fontSize: "20px",
     fontFamily: "Bebas Neue",
   },
+  iconAvatar: {
+    borderRadius: "100%",
+    height: "55px",
+    width: "55px",
+  },
 }));
 
 function Header(props) {

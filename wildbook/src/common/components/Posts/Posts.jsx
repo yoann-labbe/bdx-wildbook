@@ -1,17 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import {
-  AccountCircle,
-  ChatBubbleOutline,
-  FavoriteBorder,
-  ThumbUpAlt,
-} from "@material-ui/icons";
+import { Card, CardContent, makeStyles } from "@material-ui/core";
 import PostCard from "./PostCard";
 import axios from "axios";
 
