@@ -17,7 +17,7 @@ import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
-    width: 800,
+    width: 600,
     height: "100%",
     marginBottom: 40,
   },

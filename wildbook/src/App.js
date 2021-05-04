@@ -38,6 +38,7 @@ function App() {
   }, []);
 
   return (
+    
     <ThemeProvider theme={theme}>
       <UserContext.Provider value={{ connectedUser, setConnectedUser }}>
         <CssBaseline />
@@ -92,6 +93,7 @@ function App() {
         </Router>
       </UserContext.Provider>
     </ThemeProvider>
+  
   );
 }
 
