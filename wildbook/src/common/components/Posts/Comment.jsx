@@ -5,7 +5,6 @@ import {
   IconButton,
   makeStyles,
   TextareaAutosize,
-  Typography,
 } from "@material-ui/core";
 import {
   ChatBubbleOutline,

@@ -18,6 +18,11 @@ const useStyles = makeStyles({
   div: {
     overflow: "scroll",
   },
+  iconAvatar: {
+    borderRadius: "100%",
+    height: "40px",
+    width: "40px",
+  },
 });
 
 const PostCard = ({ post, props }) => {
@@ -59,7 +64,15 @@ const PostCard = ({ post, props }) => {
 
   return (
     <div className={classes.div}>
-      <AccountCircle fontSize="default" />
+      {connectedUser._id ? (
+        <img
+          className={classes.iconAvatar}
+          src={iconAvatar.avatarUrl}
+          alt={connectedUser.firstName}
+        />
+      ) : (
+        <AccountCircle style={{ fontSize: "default" }} />
+      )}
       <Card className={classes.cardm}>
         <PostImage urlImage={post?.pictureUrl} />
         <PostVideo urlVideo={post?.videoUrl} />

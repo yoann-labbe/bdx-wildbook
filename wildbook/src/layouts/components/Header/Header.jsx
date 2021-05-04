@@ -87,7 +87,6 @@ const useStyles = makeStyles(() => ({
     borderRadius: "100%",
     height: "55px",
     width: "55px",
-    border: "solid 1px black",
   },
 }));
 
