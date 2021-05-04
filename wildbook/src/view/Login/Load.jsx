@@ -1,96 +1,109 @@
-import React, { Fragment } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import LockIcon from "@material-ui/icons/Lock";
+import { Tooltip } from "@material-ui/core";
+
+import { useHistory } from "react-router";
+import UserContext from "../../context/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: "35ch",
       display: "flex",
       flexDirection: "column",
-      fontFamily: "Bebas Neue",
     },
   },
   cadre: {
-    border: "2px #F76C6D solid",
+    border: "2px primary solid",
     display: "flex",
     justifyContent: "center",
-    height: "200px",
-    width: "225px",
+    height: "250px",
+    width: "260px",
     margin: "auto",
-    marginTop: "15px",
-    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
     borderRadius: "10px",
-    fontFamily: "Bebas Neue",
   },
   click: {
-    margin: "25px auto",
-    color: "#5d7fdb",
-  },
-  wb3: {
-    color: "#F76C6D",
-    fontFamily: "Bebas Neue",
-    marginLeft: "25px",
-  },
-  lock: {
-    margin: "auto",
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "100px",
-    color: "#F76C6D",
+    marginTop: "35px",
   },
 }));
 
 export default function Load() {
   const classes = useStyles();
+  const history = useHistory();
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-  const display = (e) => {
-    e.preventDefault();
-    console.log(email, password);
+  const { setConnectedUser } = useContext(UserContext);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleClick = () => {
-    console.log(email, password);
+  const handleConnection = async () => {
+    try {
+      const token = await axios.post(
+        "https://wildbook-api.herokuapp.com/users/login",
+        form
+      );
+
+      console.log(token.data);
+      localStorage.setItem("userToken", token.data.access_token);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token.data.access_token}`,
+        },
+      };
+
+      const userProfile = await axios.get(
+        "https://wildbook-api.herokuapp.com/users/profile",
+        config
+      );
+      setConnectedUser(userProfile.data);
+      history.push("/");
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
   };
 
   return (
-    <Fragment>
-      <div>
-        <h1 className={classes.wb3}>WILDBOOK</h1>
-      </div>
-      <LockIcon className={classes.lock} />
-      <Box className={classes.cadre}>
-        <form className={classes.root} noValidate autoComplete="off">
-          <TextField
-            id="standard-basic"
-            label="Mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            className={classes.click}
-            variant="contained"
-            onClick={handleClick}
-          >
-            Connexion
-          </Button>
-        </form>
-      </Box>
-    </Fragment>
+    <Box className={classes.cadre}>
+      <form className={classes.root} noValidate autoComplete="off">
+        <TextField
+          id="standard-basic"
+          label="Mail"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+        />
+        <TextField
+          id="standard-password-input"
+          label="Password"
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          value={form.password}
+          onChange={handleChange}
+        />
+
+        <Button
+          className={classes.click}
+          variant="contained"
+          onClick={handleConnection}
+        >
+          Connexion
+        </Button>
+        <Tooltip>
+          <Button>Mot de passe oublié ?</Button>
+        </Tooltip>
+      </form>
+    </Box>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import CreatePost from "../../common/components/CreatePost/CreatePost";
 import Posts from "../../common/components/Posts/Posts";
@@ -11,25 +11,27 @@ const useStyles = makeStyles(() => ({
     justifyContent: "start",
   },
 
-  postContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
+  div: {
+    marginBottom: 30,
+  },
+
+  newWilders: {
+    margin: "0 100px",
+    width: "340px",
   },
 }));
 
 function Home() {
   const classes = useStyles();
-
   return (
     <div className={classes.home}>
       <div className={classes.newWilders}>
         <LastSubscribers />
       </div>
       <div className={classes.postContainer}>
-        <CreatePost />
-        <Posts />
-        <Posts />
+        <div className={classes.div}>
+          <CreatePost />
+        </div>
         <Posts />
       </div>
     </div>

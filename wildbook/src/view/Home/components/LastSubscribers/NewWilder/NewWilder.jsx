@@ -1,36 +1,46 @@
-import React from 'react';
+import React from "react";
 import { makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(() => ({
-wilder : {
-    fontFamily: 'Bebas Neue',
+  wilder: {
+    fontFamily: "Bebas Neue",
     width: "100%",
-    display:"flex",
+    display: "flex",
     flexDirection: "row",
     borderBottom: "#EA5655 solid 2px",
-},
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
 
-littleAvatar : {
+  littleAvatar: {
     width: "40px",
     height: "40px",
     borderRadius: "100%",
     margin: "5px 20px 5px 5px",
-},
+  },
 
-newWilderName : {
-    fontSize: "medium",
-}
+  newWilderName: {
+    fontSize: "default",
+  },
 }));
 
-const NewWilder = ({avatar, name}) => {
-    const classes = useStyles();
-    return (
-        <div className={classes.wilder}>
-            <img src={avatar}className={classes.littleAvatar} alt={name} />
-            <p className={classes.newWilderName}>{name}</p>
-        </div>
+const NewWilder = ({ avatarUrl, firstName, lastName, _id }) => {
+  const classes = useStyles();
+  const history = useHistory();
+  const redirectToProfile = () => {
+    history.push(`/profile/users/${_id}`);
+  };
 
-    );
-}
+  return (
+    <div className={classes.wilder} onClick={redirectToProfile}>
+      <img src={avatarUrl} className={classes.littleAvatar} alt={firstName} />
+      <p className={classes.newWilderName}>
+        {firstName} {lastName}
+      </p>
+    </div>
+  );
+};
 
 export default NewWilder;

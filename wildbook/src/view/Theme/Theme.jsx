@@ -8,12 +8,8 @@ const useStyles = makeStyles(() => ({
   theme: {
     display: "flex",
     justifyContent: "center",
-  },
-
-  postContainer: {
-    display: "flex",
     flexDirection: "column",
-    justifyContent: "space-around",
+    alignItems: "center",
     width: "100%",
   },
 }));
@@ -23,11 +19,9 @@ function Theme() {
 
   return (
     <div className={classes.theme}>
-      <div className={classes.postContainer}>
-        <Couverture />
-        <CreatePost />
-        <Posts />
-      </div>
+      <Couverture style={{ width: "100%" }} />
+      <CreatePost />
+      <Posts />
     </div>
   );
 }

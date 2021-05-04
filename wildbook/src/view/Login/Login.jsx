@@ -1,9 +1,8 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import CreateAccount from "./CreateAccount";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Load from "./Load";
+import Popupload from "./Popupload";
+import Popupaccount from "./Popupaccount";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -12,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     marginTop: "100px",
     width: "150px",
-    height: "150px",
   },
   wb: {
     textAlign: "center",
@@ -29,6 +27,27 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classe = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+  const [openAccount, setOpenAccount] = React.useState(false);
+
+  {
+    /*const handleClickOpen = () => {
+    setOpen(true);
+  };*/
+  }
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleCloseAccount = () => {
+    setOpenAccount(false);
+  };
+
+  const switchFromRegisterToLogin = () => {
+    setOpenAccount(false);
+    setOpen(true);
+  };
+
   return (
     <div>
       <img
@@ -42,14 +61,24 @@ function Login() {
           className={classe.bouton1}
           variant="outlined"
           color="primary"
-          component={CreateAccount.jsx}
+          onClick={() => setOpenAccount(true)}
         >
           Créer un compte
         </Button>
-        <Button className={classe.bouton2} variant="outlined">
+        <Button
+          className={classe.bouton2}
+          variant="outlined"
+          onClick={() => setOpen(true)}
+        >
           Connexion
         </Button>
       </div>
+      <Popupload open={open} handleClose={handleClose} />
+      <Popupaccount
+        openAccount={openAccount}
+        handleCloseAccount={handleCloseAccount}
+        switchFromRegisterToLogin={switchFromRegisterToLogin}
+      />
     </div>
   );
 }

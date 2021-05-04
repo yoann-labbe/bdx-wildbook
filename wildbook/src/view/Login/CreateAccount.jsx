@@ -1,28 +1,35 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { Box } from "@material-ui/core";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  Link,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: "40ch",
       display: "flex",
       flexDirection: "column",
       fontFamily: "Bebas Neue",
     },
   },
   cadreTwo: {
-    border: "2px #F76C6D solid",
+    border: "2px primary solid",
     display: "flex",
     justifyContent: "center",
-    height: "425px",
-    width: "225px",
+    width: "235px",
     margin: "auto",
     marginTop: "10px",
-    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
     borderRadius: "10px",
   },
   click2: {
@@ -39,40 +46,45 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
-  easy: {
-    fontFamily: "Bebas Neue",
-    display: "flex",
-    justifyContent: "center",
-  },
 }));
 
-export default function CreateAccount() {
+export default function CreateAccount({ switchFromRegisterToLogin }) {
   const classes = useStyles();
+  const history = useHistory();
 
-  const [name, setName] = React.useState("");
-  const [surName, setSurName] = React.useState("");
-  const [birthday, setBirthday] = React.useState("");
-  const [campus, setCampus] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    birthday: "",
+    campus: "",
+    email: "",
+    plainPassword: "",
+  });
 
-  const display = (e) => {
-    e.preventDefault();
-    console.log(email, password);
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleClick = () => {
-    console.log(name, surName, campus, birthday, email, password);
+  const handleClick = async () => {
+    const user = await axios.post(
+      "https://wildbook-api.herokuapp.com/users",
+      form
+    );
+
+    console.log(
+      "🚀 ~ file: CreateAccount.jsx ~ line 69 ~ handleClick ~ user",
+      user.data
+    );
+    switchFromRegisterToLogin();
   };
 
   return (
-    <Fragment className={classes.account}>
-      <div>
+    <Fragment>
+      {/*<div>
         <h1 className={classes.wb2}>WILDBOOK</h1>
-      </div>
+      </div>*/}
       <div>
         <h2 className={classes.inscript}>S'inscrire</h2>
-        <h3 className={classes.easy}>C'est rapide et facile</h3>
       </div>
       <Box className={classes.cadreTwo}>
         <div className={classes.boxOne}>
@@ -80,14 +92,16 @@ export default function CreateAccount() {
             <TextField
               id="standard-basic"
               label="Nom"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={form.lastName}
+              name="lastName"
+              onChange={handleChange}
             />
             <TextField
               id="standard-basic"
               label="Prénom"
-              value={surName}
-              onChange={(e) => setSurName(e.target.value)}
+              value={form.firstName}
+              name="firstName"
+              onChange={handleChange}
             />
             <TextField
               id="date"
@@ -96,29 +110,64 @@ export default function CreateAccount() {
               defaultValue="1991-08-28"
               className={classes.textField}
               InputLabelProps={{ shrink: true }}
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}
+              value={form.birthday}
+              name="birthday"
+              onChange={handleChange}
             />
-            <TextField
-              id="standard-basic"
-              label="Campus"
-              value={campus}
-              onChange={(e) => setCampus(e.target.value)}
-            />
+            <FormControl>
+              <InputLabel id="demo-simple-select-label" color="secondary">
+                Campus
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                color="primary"
+                value={form.campus}
+                name="campus"
+                onChange={handleChange}
+              >
+                <MenuItem value={"Bordeaux"}>Bordeaux</MenuItem>
+                <MenuItem value={"Biarritz"}>Biarritz</MenuItem>
+                <MenuItem value={"LaLoupe"}>La Loupe</MenuItem>
+                <MenuItem value={"Lille"}>Lille</MenuItem>
+                <MenuItem value={"Lyon"}>Lyon</MenuItem>
+                <MenuItem value={"Marseille"}>Marseille</MenuItem>
+                <MenuItem value={"Nantes"}>Nantes</MenuItem>
+                <MenuItem value={"Orleans"}>Orleans</MenuItem>
+                <MenuItem value={"Paris"}>Paris</MenuItem>
+                <MenuItem value={"Reims"}>Reims</MenuItem>
+                <MenuItem value={"Saintes"}>Saintes</MenuItem>
+                <MenuItem value={"Strasbourg"}>Strasbourg</MenuItem>
+                <MenuItem value={"Toulouse"}>Toulouse</MenuItem>
+                <MenuItem value={"Tours"}>Tours</MenuItem>
+                <MenuItem value={"Amsterdam"}>Amsterdam</MenuItem>
+                <MenuItem value={"Barcelone"}>Barcelone</MenuItem>
+                <MenuItem value={"Berlin"}>Berlin</MenuItem>
+                <MenuItem value={"Bruxelle"}>Bruxelle</MenuItem>
+                <MenuItem value={"Bucarest"}>Bucarest</MenuItem>
+                <MenuItem value={"Lisbonne"}>Lisbonne</MenuItem>
+                <MenuItem value={"Londres"}>Londres</MenuItem>
+                <MenuItem value={"Madrid"}>Madrid</MenuItem>
+                <MenuItem value={"RemoteEN"}>Remote EN</MenuItem>
+                <MenuItem value={"RemoteFR"}>Remote FR</MenuItem>
+              </Select>
+            </FormControl>
 
             <TextField
               id="standard-basic"
               label="Mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={form.email}
+              name="email"
+              onChange={handleChange}
             />
             <TextField
               id="standard-password-input"
               label="Password"
               type="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.plainPassword}
+              name="plainPassword"
+              onChange={handleChange}
             />
             <Button
               className={classes.click2}
@@ -127,6 +176,11 @@ export default function CreateAccount() {
             >
               S'inscrire
             </Button>
+            <div className="">
+              <Link className="" to="">
+                Déjà inscrit? Connectez-vous.
+              </Link>
+            </div>
           </form>
         </div>
       </Box>

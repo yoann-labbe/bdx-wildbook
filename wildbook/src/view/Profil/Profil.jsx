@@ -13,15 +13,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Profil() {
+function Profil(props) {
   const classes = useStyles();
-
+  
   return (
     <div className={classes.profilInfos}>
-      <ProfilInfos />
+      <ProfilInfos userId={props.match.params.id} />
       <CreatePost />
-      <Posts />
-      <Posts />
       <Posts />
     </div>
   );
