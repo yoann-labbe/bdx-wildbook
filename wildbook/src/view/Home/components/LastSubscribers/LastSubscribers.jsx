@@ -65,7 +65,10 @@ function LastSubscribers() {
           },
         };
         axios
-          .get("https://wildbook-api.herokuapp.com/users", config)
+          .get(
+            "https://wildbook-api.herokuapp.com/users?sortBy=createdAt&sort=-1&limit=15",
+            config
+          )
           .then((response) => response.data)
           .then((data) => {
             console.log(data);

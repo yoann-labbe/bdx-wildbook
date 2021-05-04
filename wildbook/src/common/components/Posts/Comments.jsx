@@ -18,6 +18,7 @@ function Comments({ comment }) {
     <div>
       {comment.map((newComment, index) => (
         <Card key={index} className={classes.cardcom}>
+          <p>user</p>
           <p className={classes.card}>{newComment.text}</p>
         </Card>
       ))}

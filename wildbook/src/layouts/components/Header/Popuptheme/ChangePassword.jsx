@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import DoneIcon from "@material-ui/icons/Done";
+import UserContext from "../../../../context/user";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -31,14 +33,37 @@ const useStyles = makeStyles((theme) => ({
 
 function ChangePassword() {
   const classes = useStyles();
+  const { connectedUser, setConnectedUser } = useContext(UserContext);
   const [form, setForm] = useState({
     oldPassword: "",
     newPassword: "",
-    confirmPassword: "",
+    password: "",
   });
 
-  const handleClick = () => {
-    console.log(form);
+  const handleClick = async () => {
+    if (form.newPassword === form.password) {
+      try {
+        const accessToken = localStorage.getItem("userToken");
+        if (accessToken) {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          };
+          const updatedPassword = await axios.patch(
+            `https://wildbook-api.herokuapp.com/users/${connectedUser._id}`,
+            { plainPassword: form.password },
+            config
+          );
+          setForm(updatedPassword.data);
+          setConnectedUser(updatedPassword.data);
+          console.log(
+            "🚀 ~ file: ChangePassword.jsx ~ line 61 ~ handleClick ~ updatedPassword.data",
+            updatedPassword.data
+          );
+        }
+      } catch (e) {}
+    }
   };
 
   const handleModifications = (e) => {
@@ -54,7 +79,7 @@ function ChangePassword() {
           type="password"
           label="Previous password"
           color="primary"
-          value={form.oldPassword}
+          value={connectedUser.password}
           onChange={handleModifications}
           maxLength="20"
         />
@@ -74,15 +99,22 @@ function ChangePassword() {
       <div className={classes.confirmPassword}>
         <TextField
           style={{ width: "300px", height: "75px" }}
-          name={"confirmPassword"}
+          name={"password"}
           type="password"
           label="Confirm new password"
           color="primary"
-          value={form.confirmPassword}
+          value={form.password}
           onChange={handleModifications}
           maxLength="20"
         />
       </div>
+      {form.newPassword !== form.password ? (
+        <p style={{ color: "red" }}>
+          "New password" and "confirm new password" must be identical !
+        </p>
+      ) : (
+        ""
+      )}
       <div className={classes.buttonContainer}>
         <button className={classes.doneButton} onClick={handleClick}>
           <DoneIcon className={classes.doneIcon} />

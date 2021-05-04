@@ -24,7 +24,7 @@ function Likes({}) {
       <IconButton onClick={handleClick}>
         <FavoriteBorder />
       </IconButton>
-      <p>j'aime {like}</p>
+      <p>Approved : {like}</p>
     </div>
   );
 }

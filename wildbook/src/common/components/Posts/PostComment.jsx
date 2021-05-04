@@ -80,9 +80,7 @@ function PostComment(props) {
 
         console.log(token.data);
       }
-    } catch (e) {
-      //ici afficher un message d'erreur  à l'utilisateur
-    }
+    } catch (e) {}
   };
 
   return (
