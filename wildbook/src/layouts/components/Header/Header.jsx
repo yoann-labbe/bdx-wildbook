@@ -82,6 +82,13 @@ const useStyles = makeStyles(() => ({
   link: {
     fontStyle: "none",
   },
+
+  iconAvatar: {
+    borderRadius: "100%",
+    height: "55px",
+    width: "55px",
+    border: "solid 1px black",
+  },
 }));
 
 function Header(props) {
@@ -122,6 +129,40 @@ function Header(props) {
     setOpen(true);
   };
 
+  const [iconAvatar, setIconAvatar] = useState({});
+
+  useEffect(() => {
+    getIcon();
+  }, [connectedUser]);
+
+  const getIcon = () => {
+    try {
+      const accessToken = localStorage.getItem("userToken");
+      if (accessToken && Object.keys(connectedUser).length > 0) {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        axios
+          .get(
+            `https://wildbook-api.herokuapp.com/users/${connectedUser._id}`,
+            config
+          )
+          .then((response) => response.data)
+          .then((data) => {
+            setIconAvatar(data);
+            console.log(
+              "🚀 ~ file: Header.jsx ~ line 155 ~ .then ~ data",
+              data
+            );
+          });
+      }
+    } catch (e) {
+      //ici afficher un message d'erreur  à l'utilisateur
+    }
+  };
+
   const classes = useStyles();
   return (
     <div className={classes.nav}>
@@ -149,9 +190,17 @@ function Header(props) {
             alignItems: "center",
           }}
         >
-          <AccountCircleIcon style={{ fontSize: 60 }} />
+          {connectedUser._id ? (
+            <img
+              className={classes.iconAvatar}
+              src={iconAvatar.avatarUrl}
+              alt={connectedUser.firstName}
+            />
+          ) : (
+            <AccountCircleIcon style={{ fontSize: 60 }} />
+          )}
         </Link>
-        <p style={{ fontSize: "20px" }}>
+        <p style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
@@ -202,6 +251,7 @@ function Header(props) {
         onClose={handleEnd}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        style={{ width: "450px", margin: "0 auto" }}
       >
         <DialogTitle id="alert-dialog-title">
           {"Change your password"}

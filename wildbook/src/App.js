@@ -6,15 +6,13 @@ import Login from "./view/Login/Login";
 import Profil from "./view/Profil/Profil";
 import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
 import Theme from "./view/Theme/Theme";
-import CreateAccount from "./view/Login/CreateAccount";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import UserContext from "./context/user";
 import axios from "axios";
 import Minimal from "./layouts/Minimal/Minimal";
-import Popupload from "./view/Login/Popupload";
 
 function App() {
   const [connectedUser, setConnectedUser] = useState({});
@@ -57,8 +55,8 @@ function App() {
             <Route
               exact
               path="/"
-              render={(props) => (
-                <Main {...props}>
+              render={() => (
+                <Main>
                   <Home />
                 </Main>
               )}
@@ -81,42 +79,6 @@ function App() {
                 </Main>
               )}
             />
-            {/*<Route
-              exact
-              path="/load"
-              render={() => (
-                <Main>
-                  <Load />
-                </Main>
-              )}
-              />*/}
-            <Route
-              exact
-              path="/profile/users/:id"
-              render={(props) => (
-                <Main>
-                  <Profil {...props} />
-                </Main>
-              )}
-            />
-            {/*<Route
-              exact
-              path="/load"
-              render={() => (
-                <Main>
-                  <Load />
-                </Main>
-              )}
-            />*/}
-            {/*<Route
-              exact
-              path="/account"
-              render={() => (
-                <Main>
-                  <CreateAccount />
-                </Main>
-              )}
-            />*/}
             <Route
               exact
               path="/newpage"
