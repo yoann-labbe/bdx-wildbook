@@ -99,10 +99,6 @@ function Header(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const disconnect = () => {
-    setConnectedUser({});
-  };
-
   const handleClosed = () => {
     setAnchorEl(null);
   };
@@ -112,13 +108,6 @@ function Header(props) {
     setConnectedUser({});
     localStorage.removeItem("userToken");
     history.push("/welcome");
-  };
-
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleChange = (e) => {
-    setSearchValue(e.target.value);
-    console.log({ searchValue, [e.target.value]: e.target.value });
   };
 
   const [open, setOpen] = useState(false);

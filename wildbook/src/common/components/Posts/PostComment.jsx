@@ -1,19 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
-  Card,
   CardContent,
   IconButton,
   makeStyles,
   TextareaAutosize,
 } from "@material-ui/core";
-import {
-  ChatBubbleOutline,
-  FavoriteBorder,
-  InsertComment,
-  SendTwoTone,
-} from "@material-ui/icons";
+import { InsertComment, SendTwoTone } from "@material-ui/icons";
 import axios from "axios";
-import UserContext from "../../../context/user";
 import Likes from "./Likes";
 import { Fragment } from "react";
 
@@ -50,9 +43,6 @@ function PostComment(props) {
   const [com, setcom] = useState({
     text: "",
   });
-  const [displays, setdisplays] = useState(false);
-
-  const { connectedUser } = useContext(UserContext);
 
   const handleClick = () => {
     setdisplay(!display);
