@@ -108,16 +108,6 @@ function Header(props) {
     setConnectedUser({});
     localStorage.removeItem("userToken");
     history.push("/welcome");
-<<<<<<< HEAD
-  };
-
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleChange = (e) => {
-    setSearchValue(e.target.value);
-    console.log({ searchValue, [e.target.value]: e.target.value });
-=======
->>>>>>> origin/dev
   };
 
   const [open, setOpen] = useState(false);
