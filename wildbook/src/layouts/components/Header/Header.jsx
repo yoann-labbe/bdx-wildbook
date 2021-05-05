@@ -10,7 +10,7 @@ import {
   DialogTitle,
   IconButton,
 } from "@material-ui/core";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -32,30 +32,21 @@ const useStyles = makeStyles(() => ({
     margin: "0 auto",
     paddingLeft: 0,
     fontSize: "30px",
-    height: "70px",
+    height: "90px",
   },
 
   logo: {
     width: "80px",
-    height: "150px",
+    height: "156px",
     justifyContent: "flex-start",
     paddingLeft: "5px",
     display: "flex",
-    zIndex: "1",
     paddingTop: "35px",
   },
 
   items: {
     fontFamily: "Bebas Neue",
     textDecoration: "none",
-  },
-
-  input: {
-    width: "150px",
-    height: "30px",
-    borderRadius: "5px",
-    borderColor: "rgb(248, 245, 245)",
-    color: "rgb(247, 108, 109)",
   },
 
   profil: {
@@ -65,9 +56,11 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-around",
     alignItems: "center",
     height: "65px",
-    width: "275px",
+    width: "300px",
     padding: "10px",
-    margin: "8px",
+    margin:"8px",
+    marginRight: "1px",
+   
   },
 
   icons: {
@@ -83,11 +76,14 @@ const useStyles = makeStyles(() => ({
     fontStyle: "none",
   },
 
+  UserTitle: {
+    fontSize: "20px",
+    fontFamily: "Bebas Neue",
+  },
   iconAvatar: {
     borderRadius: "100%",
     height: "55px",
     width: "55px",
-    border: "solid 1px black",
   },
 }));
 
@@ -96,29 +92,38 @@ function Header(props) {
   const handleClose = () => {
     setOpenDialogue(false);
   };
-  const { connectedUser } = useContext(UserContext);
+  const { connectedUser, setConnectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [user, setUser] = useState({});
+  const history = useHistory();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const disconnect = () => {
+    setConnectedUser({});
+  };
+
   const handleClosed = () => {
     setAnchorEl(null);
+  
   };
+
+  const handleCloseLogout = () => {
+    setAnchorEl(null);
+    setConnectedUser({});
+    localStorage.removeItem("userToken");
+    history.push("/welcome");
+  }
 
   const [searchValue, setSearchValue] = useState("");
-
-  const handlepress = (e) => {
-    if (e.charCode == 13) {
-      console.log(searchValue);
-    }
-  };
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     console.log({ searchValue, [e.target.value]: e.target.value });
   };
+
   const [open, setOpen] = useState(false);
 
   const handleEnd = () => {
@@ -200,7 +205,7 @@ function Header(props) {
             <AccountCircleIcon style={{ fontSize: 60 }} />
           )}
         </Link>
-        <p style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
+        <p className={classes.UserTitle} style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
@@ -237,7 +242,7 @@ function Header(props) {
             to="/welcome"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-            <MenuItem className={classes.Menu} onClick={handleClosed}>
+            <MenuItem className={classes.Menu} onClick={handleCloseLogout}>
               Logout
             </MenuItem>
           </Link>

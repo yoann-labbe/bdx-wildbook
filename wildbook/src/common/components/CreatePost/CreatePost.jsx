@@ -16,6 +16,7 @@ import Upload from "../Upload/Upload";
 import axios from "axios";
 import UserContext from "../../../context/user";
 
+
 const useStyles = makeStyles({
   root: {
     width: 800,
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     marginTop: "100px",
+    
   },
   sendB: {
     float: "right",

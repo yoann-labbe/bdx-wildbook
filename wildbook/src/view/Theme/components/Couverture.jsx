@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
-import { TextField } from "@material-ui/core";
 import DoneIcon from "@material-ui/icons/Done";
 import TitreCouverture from "./TitreCouverture";
 import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   banniere: {
-    border: "2px solid #B0B0B0",
     height: "150px",
     backgroundImage: `url(${"https://picsum.photos/1920/150?ramdom"})`,
     opacity: "0,5",
     display: "flex",
     justifyContent: "center",
-    width: "100%",
+    width: "800px",
+    marginTop: "20px",
+    borderRadius: "9px",
   },
   follow: {
     display: "flex",
@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
     width: "250px",
     borderRadius: "10px",
     margin: "25px auto 0px auto",
+    fontFamily: "Dosis, sans serif",
   },
   editContainer: {
     width: "100%",
@@ -42,6 +43,15 @@ const useStyles = makeStyles(() => ({
   edit: {
     border: "none",
     background: "none",
+  },
+
+  button: {
+    marginBottom: "40px",
+    marginRight: "5px",
+    fontFamily: "Bebas Neue",
+    fontSize: "15px",
+    width: "90px",
+    height: "25px",
   },
 }));
 function Couverture(props) {
@@ -92,7 +102,12 @@ function Couverture(props) {
         </div>
       </div>
       <div className={classes.follow}>
-        <Button variant="contained" color="primary" onClick={handleClickFollow}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleClick}
+          className={classes.button}
+        >
           Follow
         </Button>
       </div>
