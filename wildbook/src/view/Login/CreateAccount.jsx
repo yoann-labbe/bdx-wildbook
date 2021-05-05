@@ -11,7 +11,6 @@ import {
   Select,
 } from "@material-ui/core";
 import axios from "axios";
-import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CreateAccount({ switchFromRegisterToLogin }) {
   const classes = useStyles();
-  const history = useHistory();
 
   const [form, setForm] = useState({
     firstName: "",
@@ -80,9 +78,6 @@ export default function CreateAccount({ switchFromRegisterToLogin }) {
 
   return (
     <Fragment>
-      {/*<div>
-        <h1 className={classes.wb2}>WILDBOOK</h1>
-      </div>*/}
       <div>
         <h2 className={classes.inscript}>S'inscrire</h2>
       </div>

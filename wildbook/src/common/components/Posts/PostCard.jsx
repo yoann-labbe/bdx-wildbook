@@ -7,6 +7,7 @@ import PostComment from "./PostComment";
 import Comments from "./Comments";
 import UserContext from "../../../context/user";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   cardm: {
@@ -15,13 +16,15 @@ const useStyles = makeStyles({
     margin: 20,
     backgroundColor: "white",
     padding: 15,
+    borderRadius: "20px",
   },
   div: {
-    overflow: "scroll",
+    overflow: "auto",
   },
   comment: {
     display: "flex",
     flexDirection: "column",
+    borderRadius: "30px",
   },
   iconAvatar: {
     borderRadius: "100%",
@@ -30,10 +33,28 @@ const useStyles = makeStyles({
   },
   post: {
     marginTop: "20px",
-    border: "solid 1px",
+    //boxShadow: "0px 3px 15px #b3b3b3",
   },
   p: {
     marginLeft: "18px",
+    fontFamily: "Neucha",
+    fontSize: "18px",
+    color: "rgba(243, 79, 80, 1)",
+  },
+
+  postInfos: {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: "5px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+
+  postAuthor: {
+    marginLeft: "5px",
+    fontSize: "20px",
+    fontFamily: "Bebas Neue",
   },
 });
 
@@ -41,6 +62,10 @@ const PostCard = ({ post, comment, props }) => {
   const classes = useStyles();
   const { connectedUser } = useContext(UserContext);
   const [iconAvatar, setIconAvatar] = useState({});
+  const history = useHistory();
+  const redirectToProfile = () => {
+    history.push(`/profile/users/${post.author._id}`);
+  };
 
   useEffect(() => {
     getIcon();
@@ -75,7 +100,12 @@ const PostCard = ({ post, comment, props }) => {
   return (
     <div className={classes.div}>
       <Card className={classes.post}>
-        <AccountCircle fontSize="default" />
+        <div className={classes.postInfos} onClick={redirectToProfile}>
+          <AccountCircle fontSize="default" />
+          <p className={classes.postAuthor}>
+            {post.author.firstName} {post.author.lastName}
+          </p>
+        </div>
         <Card className={classes.cardm}>
           {post?.pictureUrl && <PostImage urlImage={post?.pictureUrl} />}
           {post?.videoUrl && <PostVideo urlVideo={post?.videoUrl} />}
@@ -83,7 +113,7 @@ const PostCard = ({ post, comment, props }) => {
         </Card>
         <div className={classes.comment}>
           <PostComment post={post} />
-          <p className={classes.p}> Commentaire :</p>
+          <p className={classes.p}> Last Comments :</p>
           <Comments comment={post?.comments} />
         </div>
       </Card>

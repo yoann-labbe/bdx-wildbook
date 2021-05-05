@@ -144,6 +144,10 @@ function ProfilInfos(props) {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
+                <p className="picture-info">
+                  "Please, only upload picture that are initially <br />
+                  in a square shape. (E.g 200x200px)"
+                </p>
                 <Upload handlePicture={handlePicture} />
               </DialogContentText>
             </DialogContent>

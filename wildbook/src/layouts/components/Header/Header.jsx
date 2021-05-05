@@ -58,9 +58,8 @@ const useStyles = makeStyles(() => ({
     height: "65px",
     width: "300px",
     padding: "10px",
-    margin:"8px",
+    margin: "8px",
     marginRight: "1px",
-   
   },
 
   icons: {
@@ -94,7 +93,6 @@ function Header(props) {
   };
   const { connectedUser, setConnectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [user, setUser] = useState({});
   const history = useHistory();
 
   const handleClick = (event) => {
@@ -107,7 +105,6 @@ function Header(props) {
 
   const handleClosed = () => {
     setAnchorEl(null);
-  
   };
 
   const handleCloseLogout = () => {
@@ -115,7 +112,7 @@ function Header(props) {
     setConnectedUser({});
     localStorage.removeItem("userToken");
     history.push("/welcome");
-  }
+  };
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -205,7 +202,10 @@ function Header(props) {
             <AccountCircleIcon style={{ fontSize: 60 }} />
           )}
         </Link>
-        <p className={classes.UserTitle} style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
+        <p
+          className={classes.UserTitle}
+          style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}
+        >
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton

@@ -30,12 +30,6 @@ function Login() {
 
   const [open, setOpen] = React.useState(false);
   const [openAccount, setOpenAccount] = React.useState(false);
-
-  {
-    /*const handleClickOpen = () => {
-    setOpen(true);
-  };*/
-  }
   const handleClose = () => {
     setOpen(false);
   };
@@ -63,14 +57,14 @@ function Login() {
           color="primary"
           onClick={() => setOpenAccount(true)}
         >
-          Créer un compte
+          Register
         </Button>
         <Button
           className={classe.bouton2}
           variant="outlined"
           onClick={() => setOpen(true)}
         >
-          Connexion
+          Login
         </Button>
       </div>
       <Popupload open={open} handleClose={handleClose} />
