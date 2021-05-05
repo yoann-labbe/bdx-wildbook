@@ -7,6 +7,7 @@ import PostComment from "./PostComment";
 import Comments from "./Comments";
 import UserContext from "../../../context/user";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   cardm: {
@@ -43,12 +44,31 @@ const useStyles = makeStyles({
     fontSize: "18px",
     color: "rgba(243, 79, 80, 1)"
   },
+
+  postInfos: {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: "5px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+
+  postAuthor: {
+    marginLeft: "5px",
+    fontSize: "20px",
+    fontFamily: "Bebas Neue",
+  },
 });
 
 const PostCard = ({ post, comment, props }) => {
   const classes = useStyles();
   const { connectedUser } = useContext(UserContext);
   const [iconAvatar, setIconAvatar] = useState({});
+  const history = useHistory();
+  const redirectToProfile = () => {
+    history.push(`/profile/users/${post.author._id}`);
+  };
 
   useEffect(() => {
     getIcon();
@@ -83,7 +103,12 @@ const PostCard = ({ post, comment, props }) => {
   return (
     <div className={classes.div}>
       <Card className={classes.post}>
-        <AccountCircle fontSize="default" />
+        <div className={classes.postInfos} onClick={redirectToProfile}>
+          <AccountCircle fontSize="default" />
+          <p className={classes.postAuthor}>
+            {post.author.firstName} {post.author.lastName}
+          </p>
+        </div>
         <Card className={classes.cardm}>
           <PostImage urlImage={post?.pictureUrl} />
           <PostVideo urlVideo={post?.videoUrl} />

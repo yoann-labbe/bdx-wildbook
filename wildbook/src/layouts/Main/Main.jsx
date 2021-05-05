@@ -1,4 +1,3 @@
-
 import { makeStyles } from "@material-ui/core";
 import React from "react";
 import UpButton from "../../common/components/UpButton/UpButton";
@@ -14,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundPosition: "center center",
     backgroundAttachment: "fixed",
-    bottom : "0",
+    bottom: "0",
   },
-}))
+}));
 function Main(props) {
   const { children } = props;
   const classes = useStyles();
