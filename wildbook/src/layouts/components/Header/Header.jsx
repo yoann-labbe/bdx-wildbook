@@ -32,12 +32,12 @@ const useStyles = makeStyles(() => ({
     margin: "0 auto",
     paddingLeft: 0,
     fontSize: "30px",
-    height: "70px",
+    height: "90px",
   },
 
   logo: {
     width: "80px",
-    height: "150px",
+    height: "156px",
     justifyContent: "flex-start",
     paddingLeft: "5px",
     display: "flex",
@@ -49,14 +49,6 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
 
-  input: {
-    width: "150px",
-    height: "30px",
-    borderRadius: "5px",
-    borderColor: "rgb(248, 245, 245)",
-    color: "rgb(247, 108, 109)",
-  },
-
   profil: {
     border: "rgb(226, 107, 107) 1px solid",
     borderRadius: "5px",
@@ -66,7 +58,9 @@ const useStyles = makeStyles(() => ({
     height: "65px",
     width: "300px",
     padding: "10px",
-    margin: "8px",
+    margin:"8px",
+    marginRight: "1px",
+   
   },
 
   icons: {
@@ -82,15 +76,14 @@ const useStyles = makeStyles(() => ({
     fontStyle: "none",
   },
 
+  UserTitle: {
+    fontSize: "20px",
+    fontFamily: "Bebas Neue",
+  },
   iconAvatar: {
     borderRadius: "100%",
     height: "55px",
     width: "55px",
-  },
-
-  UserTitle: {
-    fontSize: "20px",
-    fontFamily: "Bebas Neue",
   },
 }));
 
@@ -113,14 +106,21 @@ function Header(props) {
 
   const handleClosed = () => {
     setAnchorEl(null);
+<<<<<<< HEAD
   };
 
   const handleClosedLogout = () => {
+=======
+  
+  };
+
+  const handleCloseLogout = () => {
+>>>>>>> origin/dev
     setAnchorEl(null);
     setConnectedUser({});
     localStorage.removeItem("userToken");
     history.push("/welcome");
-  };
+  }
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -210,7 +210,7 @@ function Header(props) {
             <AccountCircleIcon style={{ fontSize: 60 }} />
           )}
         </Link>
-        <p style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
+        <p className={classes.UserTitle} style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
@@ -247,7 +247,11 @@ function Header(props) {
             to="/welcome"
             style={{ color: "inherit", textDecoration: "none" }}
           >
+<<<<<<< HEAD
             <MenuItem className={classes.Menu} onClick={handleClosedLogout}>
+=======
+            <MenuItem className={classes.Menu} onClick={handleCloseLogout}>
+>>>>>>> origin/dev
               Logout
             </MenuItem>
           </Link>

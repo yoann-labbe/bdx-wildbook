@@ -23,6 +23,11 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
+  iconAvatar: {
+    borderRadius: "100%",
+    height: "40px",
+    width: "40px",
+  },
   post: {
     marginTop: "20px",
     border: "solid 1px",
