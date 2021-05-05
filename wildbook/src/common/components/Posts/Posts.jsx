@@ -24,6 +24,10 @@ const useStyles = makeStyles({
   title: {
     marginLeft: 20,
   },
+  CardContent: {
+    backgroundColor: "rgb(250, 248, 248)",
+    margin: "8px",
+  },
 });
 
 function Posts() {
