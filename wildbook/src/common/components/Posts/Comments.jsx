@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 
 const useStyles = makeStyles({
   cardcom: {
-    marginTop: "10px",
+    marginTop: "20px",
     backgroundColor: "white",
-    marginBottom: "10px",
+    margin: "10px",
   },
   card: {
     marginLeft: "8px",
@@ -18,7 +18,9 @@ function Comments({ comment }) {
     <div>
       {comment.map((newComment, index) => (
         <Card key={index} className={classes.cardcom}>
-          <p>user</p>
+          <p className={classes.card}>
+            {newComment.author.firstName} has comment :
+          </p>
           <p className={classes.card}>{newComment.text}</p>
         </Card>
       ))}
