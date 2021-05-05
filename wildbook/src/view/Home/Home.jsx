@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core";
 import CreatePost from "../../common/components/CreatePost/CreatePost";
 import Posts from "../../common/components/Posts/Posts";

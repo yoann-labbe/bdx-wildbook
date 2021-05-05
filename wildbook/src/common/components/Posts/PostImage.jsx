@@ -11,7 +11,7 @@ const PostImage = ({ urlImage }) => {
   const classes = useStyles();
   return (
     <Fragment>
-      <img src={urlImage} className={classes.img} />
+      <img src={urlImage} className={classes.img} alt="media uploaded" />
     </Fragment>
   );
 };
