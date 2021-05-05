@@ -4,8 +4,8 @@ import { useHistory } from "react-router";
 
 const useStyles = makeStyles(() => ({
   wilder: {
-    fontFamily: "Dosis, sans serif",
-    fontSize: "15px",
+    fontFamily: "Neucha",
+    fontSize: "18px",
     width: "100%",
     display: "flex",
     flexDirection: "row",

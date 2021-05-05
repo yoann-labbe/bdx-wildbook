@@ -14,13 +14,17 @@ const useStyles = makeStyles({
     margin: 20,
     backgroundColor: "white",
     padding: 15,
+    borderRadius: "20px",
+   
   },
   div: {
-    overflow: "scroll",
+    overflow: "auto",
+   
   },
   comment: {
     display: "flex",
     flexDirection: "column",
+    borderRadius : "30px",
   },
   iconAvatar: {
     borderRadius: "100%",
@@ -29,10 +33,14 @@ const useStyles = makeStyles({
   },
   post: {
     marginTop: "20px",
-    border: "solid 1px",
+    //boxShadow: "0px 3px 15px #b3b3b3",
+    
   },
   p: {
     marginLeft: "18px",
+    fontFamily: "Neucha",
+    fontSize: "18px",
+    color: "rgba(243, 79, 80, 1)"
   },
 
   postInfos: {
@@ -83,7 +91,7 @@ const PostCard = ({ post }) => {
         </Card>
         <div className={classes.comment}>
           <PostComment postId={post?._id} />
-          <p className={classes.p}> Commentaire :</p>
+          <p className={classes.p}> Last Comments :</p>
           <Comments comment={post?.comments} />
         </div>
       </Card>

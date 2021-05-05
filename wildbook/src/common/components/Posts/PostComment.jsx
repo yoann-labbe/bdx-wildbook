@@ -86,11 +86,11 @@ function PostComment(props) {
             <TextareaAutosize
               className={classes.textA}
               id="filled-full-width"
-              label="Commenter"
+              label="Comment"
               size="small"
               variant="outlined"
               style={{ margin: 10 }}
-              placeholder="Commenter"
+              placeholder="Comment"
               fullWidth
               margin="normal"
               name={"text"}
