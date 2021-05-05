@@ -8,14 +8,28 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     width: "100%",
     height: "100%",
+<<<<<<< HEAD
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     position: "relative",
+=======
+    backgroundColor: "black",
+>>>>>>> origin/dev
   },
   commingSoon: {
     display: "flex",
     justifyContent: "center",
+<<<<<<< HEAD
+=======
+    alignItems: "center",
+    margin: "0 auto",
+    height: "100px",
+    borderRadius: "5px",
+>>>>>>> origin/dev
   },
-  wildWork: {},
+  wildWork: {
+    color: "white",
+    fontSize: "40px",
+  },
 }));
 
 function ComingSoon() {
