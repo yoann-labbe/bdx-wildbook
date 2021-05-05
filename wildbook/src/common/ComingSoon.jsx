@@ -9,15 +9,11 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
+    position: "relative",
   },
   commingSoon: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    margin: "0 auto",
-    width: "500%",
-    height: "300%",
-    borderRadius: "5px",
   },
   wildWork: {},
 }));
