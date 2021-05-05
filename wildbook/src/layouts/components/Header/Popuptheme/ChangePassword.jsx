@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import DoneIcon from "@material-ui/icons/Done";
 import UserContext from "../../../../context/user";
 import axios from "axios";
+import { Dialog, DialogContent, DialogContentText } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -41,7 +42,10 @@ function ChangePassword() {
   });
 
   const handleClick = async () => {
-    if (form.newPassword === form.password) {
+    if (
+      form.newPassword === form.password &&
+      form.oldPassword === connectedUser.password
+    ) {
       try {
         const accessToken = localStorage.getItem("userToken");
         if (accessToken) {
@@ -70,8 +74,39 @@ function ChangePassword() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className={classes.form}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+      >
+        <DialogContent style={{ backgroundColor: "white" }}>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            {form.newPassword === form.password ? (
+              <p> Password succesfully updated!</p>
+            ) : (
+              <p>
+                "New password" and "confirm new password" must be identical !"
+              </p>
+            )}
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
       <div className={classes.oldPassword}>
         <TextField
           style={{ width: "300px", height: "75px" }}
@@ -116,7 +151,10 @@ function ChangePassword() {
         ""
       )}
       <div className={classes.buttonContainer}>
-        <button className={classes.doneButton} onClick={handleClick}>
+        <button
+          className={classes.doneButton}
+          onClick={(handleClick, handleClickOpen)}
+        >
           <DoneIcon className={classes.doneIcon} />
         </button>
       </div>
