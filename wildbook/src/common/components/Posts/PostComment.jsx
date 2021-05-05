@@ -72,7 +72,7 @@ function PostComment(props) {
         };
 
         const token = await axios.post(
-          `https://wildbook-api.herokuapp.com/posts/${props.postId}/comment`,
+          `https://wildbook-api.herokuapp.com/posts/${props.post?._id}/comment`,
           com,
           config
         );
@@ -86,7 +86,7 @@ function PostComment(props) {
     <Fragment>
       <CardContent>
         <div className={classes.icon}>
-          <Likes />
+          <Likes post={props.post} />
           <IconButton onClick={handleClick}>
             <InsertComment />
           </IconButton>
