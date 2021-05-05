@@ -13,6 +13,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import UserContext from "./context/user";
 import axios from "axios";
 import Minimal from "./layouts/Minimal/Minimal";
+import NotFound from "./common/NotFound";
 
 function App() {
   const [connectedUser, setConnectedUser] = useState({});
@@ -38,7 +39,6 @@ function App() {
   }, []);
 
   return (
-    
     <ThemeProvider theme={theme}>
       <UserContext.Provider value={{ connectedUser, setConnectedUser }}>
         <CssBaseline />
@@ -89,11 +89,18 @@ function App() {
                 </Main>
               )}
             />
+            <Route
+              path="/*"
+              render={() => (
+                <Minimal>
+                  <NotFound />
+                </Minimal>
+              )}
+            />
           </Switch>
         </Router>
       </UserContext.Provider>
     </ThemeProvider>
-  
   );
 }
 

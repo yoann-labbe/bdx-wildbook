@@ -9,23 +9,19 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
 import Upload from "../Upload/Upload";
 import axios from "axios";
-import UserContext from "../../../context/user";
-
 
 const useStyles = makeStyles({
   root: {
     width: 800,
     height: "100%",
-    marginTop: 20,
     display: "flex",
     justifyContent: "center",
     marginTop: "100px",
-    
   },
   sendB: {
     float: "right",
@@ -42,7 +38,6 @@ const useStyles = makeStyles({
 });
 
 function CreatePost() {
-  const { connectedUser } = useContext(UserContext);
   const classes = useStyles();
 
   const [name, setName] = useState({
@@ -61,11 +56,17 @@ function CreatePost() {
   const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
-    setName({ ...name, [e.target.name]: e.target.value });
+    if (e.target.name === "videoUrl") {
+      const video =
+        "https://www.youtube.com/embed/" + e.target.value.split("?v=")[1];
+      setName({ ...name, videoUrl: video });
+    } else {
+      setName({ ...name, [e.target.name]: e.target.value });
+    }
   };
 
   const handlepress = (e) => {
-    if (e.charCode == 13) {
+    if (e.charCode === 13) {
       console.log(name);
     }
   };
@@ -84,7 +85,7 @@ function CreatePost() {
           name,
           config
         );
-        console.log(token.data);
+        window.location.reload(false);
       }
     } catch (e) {
       //ici afficher un message d'erreur  à l'utilisateur
@@ -109,11 +110,11 @@ function CreatePost() {
         <CardContent>
           <div className={classes.centerbutton}>
             <IconButton>
-              <BorderColor color="primary" style={{ fontSize: 55 }} />
+              <BorderColor color="primary" style={{ fontSize: 35 }} />
             </IconButton>
 
             <IconButton onClick={handleClickOpen}>
-              <AddAPhoto color="primary" style={{ fontSize: 55 }} />
+              <AddAPhoto color="primary" style={{ fontSize: 35 }} />
             </IconButton>
             <Dialog
               open={open}
@@ -132,13 +133,13 @@ function CreatePost() {
             </Dialog>
 
             <IconButton onClick={handleClick3}>
-              <YouTube color="primary" style={{ fontSize: 55 }} />
+              <YouTube color="primary" style={{ fontSize: 35 }} />
             </IconButton>
           </div>
 
           <TextField
             id="filled-full-width"
-            label="Creer un post"
+            label="Create Your Post"
             size="small"
             variant="outlined"
             style={{ margin: 10 }}

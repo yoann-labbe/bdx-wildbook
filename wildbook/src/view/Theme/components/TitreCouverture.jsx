@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   hOneValue: {
     margin: 0,
     paddingTop: "10px",
+    color: "primary",
   },
 }));
 

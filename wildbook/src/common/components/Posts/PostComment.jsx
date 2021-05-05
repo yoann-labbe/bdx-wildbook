@@ -1,19 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
-  Card,
   CardContent,
   IconButton,
   makeStyles,
   TextareaAutosize,
 } from "@material-ui/core";
-import {
-  ChatBubbleOutline,
-  FavoriteBorder,
-  InsertComment,
-  SendTwoTone,
-} from "@material-ui/icons";
+import { InsertComment, SendTwoTone } from "@material-ui/icons";
 import axios from "axios";
-import UserContext from "../../../context/user";
 import Likes from "./Likes";
 import { Fragment } from "react";
 
@@ -50,9 +43,6 @@ function PostComment(props) {
   const [com, setcom] = useState({
     text: "",
   });
-  const [displays, setdisplays] = useState(false);
-
-  const { connectedUser } = useContext(UserContext);
 
   const handleClick = () => {
     setdisplay(!display);
@@ -72,7 +62,7 @@ function PostComment(props) {
         };
 
         const token = await axios.post(
-          `https://wildbook-api.herokuapp.com/posts/${props.postId}/comment`,
+          `https://wildbook-api.herokuapp.com/posts/${props.post?._id}/comment`,
           com,
           config
         );
@@ -86,7 +76,7 @@ function PostComment(props) {
     <Fragment>
       <CardContent>
         <div className={classes.icon}>
-          <Likes />
+          <Likes post={props.post} />
           <IconButton onClick={handleClick}>
             <InsertComment />
           </IconButton>
@@ -96,11 +86,11 @@ function PostComment(props) {
             <TextareaAutosize
               className={classes.textA}
               id="filled-full-width"
-              label="Commenter"
+              label="Comment"
               size="small"
               variant="outlined"
               style={{ margin: 10 }}
-              placeholder="Commenter"
+              placeholder="Comment"
               fullWidth
               margin="normal"
               name={"text"}

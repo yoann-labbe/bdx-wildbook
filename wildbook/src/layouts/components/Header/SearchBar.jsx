@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useHistory } from "react-router";
 import "./SearchBar.css";
-import { makeStyles } from "@material-ui/core";
 
 export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
@@ -40,7 +39,7 @@ export default function SearchBar() {
 
   return (
     <Autocomplete
-    style={{ width: 200 }}
+      style={{ width: 200 }}
       open={open}
       onOpen={() => {
         setOpen(true);
