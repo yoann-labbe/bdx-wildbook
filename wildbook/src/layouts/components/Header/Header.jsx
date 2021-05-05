@@ -32,12 +32,12 @@ const useStyles = makeStyles(() => ({
     margin: "0 auto",
     paddingLeft: 0,
     fontSize: "30px",
-    height: "70px",
+    height: "90px",
   },
 
   logo: {
     width: "80px",
-    height: "150px",
+    height: "156px",
     justifyContent: "flex-start",
     paddingLeft: "5px",
     display: "flex",
@@ -47,14 +47,6 @@ const useStyles = makeStyles(() => ({
   items: {
     fontFamily: "Bebas Neue",
     textDecoration: "none",
-  },
-
-  input: {
-    width: "150px",
-    height: "30px",
-    borderRadius: "5px",
-    borderColor: "rgb(248, 245, 245)",
-    color: "rgb(247, 108, 109)",
   },
 
   profil: {
@@ -67,6 +59,7 @@ const useStyles = makeStyles(() => ({
     width: "300px",
     padding: "10px",
     margin: "8px",
+    marginRight: "1px",
   },
 
   icons: {
@@ -86,7 +79,6 @@ const useStyles = makeStyles(() => ({
     fontSize: "20px",
     fontFamily: "Bebas Neue",
   },
-
   iconAvatar: {
     borderRadius: "100%",
     height: "55px",
@@ -113,6 +105,10 @@ function Header(props) {
   };
 
   const handleClosed = () => {
+    setAnchorEl(null);
+  };
+
+  const handleCloseLogout = () => {
     setAnchorEl(null);
     setConnectedUser({});
     localStorage.removeItem("userToken");
@@ -207,7 +203,10 @@ function Header(props) {
             <AccountCircleIcon style={{ fontSize: 60 }} />
           )}
         </Link>
-        <p style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
+        <p
+          className={classes.UserTitle}
+          style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}
+        >
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
@@ -244,7 +243,7 @@ function Header(props) {
             to="/welcome"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-            <MenuItem className={classes.Menu} onClick={handleClosed}>
+            <MenuItem className={classes.Menu} onClick={handleCloseLogout}>
               Logout
             </MenuItem>
           </Link>

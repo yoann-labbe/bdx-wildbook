@@ -19,7 +19,7 @@ import UserContext from "../../../context/user";
 
 const useStyles = makeStyles({
   root: {
-    width: 600,
+    width: 800,
     height: "100%",
     marginTop: 20,
     display: "flex",
