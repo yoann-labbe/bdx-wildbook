@@ -7,12 +7,13 @@ import Header from "../components/Header/Header";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    maxWidth: "100%",
     height : "100%",
-    backgroundImage: "url('/assets/15459.jpg')",
+    backgroundImage: "url('/assets/IMG_0236.jpg')",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    backgroundPosition: "center",
+    backgroundPosition: "center center",
+    backgroundAttachment: "fixed",
     bottom : "0",
   },
 }))
