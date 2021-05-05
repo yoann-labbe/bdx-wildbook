@@ -7,9 +7,18 @@ const useStyles = makeStyles({
     marginTop: "20px",
     backgroundColor: "white",
     margin: "10px",
+    borderRadius: "25px",
   },
   card: {
-    marginLeft: "8px",
+    marginLeft: "18px",
+    fontFamily: "Neucha",
+    fontSize: "18px",
+  },
+  card1: {
+    marginLeft: "10px",
+    fontFamilmy: "Nunito",
+    fontWeight: "bold",
+    fontSize: "15px"
   },
 });
 function Comments({ comment }) {
@@ -18,7 +27,7 @@ function Comments({ comment }) {
     <div>
       {comment.map((newComment, index) => (
         <Card key={index} className={classes.cardcom}>
-          <p className={classes.card}>
+          <p className={classes.card1}>
             {newComment.author.firstName} has comment :
           </p>
           <p className={classes.card}>{newComment.text}</p>

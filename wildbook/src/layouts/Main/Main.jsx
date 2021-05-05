@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "100%",
     height : "100%",
-    backgroundImage: "url('/assets/IMG_0236.jpg')",
+    backgroundImage: "url('/assets/fond.png')",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center center",

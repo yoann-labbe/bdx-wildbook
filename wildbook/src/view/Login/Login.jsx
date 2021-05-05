@@ -63,14 +63,14 @@ function Login() {
           color="primary"
           onClick={() => setOpenAccount(true)}
         >
-          Créer un compte
+          Register
         </Button>
         <Button
           className={classe.bouton2}
           variant="outlined"
           onClick={() => setOpen(true)}
         >
-          Connexion
+          Login
         </Button>
       </div>
       <Popupload open={open} handleClose={handleClose} />
