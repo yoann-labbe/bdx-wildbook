@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { useHistory } from "react-router";
 
-
 const useStyles = makeStyles(() => ({
   wilder: {
     fontFamily: "Dosis, sans serif",
@@ -28,7 +27,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NewWilder = ({ avatarUrl, firstName, lastName, _id }) => {
+const NewWilder = ({ avatarUrl, firstName, lastName, _id, campus }) => {
   const classes = useStyles();
   const history = useHistory();
   const redirectToProfile = () => {
@@ -39,7 +38,7 @@ const NewWilder = ({ avatarUrl, firstName, lastName, _id }) => {
     <div className={classes.wilder} onClick={redirectToProfile}>
       <img src={avatarUrl} className={classes.littleAvatar} alt={firstName} />
       <p className={classes.newWilderName}>
-        {firstName} {lastName}
+        {firstName} {lastName} - {campus}
       </p>
     </div>
   );
