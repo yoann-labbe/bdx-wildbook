@@ -109,11 +109,11 @@ function CreatePost() {
         <CardContent>
           <div className={classes.centerbutton}>
             <IconButton>
-              <BorderColor color="primary" style={{ fontSize: 55 }} />
+              <BorderColor color="primary" style={{ fontSize: 35 }} />
             </IconButton>
 
             <IconButton onClick={handleClickOpen}>
-              <AddAPhoto color="primary" style={{ fontSize: 55 }} />
+              <AddAPhoto color="primary" style={{ fontSize: 35 }} />
             </IconButton>
             <Dialog
               open={open}
@@ -132,13 +132,13 @@ function CreatePost() {
             </Dialog>
 
             <IconButton onClick={handleClick3}>
-              <YouTube color="primary" style={{ fontSize: 55 }} />
+              <YouTube color="primary" style={{ fontSize: 35 }} />
             </IconButton>
           </div>
 
           <TextField
             id="filled-full-width"
-            label="Creer un post"
+            label="Create Your Post"
             size="small"
             variant="outlined"
             style={{ margin: 10 }}
