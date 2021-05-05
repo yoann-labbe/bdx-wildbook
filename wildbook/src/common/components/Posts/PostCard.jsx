@@ -77,12 +77,12 @@ const PostCard = ({ post, comment, props }) => {
       <Card className={classes.post}>
         <AccountCircle fontSize="default" />
         <Card className={classes.cardm}>
-          <PostImage urlImage={post?.pictureUrl} />
-          <PostVideo urlVideo={post?.videoUrl} />
+          {post?.pictureUrl && <PostImage urlImage={post?.pictureUrl} />}
+          {post?.videoUrl && <PostVideo urlVideo={post?.videoUrl} />}
           <h4>{post?.text} </h4>
         </Card>
         <div className={classes.comment}>
-          <PostComment postId={post?._id} />
+          <PostComment post={post} />
           <p className={classes.p}> Commentaire :</p>
           <Comments comment={post?.comments} />
         </div>
