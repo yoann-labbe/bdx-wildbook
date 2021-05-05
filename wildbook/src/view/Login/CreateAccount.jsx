@@ -143,8 +143,8 @@ export default function CreateAccount({ switchFromRegisterToLogin }) {
                 <MenuItem value={"Lisbonne"}>Lisbonne</MenuItem>
                 <MenuItem value={"Londres"}>Londres</MenuItem>
                 <MenuItem value={"Madrid"}>Madrid</MenuItem>
-                <MenuItem value={"RemoteEN"}>Remote EN</MenuItem>
-                <MenuItem value={"RemoteFR"}>Remote FR</MenuItem>
+                <MenuItem value={"Remote-EN"}>Remote EN</MenuItem>
+                <MenuItem value={"Remote-FR"}>Remote FR</MenuItem>
               </Select>
             </FormControl>
 

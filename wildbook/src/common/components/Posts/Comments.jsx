@@ -1,6 +1,5 @@
 import { Card, makeStyles } from "@material-ui/core";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const useStyles = makeStyles({
   cardcom: {

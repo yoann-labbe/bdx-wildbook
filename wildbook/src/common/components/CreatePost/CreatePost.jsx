@@ -9,23 +9,19 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
 import Upload from "../Upload/Upload";
 import axios from "axios";
-import UserContext from "../../../context/user";
-
 
 const useStyles = makeStyles({
   root: {
     width: 800,
     height: "100%",
-    marginTop: 20,
     display: "flex",
     justifyContent: "center",
     marginTop: "100px",
-    
   },
   sendB: {
     float: "right",
@@ -42,7 +38,6 @@ const useStyles = makeStyles({
 });
 
 function CreatePost() {
-  const { connectedUser } = useContext(UserContext);
   const classes = useStyles();
 
   const [name, setName] = useState({
@@ -65,7 +60,7 @@ function CreatePost() {
   };
 
   const handlepress = (e) => {
-    if (e.charCode == 13) {
+    if (e.charCode === 13) {
       console.log(name);
     }
   };

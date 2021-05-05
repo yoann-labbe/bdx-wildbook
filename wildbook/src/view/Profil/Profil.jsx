@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CreatePost from "../../common/components/CreatePost/CreatePost";
-import Posts from "../../common/components/Posts/Posts";
 import ProfilInfos from "./components/ProfilInfos/ProfilInfos";
-import { makeStyles } from "@material-ui/core";
+import { Card, CardContent, makeStyles } from "@material-ui/core";
 import axios from "axios";
+import PostCard from "../../common/components/Posts/PostCard";
 
 const useStyles = makeStyles(() => ({
   profilInfos: {
@@ -12,74 +12,61 @@ const useStyles = makeStyles(() => ({
     alignItems: " center",
     justifyContent: "space-around",
   },
+  root: {
+    width: 800,
+    height: "100%",
+    marginBottom: 40,
+  },
+  title: {
+    marginLeft: 20,
+  },
+  CardContent: {
+    backgroundColor: "rgb(250, 248, 248)",
+    margin: "8px",
+  },
 }));
 
 function Profil(props) {
   const classes = useStyles();
   const [post, setPost] = useState([]);
+
   useEffect(() => {
     getPost();
-  }, []);
-
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    getUsers();
-  }, []);
+  }, [props.match?.params?.id]);
 
   const getPost = async () => {
     try {
       const accessToken = localStorage.getItem("userToken");
-      if (accessToken) {
+      if (accessToken && props.match?.params?.id) {
         const config = {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         };
         const getNewPost = await axios.get(
-          `https://wildbook-api.herokuapp.com/posts`,
+          `https://wildbook-api.herokuapp.com/posts?userId=${props.match?.params?.id}`,
           config
         );
         setPost(getNewPost.data[0].data);
+        console.log(getNewPost.data[0].data);
       }
     } catch (e) {}
-  };
-
-  const getUsers = () => {
-    try {
-      const accessToken = localStorage.getItem("userToken");
-      if (accessToken) {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        };
-        axios
-          .get(
-            `https://wildbook-api.herokuapp.com/users/${props.userId}`,
-            config
-          )
-          .then((response) => response.data)
-          .then((data) => {
-            console.log(data);
-            setUsers(data);
-            console.log(users);
-          });
-      }
-    } catch (e) {
-      //ici afficher un message d'erreur  à l'utilisateur
-    }
   };
 
   return (
     <div className={classes.profilInfos}>
       <ProfilInfos userId={props.match.params.id} />
       <CreatePost />
-      {post
-        .filter((myPost) => myPost.author.email === users.email)
-        .map((authorPost, index) => (
-          <Posts key={index} {...authorPost} />
-        ))}
+      <Card className={classes.root} label="Creer un post">
+        <h3 className={classes.title}>Dernier Post</h3>
+        <div className={classes.CardContent}>
+          <CardContent>
+            {post.map((authorPost, index) => (
+              <PostCard key={index} post={authorPost} />
+            ))}
+          </CardContent>
+        </div>
+      </Card>
     </div>
   );
 }
