@@ -32,12 +32,12 @@ const useStyles = makeStyles(() => ({
     margin: "0 auto",
     paddingLeft: 0,
     fontSize: "30px",
-    height: "70px",
+    height: "90px",
   },
 
   logo: {
     width: "80px",
-    height: "150px",
+    height: "156px",
     justifyContent: "flex-start",
     paddingLeft: "5px",
     display: "flex",
@@ -49,14 +49,6 @@ const useStyles = makeStyles(() => ({
     textDecoration: "none",
   },
 
-  input: {
-    width: "150px",
-    height: "30px",
-    borderRadius: "5px",
-    borderColor: "rgb(248, 245, 245)",
-    color: "rgb(247, 108, 109)",
-  },
-
   profil: {
     border: "rgb(226, 107, 107) 1px solid",
     borderRadius: "5px",
@@ -66,7 +58,9 @@ const useStyles = makeStyles(() => ({
     height: "65px",
     width: "300px",
     padding: "10px",
-    margin: "8px",
+    margin:"8px",
+    marginRight: "1px",
+   
   },
 
   icons: {
@@ -113,10 +107,15 @@ function Header(props) {
 
   const handleClosed = () => {
     setAnchorEl(null);
+  
+  };
+
+  const handleCloseLogout = () => {
+    setAnchorEl(null);
     setConnectedUser({});
     localStorage.removeItem("userToken");
     history.push("/welcome");
-  };
+  }
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -243,7 +242,7 @@ function Header(props) {
             to="/welcome"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-            <MenuItem className={classes.Menu} onClick={handleClosed}>
+            <MenuItem className={classes.Menu} onClick={handleCloseLogout}>
               Logout
             </MenuItem>
           </Link>
