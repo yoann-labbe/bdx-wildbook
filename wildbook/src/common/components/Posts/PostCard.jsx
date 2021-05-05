@@ -19,11 +19,6 @@ const useStyles = makeStyles({
   div: {
     overflow: "scroll",
   },
-  iconAvatar: {
-    borderRadius: "100%",
-    height: "40px",
-    width: "40px",
-  },
   comment: {
     display: "flex",
     flexDirection: "column",
