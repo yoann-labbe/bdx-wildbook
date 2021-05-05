@@ -74,21 +74,6 @@ const PostCard = ({ post, comment, props }) => {
 
   return (
     <div className={classes.div}>
-<<<<<<< HEAD
-      {connectedUser._id ? (
-        <img
-          className={classes.iconAvatar}
-          src={iconAvatar.avatarUrl}
-          alt={connectedUser.firstName}
-        />
-      ) : (
-        <AccountCircle style={{ fontSize: "default" }} />
-      )}
-      <Card className={classes.cardm}>
-        <PostImage urlImage={post?.pictureUrl} />
-        <PostVideo urlVideo={post?.videoUrl} />
-        <h4>{post?.text} </h4>
-=======
       <Card className={classes.post}>
         <AccountCircle fontSize="default" />
         <Card className={classes.cardm}>
@@ -101,7 +86,6 @@ const PostCard = ({ post, comment, props }) => {
           <p className={classes.p}> Commentaire :</p>
           <Comments comment={post?.comments} />
         </div>
->>>>>>> origin/dev
       </Card>
     </div>
   );
