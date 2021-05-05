@@ -15,16 +15,14 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     padding: 15,
     borderRadius: "20px",
-   
   },
   div: {
     overflow: "auto",
-   
   },
   comment: {
     display: "flex",
     flexDirection: "column",
-    borderRadius : "30px",
+    borderRadius: "30px",
   },
   iconAvatar: {
     borderRadius: "100%",
@@ -34,13 +32,12 @@ const useStyles = makeStyles({
   post: {
     marginTop: "20px",
     //boxShadow: "0px 3px 15px #b3b3b3",
-    
   },
   p: {
     marginLeft: "18px",
     fontFamily: "Neucha",
     fontSize: "18px",
-    color: "rgba(243, 79, 80, 1)"
+    color: "rgba(243, 79, 80, 1)",
   },
 
   postInfos: {
@@ -85,12 +82,12 @@ const PostCard = ({ post }) => {
           </p>
         </div>
         <Card className={classes.cardm}>
-          <PostImage urlImage={post?.pictureUrl} />
-          <PostVideo urlVideo={post?.videoUrl} />
+          {post?.pictureUrl && <PostImage urlImage={post?.pictureUrl} />}
+          {post?.videoUrl && <PostVideo urlVideo={post?.videoUrl} />}
           <h4>{post?.text} </h4>
         </Card>
         <div className={classes.comment}>
-          <PostComment postId={post?._id} />
+          <PostComment post={post} />
           <p className={classes.p}> Last Comments :</p>
           <Comments comment={post?.comments} />
         </div>

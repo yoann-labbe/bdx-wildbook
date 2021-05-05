@@ -56,7 +56,13 @@ function CreatePost() {
   const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
-    setName({ ...name, [e.target.name]: e.target.value });
+    if (e.target.name === "videoUrl") {
+      const video =
+        "https://www.youtube.com/embed/" + e.target.value.split("?v=")[1];
+      setName({ ...name, videoUrl: video });
+    } else {
+      setName({ ...name, [e.target.name]: e.target.value });
+    }
   };
 
   const handlepress = (e) => {
@@ -79,7 +85,7 @@ function CreatePost() {
           name,
           config
         );
-        console.log(token.data);
+        window.location.reload(false);
       }
     } catch (e) {
       //ici afficher un message d'erreur  à l'utilisateur
