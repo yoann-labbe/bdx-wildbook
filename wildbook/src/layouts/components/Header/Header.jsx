@@ -58,9 +58,8 @@ const useStyles = makeStyles(() => ({
     height: "65px",
     width: "300px",
     padding: "10px",
-    margin:"8px",
+    margin: "8px",
     marginRight: "1px",
-   
   },
 
   icons: {
@@ -106,21 +105,14 @@ function Header(props) {
 
   const handleClosed = () => {
     setAnchorEl(null);
-<<<<<<< HEAD
-  };
-
-  const handleClosedLogout = () => {
-=======
-  
   };
 
   const handleCloseLogout = () => {
->>>>>>> origin/dev
     setAnchorEl(null);
     setConnectedUser({});
     localStorage.removeItem("userToken");
     history.push("/welcome");
-  }
+  };
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -210,7 +202,10 @@ function Header(props) {
             <AccountCircleIcon style={{ fontSize: 60 }} />
           )}
         </Link>
-        <p className={classes.UserTitle} style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}>
+        <p
+          className={classes.UserTitle}
+          style={{ fontSize: "18px", color: "secondary", marginLeft: "10px" }}
+        >
           {connectedUser.firstName} {connectedUser.lastName}
         </p>
         <IconButton
@@ -247,11 +242,7 @@ function Header(props) {
             to="/welcome"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-<<<<<<< HEAD
-            <MenuItem className={classes.Menu} onClick={handleClosedLogout}>
-=======
             <MenuItem className={classes.Menu} onClick={handleCloseLogout}>
->>>>>>> origin/dev
               Logout
             </MenuItem>
           </Link>
