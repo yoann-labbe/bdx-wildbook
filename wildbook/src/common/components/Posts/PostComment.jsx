@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Card,
   CardContent,
   IconButton,
   makeStyles,
   TextareaAutosize,
-  Typography,
 } from "@material-ui/core";
 import {
   ChatBubbleOutline,
   FavoriteBorder,
+  InsertComment,
   SendTwoTone,
 } from "@material-ui/icons";
 import axios from "axios";
+import UserContext from "../../../context/user";
+import Likes from "./Likes";
+import { Fragment } from "react";
 
 const useStyles = makeStyles({
   icon: {
+    display: "flex",
+    alignItems: "space-between",
     float: "right",
   },
   cardp: {
@@ -39,13 +44,15 @@ const useStyles = makeStyles({
   },
 });
 
-function Comment({ props }) {
+function PostComment(props) {
   const classes = useStyles();
   const [display, setdisplay] = useState(false);
   const [com, setcom] = useState({
     text: "",
   });
   const [displays, setdisplays] = useState(false);
+
+  const { connectedUser } = useContext(UserContext);
 
   const handleClick = () => {
     setdisplay(!display);
@@ -54,6 +61,7 @@ function Comment({ props }) {
     setcom({ ...com, [e.target.name]: e.target.value });
   };
   const handleClick2 = async () => {
+    console.log(props);
     try {
       const accessToken = localStorage.getItem("userToken");
       if (accessToken) {
@@ -64,32 +72,27 @@ function Comment({ props }) {
         };
 
         const token = await axios.post(
-          "https://wildbook-api.herokuapp.com/posts/:id/comment",
+          `https://wildbook-api.herokuapp.com/posts/${props.postId}/comment`,
           com,
           config
         );
 
         console.log(token.data);
       }
-    } catch (e) {
-      //ici afficher un message d'erreur  à l'utilisateur
-    }
+    } catch (e) {}
   };
 
   return (
-    <div>
+    <Fragment>
       <CardContent>
         <div className={classes.icon}>
-          <IconButton>
-            <FavoriteBorder />
-          </IconButton>
-
+          <Likes />
           <IconButton onClick={handleClick}>
-            <ChatBubbleOutline />
+            <InsertComment />
           </IconButton>
         </div>
         {display && (
-          <Card>
+          <div>
             <TextareaAutosize
               className={classes.textA}
               id="filled-full-width"
@@ -112,16 +115,11 @@ function Comment({ props }) {
             >
               <SendTwoTone />
             </IconButton>
-          </Card>
+          </div>
         )}
-        <div>
-          <Card className={classes.cardp} variant="outlined">
-            <p className={classes.addP}></p>
-          </Card>
-        </div>
       </CardContent>
-    </div>
+    </Fragment>
   );
 }
 
-export default Comment;
+export default PostComment;

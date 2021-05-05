@@ -17,12 +17,16 @@ import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
-    width: 800,
+    width: 600,
     height: "100%",
     marginBottom: 40,
   },
   title: {
     marginLeft: 20,
+  },
+  CardContent: {
+    backgroundColor: "rgb(250, 248, 248)",
+    margin: "8px",
   },
 });
 
@@ -61,9 +65,6 @@ function Posts() {
             {post.map((newPost, index) => (
               <PostCard key={index} post={newPost} />
             ))}
-            {/*<PostCard post={post} />
-            <PostCard post={post} />
-            <PostCard post={post} />*/}
           </CardContent>
         </div>
       </Card>
