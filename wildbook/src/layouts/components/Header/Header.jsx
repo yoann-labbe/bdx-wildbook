@@ -97,7 +97,6 @@ function Header(props) {
   };
   const { connectedUser, setConnectedUser } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [user, setUser] = useState({});
   const history = useHistory();
 
   const handleClick = (event) => {
@@ -109,6 +108,10 @@ function Header(props) {
   };
 
   const handleClosed = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClosedLogout = () => {
     setAnchorEl(null);
     setConnectedUser({});
     localStorage.removeItem("userToken");
@@ -240,7 +243,7 @@ function Header(props) {
             to="/welcome"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-            <MenuItem className={classes.Menu} onClick={handleClosed}>
+            <MenuItem className={classes.Menu} onClick={handleClosedLogout}>
               Logout
             </MenuItem>
           </Link>

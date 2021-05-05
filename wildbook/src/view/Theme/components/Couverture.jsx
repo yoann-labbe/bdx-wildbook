@@ -47,7 +47,6 @@ function Couverture(props) {
   const classes = useStyles();
   const [editionMode, setEditionMode] = useState(false);
   const [form, setForm] = useState({ title: "Votre titre ici" });
-  const [follow, setFollow] = useState(false);
 
   const handleChange = (e) => {
     console.log(e.target.name);
