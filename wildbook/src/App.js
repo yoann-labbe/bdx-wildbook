@@ -14,6 +14,7 @@ import UserContext from "./context/user";
 import axios from "axios";
 import Minimal from "./layouts/Minimal/Minimal";
 import NotFound from "./common/NotFound";
+import ComingSoon from "./common/ComingSoon";
 
 function App() {
   const [connectedUser, setConnectedUser] = useState({});
