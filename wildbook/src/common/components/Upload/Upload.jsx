@@ -1,10 +1,9 @@
-import React, { createRef } from "react";
+import React, { createRef, useState } from "react";
 import axios from "axios";
 
 function Upload({ handlePicture }) {
   const publicKey = process.env.REACT_APP_PUBLIC_KEY;
   const authEndpoint = process.env.REACT_APP_AUTHENTICATION_ENDPOINT;
-
   const uploadRef = createRef();
 
   const triggerUpload = () => {
@@ -45,8 +44,8 @@ function Upload({ handlePicture }) {
 
   return (
     <div>
-      <button onClick={triggerUpload}>Select a file...</button>{" "}
-      {/* custom element to change ! */}
+      <button onClick={triggerUpload}>Select a file...</button>
+
       <input
         style={{ display: "none" }}
         ref={uploadRef}

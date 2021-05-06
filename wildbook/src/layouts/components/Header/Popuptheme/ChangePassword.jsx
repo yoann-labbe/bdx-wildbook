@@ -40,12 +40,16 @@ function ChangePassword() {
     newPassword: "",
     password: "",
   });
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handleClick = async () => {
-    if (
-      form.newPassword === form.password &&
-      form.oldPassword === connectedUser.password
-    ) {
+    if (form.newPassword === form.password) {
       try {
         const accessToken = localStorage.getItem("userToken");
         if (accessToken) {
@@ -65,6 +69,7 @@ function ChangePassword() {
             "🚀 ~ file: ChangePassword.jsx ~ line 61 ~ handleClick ~ updatedPassword.data",
             updatedPassword.data
           );
+          handleClickOpen();
         }
       } catch (e) {}
     }
@@ -72,15 +77,6 @@ function ChangePassword() {
 
   const handleModifications = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -97,13 +93,7 @@ function ChangePassword() {
             id="alert-dialog-description"
             style={{ display: "flex", flexDirection: "column" }}
           >
-            {form.newPassword === form.password ? (
-              <p> Password succesfully updated!</p>
-            ) : (
-              <p>
-                "New password" and "confirm new password" must be identical !"
-              </p>
-            )}
+            <p> Password succesfully updated!</p>
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -151,10 +141,7 @@ function ChangePassword() {
         ""
       )}
       <div className={classes.buttonContainer}>
-        <button
-          className={classes.doneButton}
-          onClick={(handleClick, handleClickOpen)}
-        >
+        <button className={classes.doneButton} onClick={handleClick}>
           <DoneIcon className={classes.doneIcon} />
         </button>
       </div>
