@@ -214,7 +214,7 @@ function Header(props) {
           onClose={handleClosed}
         >
           <Link
-            to="/profile/users/:_id"
+            to={"/profile/users/" + connectedUser._id}
             style={{ color: "inherit", textDecoration: "none" }}
           >
             <MenuItem className={classes.Menu} onClick={handleClosed}>

@@ -9,7 +9,7 @@ import CreatePost from "../../common/components/CreatePost/CreatePost";
 import Posts from "../../common/components/Posts/Posts";
 import Couverture from "./components/Couverture";
 import ComingSoon from "../../common/ComingSoon";
-import Posts from "../../common/components/Posts/Posts";
+
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles(() => ({
