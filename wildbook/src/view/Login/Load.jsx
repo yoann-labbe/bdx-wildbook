@@ -72,6 +72,33 @@ export default function Load() {
       //ici afficher un message d'erreur  à l'utilisateur
     }
   };
+  const handlepress = async (e) => {
+    if (e.charCode === 13) {
+      try {
+        const token = await axios.post(
+          "https://wildbook-api.herokuapp.com/users/login",
+          form
+        );
+
+        console.log(token.data);
+        localStorage.setItem("userToken", token.data.access_token);
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token.data.access_token}`,
+          },
+        };
+
+        const userProfile = await axios.get(
+          "https://wildbook-api.herokuapp.com/users/profile",
+          config
+        );
+        setConnectedUser(userProfile.data);
+        history.push("/");
+      } catch (e) {
+        //ici afficher un message d'erreur  à l'utilisateur
+      }
+    }
+  };
 
   return (
     <Box className={classes.cadre}>
@@ -91,6 +118,7 @@ export default function Load() {
           autoComplete="current-password"
           value={form.password}
           onChange={handleChange}
+          onKeyPress={handlepress}
         />
 
         <Button

@@ -41,9 +41,9 @@ function Likes({ post }) {
         {!post?.likes?.find((like) => like._id === connectedUser._id) &&
           !liked && <FavoriteBorder />}
         {(post?.likes?.find((like) => like._id === connectedUser._id) ||
-          liked) && <Favorite />}
+          liked) && <Favorite color="primary" />}
       </IconButton>
-      <p>Approved : {post?.likes?.length + (liked ? 1 : 0)}</p>
+      <p>{post?.likes?.length + (liked ? 1 : 0)}</p>
     </div>
   );
 }
