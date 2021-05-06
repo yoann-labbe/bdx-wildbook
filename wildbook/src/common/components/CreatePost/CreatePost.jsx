@@ -8,12 +8,20 @@ import {
   DialogContentText,
   DialogContent,
   DialogTitle,
+  Snackbar,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
+import {
+  AddAPhoto,
+  BorderColor,
+  CheckCircleOutline,
+  Done,
+  YouTube,
+} from "@material-ui/icons";
 import Upload from "../Upload/Upload";
 import axios from "axios";
+import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles({
   root: {
@@ -35,6 +43,10 @@ const useStyles = makeStyles({
   div: {
     marginBottom: "30px",
   },
+  snackButton: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
 });
 
 function CreatePost() {
@@ -54,6 +66,7 @@ function CreatePost() {
 
   const [displays, setdisplays] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openSnack, setOpenSnack] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.name === "videoUrl") {
@@ -103,6 +116,13 @@ function CreatePost() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handlecloseButton = () => {
+    setOpenSnack(true);
+  };
+  const handleCloseSnack = () => {
+    setOpenSnack(false);
+    setOpen(false);
+  };
 
   return (
     <div className={classes.div}>
@@ -127,7 +147,23 @@ function CreatePost() {
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  <Upload handlePicture={handlePicture} />
+                  <div className={classes.snackButton}>
+                    <Upload handlePicture={handlePicture} />
+                    <p style={{ fontSize: 12 }}>validate</p>
+
+                    <IconButton onClick={handlecloseButton}>
+                      <Done style={{ fontSize: 18 }} color="primary" />
+                    </IconButton>
+                  </div>
+                  <Snackbar
+                    open={openSnack}
+                    autoHideDuration={1000}
+                    onClose={handleCloseSnack}
+                  >
+                    <Alert onClose={handleCloseSnack} severity="success">
+                      This is a success message!
+                    </Alert>
+                  </Snackbar>
                 </DialogContentText>
               </DialogContent>
             </Dialog>
