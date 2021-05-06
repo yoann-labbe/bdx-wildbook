@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: "100px",
     marginTop: "100px",
     borderRadius: "8px",
-    backgroundColor: "#F1F1F1"
+    backgroundColor: "#F1F1F1",
   },
 
   titleContainer: {
@@ -31,8 +31,7 @@ const useStyles = makeStyles(() => ({
     //padding: "10px 0",
     color: "#EA5655",
     fontSize: "25px",
-    letterSpacing : "2px"
-    
+    letterSpacing: "2px",
   },
 
   icon: {
@@ -47,7 +46,7 @@ const useStyles = makeStyles(() => ({
     width: "300px",
     height: "300px",
     //border: "#B0B0B0 solid 2px",
-    overflowY: "auto"
+    overflowY: "auto",
   },
 }));
 

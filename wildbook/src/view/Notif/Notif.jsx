@@ -5,7 +5,6 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
-import { useHistory } from "react-router";
 import { Dialog, DialogContent, DialogContentText } from "@material-ui/core";
 import ComingSoon from "../../common/ComingSoon";
 
@@ -77,12 +76,8 @@ const message = `New Notification`;
 const date = `1 day ago`;
 
 function Notif() {
-  const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const redirectToHome = () => {
-    history.push("/");
-  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -110,11 +105,7 @@ function Notif() {
             style={{ display: "flex", flexDirection: "column" }}
           >
             <ComingSoon />
-            <button
-              onClick={redirectToHome}
-              onClick={handleClose}
-              className={classes.redirectButton}
-            >
+            <button onClick={handleClose} className={classes.redirectButton}>
               BACK TO WILDBOOK
             </button>
           </DialogContentText>
