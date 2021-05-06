@@ -32,9 +32,9 @@ function ComingSoon() {
   const classes = useStyles();
   return (
     <div className={classes.background}>
-      <div className={classes.commingSoon}>
+     
         <h1 className={classes.wildWork}>WILD WORK IN PROGRESS</h1>
-      </div>
+   
     </div>
   );
 }

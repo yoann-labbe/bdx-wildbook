@@ -13,7 +13,8 @@ const useStyles = makeStyles({
     marginBottom: 12,
     margin: 20,
     backgroundColor: "white",
-    padding: 15,
+    padding: 20,
+    paddingTop: 40,
     borderRadius: "20px",
   },
   div: {

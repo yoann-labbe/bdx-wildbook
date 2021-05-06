@@ -54,7 +54,7 @@ function Posts() {
 
   return (
     <div>
-      <Card className={classes.root} label="Creer un post">
+      <Card className={classes.root} label="Create a post">
         <h1 className={classes.title}>Posts</h1>
         <div className={classes.CardContent}>
           <CardContent>
