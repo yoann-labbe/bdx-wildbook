@@ -46,6 +46,7 @@ function ProfilInfos(props) {
     } catch (e) {
       //ici afficher un message d'erreur  à l'utilisateur
     }
+    setEditionMode(!editionMode);
   };
 
   const handleClick = async () => {
