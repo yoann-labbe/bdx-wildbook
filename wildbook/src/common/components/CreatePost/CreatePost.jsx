@@ -8,12 +8,20 @@ import {
   DialogContentText,
   DialogContent,
   DialogTitle,
+  Snackbar,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { AddAPhoto, BorderColor, YouTube } from "@material-ui/icons";
+import {
+  AddAPhoto,
+  BorderColor,
+  CheckCircleOutline,
+  Done,
+  YouTube,
+} from "@material-ui/icons";
 import Upload from "../Upload/Upload";
 import axios from "axios";
+import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles({
   root: {
@@ -35,9 +43,16 @@ const useStyles = makeStyles({
   div: {
     marginBottom: "30px",
   },
-
   pictureInfo: {
     marginBottom: "30px",
+  },
+  snackButton: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  validate: {
+    display: "flex",
+    float: "right",
   },
 });
 
@@ -58,6 +73,7 @@ function CreatePost() {
 
   const [displays, setdisplays] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openSnack, setOpenSnack] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.name === "videoUrl") {
@@ -107,6 +123,13 @@ function CreatePost() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handlecloseButton = () => {
+    setOpenSnack(true);
+  };
+  const handleCloseSnack = () => {
+    setOpenSnack(false);
+    setOpen(false);
+  };
 
   return (
     <div className={classes.div}>
@@ -136,7 +159,24 @@ function CreatePost() {
                     description in "Create Your Post" and click on <br />
                     "SEND" to see it appears in the post section !"
                   </p>
-                  <Upload handlePicture={handlePicture} />
+                  <div className={classes.snackButton}>
+                    <Upload handlePicture={handlePicture} />
+                    <div className={classes.validate}>
+                      <Button onClick={handlecloseButton}>
+                        <p style={{ fontSize: 15 }}>validate </p>
+                        <Done style={{ fontSize: 22 }} color="primary" />
+                      </Button>
+                    </div>
+                  </div>
+                  <Snackbar
+                    open={openSnack}
+                    autoHideDuration={700}
+                    onClose={handleCloseSnack}
+                  >
+                    <Alert onClose={handleCloseSnack} severity="success">
+                      This is a success message!
+                    </Alert>
+                  </Snackbar>
                 </DialogContentText>
               </DialogContent>
             </Dialog>
