@@ -16,12 +16,18 @@ const useStyles = makeStyles(() => ({
     width: 800,
     height: "100%",
     marginBottom: 40,
+    backgroundColor: "paper",
   },
   title: {
-    marginLeft: 20,
+    fontFamily : "Bebas Neue",
+    letterSpacing : "3px",
+    fontSize: "80px",
+    display: "flex",
+    justifyContent:"center",
+    margin: "5px",
   },
   CardContent: {
-    backgroundColor: "rgb(250, 248, 248)",
+  
     margin: "8px",
   },
 }));
@@ -58,7 +64,7 @@ function Profil(props) {
       <ProfilInfos userId={props.match.params.id} />
       <CreatePost />
       <Card className={classes.root} label="Creer un post">
-        <h3 className={classes.title}>Dernier Post</h3>
+      <h1 className={classes.title}>Posts</h1>
         <div className={classes.CardContent}>
           <CardContent>
             {post.map((authorPost, index) => (

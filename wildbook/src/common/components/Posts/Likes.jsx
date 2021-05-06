@@ -9,6 +9,11 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "space-between",
   },
+  nbLike : {
+    fontFamily: "Bebas Neue", 
+    fontSize : "15px", 
+  }
+  
 });
 
 function Likes({ post }) {
@@ -43,7 +48,7 @@ function Likes({ post }) {
         {(post?.likes?.find((like) => like._id === connectedUser._id) ||
           liked) && <Favorite color="primary" />}
       </IconButton>
-      <p>{post?.likes?.length + (liked ? 1 : 0)}</p>
+      <p className={classes.nbLike}>{post?.likes?.length + (liked ? 1 : 0)}</p>
     </div>
   );
 }
