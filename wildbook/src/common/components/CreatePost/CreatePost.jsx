@@ -35,6 +35,10 @@ const useStyles = makeStyles({
   div: {
     marginBottom: "30px",
   },
+
+  pictureInfo: {
+    marginBottom: "30px",
+  },
 });
 
 function CreatePost() {
@@ -80,7 +84,7 @@ function CreatePost() {
           },
         };
 
-        const token = await axios.post(
+        await axios.post(
           "https://wildbook-api.herokuapp.com/posts",
           name,
           config
@@ -123,10 +127,15 @@ function CreatePost() {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {"Update your picture"}
+                {"Upload a picture"}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
+                  <p className={classes.pictureInfo}>
+                    "Once you have selected your file, write its <br />
+                    description in "Create Your Post" and click on <br />
+                    "SEND" to see it appears in the post section !"
+                  </p>
                   <Upload handlePicture={handlePicture} />
                 </DialogContentText>
               </DialogContent>

@@ -25,7 +25,7 @@ function Likes({ post }) {
           },
         };
 
-        const token = await axios.post(
+        await axios.post(
           `https://wildbook-api.herokuapp.com/posts/${post?._id}/like`,
           {},
           config
