@@ -48,7 +48,8 @@ const useStyles = makeStyles({
   },
   snackButton: {
     display: "flex",
-    justifyContent: "space-around",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   validate: {
     display: "flex",
@@ -170,11 +171,11 @@ function CreatePost() {
                   </div>
                   <Snackbar
                     open={openSnack}
-                    autoHideDuration={700}
+                    autoHideDuration={800}
                     onClose={handleCloseSnack}
                   >
                     <Alert onClose={handleCloseSnack} severity="success">
-                      This is a success message!
+                      Image successfully uploaded
                     </Alert>
                   </Snackbar>
                 </DialogContentText>
