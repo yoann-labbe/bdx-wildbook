@@ -88,38 +88,38 @@ function ProfilInfos(props) {
   };
 
   useEffect(() => {
+    const getUsersInfos = () => {
+      try {
+        const accessToken = localStorage.getItem("userToken");
+        if (accessToken) {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          };
+          axios
+            .get(
+              `https://wildbook-api.herokuapp.com/users/${props.userId}`,
+              config
+            )
+            .then((response) => response.data)
+            .then((data) => {
+              console.log(data);
+              setForm(data);
+              setPicture({
+                avatarUrl: data.avatarUrl
+                  ? data.avatarUrl
+                  : "/assets/avatar2.png",
+              });
+            });
+        }
+      } catch (e) {
+        //ici afficher un message d'erreur  à l'utilisateur
+      }
+    };
+
     getUsersInfos();
   }, [props.userId]);
-
-  const getUsersInfos = () => {
-    try {
-      const accessToken = localStorage.getItem("userToken");
-      if (accessToken) {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        };
-        axios
-          .get(
-            `https://wildbook-api.herokuapp.com/users/${props.userId}`,
-            config
-          )
-          .then((response) => response.data)
-          .then((data) => {
-            console.log(data);
-            setForm(data);
-            setPicture({
-              avatarUrl: data.avatarUrl
-                ? data.avatarUrl
-                : "/assets/avatar2.png",
-            });
-          });
-      }
-    } catch (e) {
-      //ici afficher un message d'erreur  à l'utilisateur
-    }
-  };
 
   return (
     <div className="profil-infos">

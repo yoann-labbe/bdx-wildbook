@@ -19,15 +19,14 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "paper",
   },
   title: {
-    fontFamily : "Bebas Neue",
-    letterSpacing : "3px",
+    fontFamily: "Bebas Neue",
+    letterSpacing: "3px",
     fontSize: "80px",
     display: "flex",
-    justifyContent:"center",
+    justifyContent: "center",
     margin: "5px",
   },
   CardContent: {
-  
     margin: "8px",
   },
 }));
@@ -37,34 +36,34 @@ function Profil(props) {
   const [post, setPost] = useState([]);
 
   useEffect(() => {
+    const getPost = async () => {
+      try {
+        const accessToken = localStorage.getItem("userToken");
+        if (accessToken && props.match?.params?.id) {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          };
+          const getNewPost = await axios.get(
+            `https://wildbook-api.herokuapp.com/posts?userId=${props.match?.params?.id}`,
+            config
+          );
+          setPost(getNewPost.data[0].data);
+          console.log(getNewPost.data[0].data);
+        }
+      } catch (e) {}
+    };
+
     getPost();
   }, [props.match?.params?.id]);
-
-  const getPost = async () => {
-    try {
-      const accessToken = localStorage.getItem("userToken");
-      if (accessToken && props.match?.params?.id) {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        };
-        const getNewPost = await axios.get(
-          `https://wildbook-api.herokuapp.com/posts?userId=${props.match?.params?.id}`,
-          config
-        );
-        setPost(getNewPost.data[0].data);
-        console.log(getNewPost.data[0].data);
-      }
-    } catch (e) {}
-  };
 
   return (
     <div className={classes.profilInfos}>
       <ProfilInfos userId={props.match.params.id} />
       <CreatePost />
       <Card className={classes.root} label="Creer un post">
-      <h1 className={classes.title}>Posts</h1>
+        <h1 className={classes.title}>Posts</h1>
         <div className={classes.CardContent}>
           <CardContent>
             {post.map((authorPost, index) => (
