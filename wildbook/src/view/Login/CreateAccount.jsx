@@ -79,21 +79,21 @@ export default function CreateAccount({ switchFromRegisterToLogin }) {
   return (
     <Fragment>
       <div>
-        <h2 className={classes.inscript}>S'inscrire</h2>
+        <h2 className={classes.inscript}>Register</h2>
       </div>
       <Box className={classes.cadreTwo}>
         <div className={classes.boxOne}>
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               id="standard-basic"
-              label="Nom"
+              label="Lastname"
               value={form.lastName}
               name="lastName"
               onChange={handleChange}
             />
             <TextField
               id="standard-basic"
-              label="Prénom"
+              label="Firstname"
               value={form.firstName}
               name="firstName"
               onChange={handleChange}
@@ -169,11 +169,11 @@ export default function CreateAccount({ switchFromRegisterToLogin }) {
               variant="outlined"
               onClick={handleClick}
             >
-              S'inscrire
+              Register now
             </Button>
             <div className="">
               <Link className="" to="">
-                Déjà inscrit? Connectez-vous.
+                Already registered? log in.
               </Link>
             </div>
           </form>
