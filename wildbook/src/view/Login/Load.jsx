@@ -98,10 +98,10 @@ export default function Load() {
           variant="contained"
           onClick={handleConnection}
         >
-          Connexion
+          Log in
         </Button>
         <Tooltip>
-          <Button>Mot de passe oublié ?</Button>
+          <Button>Forgot your password</Button>
         </Tooltip>
       </form>
     </Box>
