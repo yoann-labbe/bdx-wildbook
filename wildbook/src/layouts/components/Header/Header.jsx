@@ -10,7 +10,7 @@ import {
   DialogTitle,
   IconButton,
 } from "@material-ui/core";
-import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DialogNotif from "../../../view/Notif/DialogNotif";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -123,36 +123,35 @@ function Header(props) {
   const [iconAvatar, setIconAvatar] = useState({});
 
   useEffect(() => {
+    const getIcon = () => {
+      try {
+        const accessToken = localStorage.getItem("userToken");
+        if (accessToken && Object.keys(connectedUser).length > 0) {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          };
+          axios
+            .get(
+              `https://wildbook-api.herokuapp.com/users/${connectedUser._id}`,
+              config
+            )
+            .then((response) => response.data)
+            .then((data) => {
+              setIconAvatar(data);
+              console.log(
+                "🚀 ~ file: Header.jsx ~ line 155 ~ .then ~ data",
+                data
+              );
+            });
+        }
+      } catch (e) {
+        //ici afficher un message d'erreur  à l'utilisateur
+      }
+    };
     getIcon();
   }, [connectedUser]);
-
-  const getIcon = () => {
-    try {
-      const accessToken = localStorage.getItem("userToken");
-      if (accessToken && Object.keys(connectedUser).length > 0) {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        };
-        axios
-          .get(
-            `https://wildbook-api.herokuapp.com/users/${connectedUser._id}`,
-            config
-          )
-          .then((response) => response.data)
-          .then((data) => {
-            setIconAvatar(data);
-            console.log(
-              "🚀 ~ file: Header.jsx ~ line 155 ~ .then ~ data",
-              data
-            );
-          });
-      }
-    } catch (e) {
-      //ici afficher un message d'erreur  à l'utilisateur
-    }
-  };
 
   const classes = useStyles();
   return (

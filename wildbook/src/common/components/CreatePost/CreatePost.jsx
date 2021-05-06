@@ -12,13 +12,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  AddAPhoto,
-  BorderColor,
-  CheckCircleOutline,
-  Done,
-  YouTube,
-} from "@material-ui/icons";
+import { AddAPhoto, BorderColor, Done, YouTube } from "@material-ui/icons";
 import Upload from "../Upload/Upload";
 import axios from "axios";
 import { Alert } from "@material-ui/lab";

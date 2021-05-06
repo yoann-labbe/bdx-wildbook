@@ -8,15 +8,12 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
     position: "relative",
     backgroundColor: "black",
   },
   commingSoon: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    margin: "0 auto",
     alignItems: "center",
     margin: "0 auto",
     height: "100px",
@@ -32,9 +29,7 @@ function ComingSoon() {
   const classes = useStyles();
   return (
     <div className={classes.background}>
-     
-        <h1 className={classes.wildWork}>WILD WORK IN PROGRESS</h1>
-   
+      <h1 className={classes.wildWork}>WILD WORK IN PROGRESS</h1>
     </div>
   );
 }
