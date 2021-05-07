@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Popupload from "./Popupload";
 import Popupaccount from "./Popupaccount";
+import UserContext from "../../context/user";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -25,11 +27,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login() {
+function Login(props) {
   const classe = useStyles();
-
+  const { connectedUser } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
   const [openAccount, setOpenAccount] = React.useState(false);
+  const history = useHistory();
   const handleClose = () => {
     setOpen(false);
   };
@@ -41,6 +44,14 @@ function Login() {
     setOpenAccount(false);
     setOpen(true);
   };
+
+  useEffect(() => {
+    if (connectedUser && connectedUser._id) {
+      history.push(
+        history?.location?.state?.from ? history?.location?.state?.from : "/"
+      );
+    }
+  }, [connectedUser, history]);
 
   return (
     <div>

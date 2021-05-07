@@ -6,7 +6,12 @@ import Login from "./view/Login/Login";
 import Profil from "./view/Profil/Profil";
 import Newpage from "./layouts/components/Header/Popuptheme/Newpage";
 import Theme from "./view/Theme/Theme";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import theme from "./theme";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -56,38 +61,90 @@ function App() {
             <Route
               exact
               path="/"
-              render={() => (
-                <Main>
-                  <Home />
-                </Main>
-              )}
+              render={() => {
+                if (connectedUser && connectedUser._id) {
+                  return (
+                    <Main>
+                      <Home />
+                    </Main>
+                  );
+                } else {
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: "/welcome",
+                        state: { from: window.location.pathname },
+                      }}
+                    />
+                  );
+                }
+              }}
             />
             <Route
               exact
               path="/topics"
-              render={() => (
-                <Main>
-                  <Theme />
-                </Main>
-              )}
+              render={() => {
+                if (connectedUser && connectedUser._id) {
+                  return (
+                    <Main>
+                      <Theme />
+                    </Main>
+                  );
+                } else {
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: "/welcome",
+                        state: { from: window.location.pathname },
+                      }}
+                    />
+                  );
+                }
+              }}
             />
             <Route
               exact
               path="/profile/users/:id"
-              render={(props) => (
-                <Main>
-                  <Profil {...props} />
-                </Main>
-              )}
+              render={(props) => {
+                if (connectedUser && connectedUser._id) {
+                  return (
+                    <Main>
+                      <Profil {...props} />
+                    </Main>
+                  );
+                } else {
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: "/welcome",
+                        state: { from: window.location.pathname },
+                      }}
+                    />
+                  );
+                }
+              }}
             />
             <Route
               exact
               path="/newpage"
-              render={() => (
-                <Main>
-                  <Newpage />
-                </Main>
-              )}
+              render={() => {
+                if (connectedUser && connectedUser._id) {
+                  return (
+                    <Main>
+                      <Newpage />
+                    </Main>
+                  );
+                } else {
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: "/welcome",
+                        state: { from: window.location.pathname },
+                      }}
+                    />
+                  );
+                }
+              }}
             />
             <Route
               path="/*"
